@@ -1,0 +1,33 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Portfolio","Portfolio_LifecyclePhase","Portfolio_Program","Portfolio_ServiceCategory","Portfolio_StrategicPriority"]
+
+annotation PBI_ProTooling = ["MCP-PBIModeling","DevMode"]
+
+ref table Portfolio
+ref table DateTableTemplate_1670ed74-39c3-41bc-8f64-27ca80a66d7b
+ref table LocalDateTable_ed8ade0f-a73b-42fb-ae3a-fc340e1c7dda
+ref table LocalDateTable_c4ed3a9e-f9bf-43d8-a562-995e2af37723
+ref table Portfolio_LifecyclePhase
+ref table LocalDateTable_d2c346ca-d6af-4fc4-895b-53e935c502d3
+ref table LocalDateTable_ab6efe6e-00a4-4944-bd0c-df9e0bfeb5d0
+ref table Portfolio_Program
+ref table LocalDateTable_c63c1aea-e1ab-4f59-83bd-c4584a1d033d
+ref table LocalDateTable_81356df0-0a79-4793-89ad-e96604341876
+ref table Portfolio_ServiceCategory
+ref table LocalDateTable_a7d540fc-8c65-4c79-989c-7d91b2a66cc3
+ref table LocalDateTable_3f0555a1-e79d-4833-b050-ccdd633366ca
+ref table Portfolio_StrategicPriority
+ref table LocalDateTable_d0f3e1d8-ed2f-4466-bfdd-113613467b90
+ref table LocalDateTable_cd1c5aff-f3ac-4cb6-93e8-6343f53792bc
+
+ref cultureInfo en-US
+

@@ -1,0 +1,364 @@
+table Portfolio
+	lineageTag: 9d4c832a-ca49-488a-a371-bfa0d8852b3e
+
+	measure 'Product Count' = COUNTROWS('Portfolio')
+		formatString: 0
+		lineageTag: 8e40fbba-af23-4b96-b026-8f24f822c2fe
+
+	measure 'Active Dev Count' = CALCULATE([Product Count], 'Portfolio'[Section] = "Active Development")
+		formatString: 0
+		lineageTag: fe07d428-4974-49ae-8021-e6ca7101df50
+
+	measure 'Pipeline Count' = CALCULATE([Product Count], 'Portfolio'[Section] = "Pipeline")
+		formatString: 0
+		lineageTag: 32b80bf6-7be2-4f40-8c32-cc8a9e49b556
+
+	measure 'Production Count' = CALCULATE([Product Count], 'Portfolio'[Section] = "Production")
+		formatString: 0
+		lineageTag: 957726c8-79d1-4d0e-a2cf-b29bc9823c96
+
+	measure 'Primary Count' = CALCULATE([Product Count], 'Portfolio'[Priority] = "Primary")
+		formatString: 0
+		lineageTag: 0621e4f0-84f2-47e5-9898-56198e36a318
+
+	measure 'Secondary Count' = CALCULATE([Product Count], 'Portfolio'[Priority] = "Secondary")
+		formatString: 0
+		lineageTag: b1e6c45e-7561-4c97-b450-a67ec1fe4f36
+
+	measure 'Programs Served' = DISTINCTCOUNT('Portfolio'[Program])
+		formatString: 0
+		lineageTag: 9a823fa7-230f-4095-a625-8db7bcfdbbe2
+
+	measure 'Strategic Priorities Covered' = DISTINCTCOUNT('Portfolio'[Strategic Alignment])
+		formatString: 0
+		lineageTag: 018251ac-8ed3-4d39-94cf-21a6d6384031
+
+	measure '_Section BG Color' = SWITCH(SELECTEDVALUE('Portfolio'[Section]), "Active Development", "#FFF7F0", "Pipeline", "#F2F2F2", "Production", "#F6FAFD", "#FFFFFF")
+		isHidden
+		lineageTag: 7ea3154d-0e89-47b7-a646-b16cdbfb107e
+
+	measure '_Section Header BG' = SWITCH(SELECTEDVALUE('Portfolio'[Section]), "Active Development", "#FBE5D6", "Pipeline", "#E5E5E5", "Production", "#D6E4F0", "#FFFFFF")
+		isHidden
+		lineageTag: 50042ea4-7957-450f-8120-75103a4feac2
+
+	measure '_Section Header FG' = SWITCH(SELECTEDVALUE('Portfolio'[Section]), "Active Development", "#D4712A", "Pipeline", "#6B6B6B", "Production", "#3680C4", "#000000")
+		isHidden
+		lineageTag: 8aa9fceb-134a-44cd-b625-de69002beb6e
+
+	measure '_Priority Color' = SWITCH(SELECTEDVALUE('Portfolio'[Priority]), "Primary", "#D4712A", "Secondary", "#6B6B6B", "#8A8A8A")
+		isHidden
+		lineageTag: 2cb87331-bad1-47ab-85f4-dc9adac92f80
+
+	measure '_Active Tasks FG' = IF(SELECTEDVALUE('Portfolio'[Active Tasks Display]) = "No active tasks — stable operations", "#8A8A8A", "#000000")
+		isHidden
+		lineageTag: 3340b24e-823c-436f-8e8c-39e202e6f857
+
+	column Program
+		dataType: string
+		lineageTag: 6eafcf1e-74a1-4a9e-98e0-09088be8d27d
+		summarizeBy: none
+		sourceColumn: Program
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product
+		dataType: string
+		lineageTag: 4c2fe019-8e63-43f7-a746-d164820314ed
+		summarizeBy: none
+		sourceColumn: Product
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Strategic Alignment'
+		dataType: string
+		lineageTag: 0698c4f2-e4b5-4f3a-9732-fe07327da424
+		summarizeBy: none
+		sourceColumn: Strategic Alignment
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Service Category'
+		dataType: string
+		lineageTag: 6a027b2b-47f7-4052-8865-8bfc23b66fe8
+		summarizeBy: none
+		sourceColumn: Service Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business Objective'
+		dataType: string
+		lineageTag: 9f46d138-0d2d-48c9-9815-b31a2089c251
+		summarizeBy: none
+		sourceColumn: Business Objective
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business Sponsor'
+		dataType: string
+		lineageTag: a49e5381-4cef-4205-aa27-8d408b0915cd
+		summarizeBy: none
+		sourceColumn: Business Sponsor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Section
+		dataType: string
+		lineageTag: cf171164-a3da-4f7b-b119-84e8051cb611
+		summarizeBy: none
+		sourceColumn: Section
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lifecycle Phase'
+		dataType: string
+		lineageTag: 8ae14fce-f206-4cfc-99c6-921ae5682187
+		summarizeBy: none
+		sourceColumn: Lifecycle Phase
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Phase Number'
+		dataType: double
+		lineageTag: 99104d81-26e7-415b-a0b3-f69058cd1956
+		summarizeBy: sum
+		sourceColumn: Phase Number
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Initial Delivery'
+		dataType: string
+		lineageTag: 564d700f-8b30-4c8f-a1de-ac9f589441f9
+		summarizeBy: none
+		sourceColumn: Initial Delivery
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Active Tasks'
+		dataType: string
+		lineageTag: aafe90a9-ded0-4454-ac69-8f95f5dc05cc
+		summarizeBy: none
+		sourceColumn: Active Tasks
+
+		annotation SummarizationSetBy = Automatic
+
+	column Priority
+		dataType: string
+		lineageTag: 33cde40c-11bc-4672-af74-a471f19735bb
+		summarizeBy: none
+		sourceColumn: Priority
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Color Tag'
+		dataType: string
+		lineageTag: 2e9fa3e2-9d4b-499a-b847-a7f5dff7214e
+		summarizeBy: none
+		sourceColumn: Color Tag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Compliance Asset Id'
+		dataType: string
+		lineageTag: c4e4cafb-09ec-46ba-b1f3-2be27c082a5e
+		summarizeBy: none
+		sourceColumn: Compliance Asset Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: d29a97ce-84fe-48e3-9c59-bcd1a28ea7fd
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Content Type'
+		dataType: string
+		lineageTag: 9c827927-2ea6-4025-b527-e75db14e2a62
+		summarizeBy: none
+		sourceColumn: Content Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 206f0c16-f990-4217-a9d3-5784cf3ac5dc
+		summarizeBy: none
+		sourceColumn: Modified
+
+		variation Variation
+			isDefault
+			relationship: d277518f-4d23-4d5d-bc00-5296e8e4893c
+			defaultHierarchy: LocalDateTable_ed8ade0f-a73b-42fb-ae3a-fc340e1c7dda.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Created
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 89546dbc-87c5-4f84-b466-ccc94642b222
+		summarizeBy: none
+		sourceColumn: Created
+
+		variation Variation
+			isDefault
+			relationship: a76ff3e8-8421-4ceb-9126-794ef0e17948
+			defaultHierarchy: LocalDateTable_c4ed3a9e-f9bf-43d8-a562-995e2af37723.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Created By'
+		dataType: string
+		lineageTag: 6713c930-1803-465e-9232-ad15081e4921
+		summarizeBy: none
+		sourceColumn: Created By
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Modified By'
+		dataType: string
+		lineageTag: 39c1397f-aa46-46e3-bba3-5340708abfee
+		summarizeBy: none
+		sourceColumn: Modified By
+
+		annotation SummarizationSetBy = Automatic
+
+	column Version
+		dataType: string
+		lineageTag: bd17916e-b822-41c8-89fb-d8f36473b32f
+		summarizeBy: none
+		sourceColumn: Version
+
+		annotation SummarizationSetBy = Automatic
+
+	column Attachments
+		dataType: string
+		lineageTag: d598b296-6c8e-4970-83cf-71af2149d427
+		summarizeBy: none
+		sourceColumn: Attachments
+
+		annotation SummarizationSetBy = Automatic
+
+	column Edit
+		dataType: string
+		lineageTag: 629ef771-9533-4e0f-bde3-975ecd3fc69c
+		summarizeBy: none
+		sourceColumn: Edit
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: f5ebde86-d1bb-4241-8100-c441501fea56
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Child Count'
+		dataType: string
+		lineageTag: 876fa5b0-54b2-4393-bcc4-4db7dea99718
+		summarizeBy: none
+		sourceColumn: Item Child Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Folder Child Count'
+		dataType: string
+		lineageTag: 516a4d5c-5dc2-4bcb-b846-19352c0a5b84
+		summarizeBy: none
+		sourceColumn: Folder Child Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Label setting'
+		dataType: string
+		lineageTag: dbb34948-eae9-4df7-9d28-dcd1b55ae72e
+		summarizeBy: none
+		sourceColumn: Label setting
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Retention label'
+		dataType: string
+		lineageTag: 50d9667a-3a50-4674-a2be-06073854f187
+		summarizeBy: none
+		sourceColumn: Retention label
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Retention label Applied'
+		dataType: string
+		lineageTag: 0a879328-2b85-4e06-9597-edf2ec4d1efb
+		summarizeBy: none
+		sourceColumn: Retention label Applied
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Label applied by'
+		dataType: string
+		lineageTag: 219a38bc-16c8-4366-aee2-4d6a6f262cc7
+		summarizeBy: none
+		sourceColumn: Label applied by
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item is a Record'
+		dataType: string
+		lineageTag: 246293c3-1c0a-48e7-bdc5-c8cd2d5b7bd3
+		summarizeBy: none
+		sourceColumn: Item is a Record
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'App Created By'
+		dataType: string
+		lineageTag: 5882a2a7-ec82-4ce5-ab48-95d14469cffb
+		summarizeBy: none
+		sourceColumn: App Created By
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'App Modified By'
+		dataType: string
+		lineageTag: 36eb11a5-c466-4626-b4e3-55abf827ea43
+		summarizeBy: none
+		sourceColumn: App Modified By
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Section Sort' = SWITCH('Portfolio'[Section], "Active Development", 1, "Pipeline", 2, "Production", 3)
+		dataType: int64
+		isHidden
+		lineageTag: 0cd50a34-8e6e-446b-a5f2-f9b60e35e264
+
+	column 'Section Icon Label' = SWITCH('Portfolio'[Section], "Active Development", UNICHAR(9654) & "  Active Development", "Pipeline", UNICHAR(9675) & "  Pipeline", "Production", UNICHAR(9679) & "  Production")
+		dataType: string
+		lineageTag: b178a39a-38ae-4c80-ab29-64aed1e9dd23
+		sortByColumn: 'Section Sort'
+
+	column 'Phase Display' = IF('Portfolio'[Phase Number] < 5, 'Portfolio'[Lifecycle Phase] & " [" & FORMAT('Portfolio'[Phase Number], "0") & "/4]", "Production")
+		dataType: string
+		lineageTag: 937ce23a-7237-4772-8cf0-f2ba7651b7ba
+		sortByColumn: 'Phase Number'
+
+	column 'Active Tasks Display' = IF(ISBLANK('Portfolio'[Active Tasks]) || 'Portfolio'[Active Tasks] = "", "No active tasks — stable operations", SUBSTITUTE('Portfolio'[Active Tasks], " | ", UNICHAR(10)))
+		dataType: string
+		lineageTag: fa31c90b-42b7-4172-bd47-693de03911f7
+
+	partition Portfolio = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Tables("https://bristowgroupinc.sharepoint.com/sites/BristowInsight/", [Implementation="2.0", ViewMode="All"]),
+				    #"7b1163b9-b16c-46a1-9259-547f61b4f701" = Source{[Id="7b1163b9-b16c-46a1-9259-547f61b4f701"]}[Items]
+				in
+				    #"7b1163b9-b16c-46a1-9259-547f61b4f701"
+
+	annotation PBI_ResultType = Table
+

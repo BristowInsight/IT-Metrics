@@ -1,0 +1,28 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "footerText",
+  "position": {
+    "x": 16,
+    "y": 1030,
+    "z": 10,
+    "height": 45,
+    "width": 1888,
+    "tabOrder": 11
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": []
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

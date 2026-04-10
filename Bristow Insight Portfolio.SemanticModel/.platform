@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Bristow Insight Portfolio"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a07b5ec5-ecd0-ba2a-4963-019e89047964"
+  }
+}

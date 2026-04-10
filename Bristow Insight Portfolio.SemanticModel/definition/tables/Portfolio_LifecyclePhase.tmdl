@@ -1,0 +1,229 @@
+table Portfolio_LifecyclePhase
+	lineageTag: 92a02f1b-672b-4cac-bcc5-3d7b62fc50ec
+
+	column 'Lifecycle Phase'
+		dataType: string
+		lineageTag: bf55c56d-fe2b-4059-ba6b-27fbbc3af8f7
+		summarizeBy: none
+		sourceColumn: Lifecycle Phase
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Phase Number'
+		dataType: double
+		lineageTag: 272c1171-95fb-41c9-a26c-2da0c0e8b9dd
+		summarizeBy: sum
+		sourceColumn: Phase Number
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Section
+		dataType: string
+		lineageTag: 13305e31-a7f8-4946-a40f-09f204dfa7e2
+		summarizeBy: none
+		sourceColumn: Section
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 85bf751d-d345-4769-9df0-c8f328131b33
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Color Tag'
+		dataType: string
+		lineageTag: e78534fc-3cd8-4f46-81f1-46ea4b242d8a
+		summarizeBy: none
+		sourceColumn: Color Tag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Compliance Asset Id'
+		dataType: string
+		lineageTag: c93567cb-566d-4b89-8778-1fa0ada6296d
+		summarizeBy: none
+		sourceColumn: Compliance Asset Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: b1684a73-a828-4abf-bc61-8be60ac18c17
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Content Type'
+		dataType: string
+		lineageTag: 06e7a8e2-a830-437d-bae5-660a60f87b6c
+		summarizeBy: none
+		sourceColumn: Content Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f4e62da7-c29a-41fe-9c66-2e5a86a568ad
+		summarizeBy: none
+		sourceColumn: Modified
+
+		variation Variation
+			isDefault
+			relationship: 29247c4e-b76d-4010-809f-f1e7cde277b6
+			defaultHierarchy: LocalDateTable_d2c346ca-d6af-4fc4-895b-53e935c502d3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Created
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e32e2cdb-c331-4e2e-88af-9d7af4fa6641
+		summarizeBy: none
+		sourceColumn: Created
+
+		variation Variation
+			isDefault
+			relationship: 984cc71d-5e34-4abe-a826-8a6209874eb4
+			defaultHierarchy: LocalDateTable_ab6efe6e-00a4-4944-bd0c-df9e0bfeb5d0.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Created By'
+		dataType: string
+		lineageTag: 1d6c1f3a-8527-4018-9f50-a66a1c5301fc
+		summarizeBy: none
+		sourceColumn: Created By
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Modified By'
+		dataType: string
+		lineageTag: 86ed7b4b-85ed-4a8a-ba94-62f32bf6bb6a
+		summarizeBy: none
+		sourceColumn: Modified By
+
+		annotation SummarizationSetBy = Automatic
+
+	column Version
+		dataType: string
+		lineageTag: 9774b8a1-4c93-446c-8453-5eb5f7c1cbe6
+		summarizeBy: none
+		sourceColumn: Version
+
+		annotation SummarizationSetBy = Automatic
+
+	column Attachments
+		dataType: string
+		lineageTag: b844d134-2568-4dc9-8992-1b0838292efa
+		summarizeBy: none
+		sourceColumn: Attachments
+
+		annotation SummarizationSetBy = Automatic
+
+	column Edit
+		dataType: string
+		lineageTag: 4ccaa2b5-4dc0-4b01-b7df-e4b8614f56c8
+		summarizeBy: none
+		sourceColumn: Edit
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 3c37ea14-4d02-45d9-8245-c1454ee00992
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Child Count'
+		dataType: string
+		lineageTag: edb4c118-759b-461b-ae27-b7e49c24f25c
+		summarizeBy: none
+		sourceColumn: Item Child Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Folder Child Count'
+		dataType: string
+		lineageTag: 31eddcde-5bed-4620-b8fc-1331af35eeac
+		summarizeBy: none
+		sourceColumn: Folder Child Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Label setting'
+		dataType: string
+		lineageTag: bde19032-5a0c-4fa4-9ee9-cbf47d00d4d1
+		summarizeBy: none
+		sourceColumn: Label setting
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Retention label'
+		dataType: string
+		lineageTag: 7c7168a3-81cd-4fd8-963b-fbab87296afb
+		summarizeBy: none
+		sourceColumn: Retention label
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Retention label Applied'
+		dataType: string
+		lineageTag: d128d3ad-998a-4752-8d3d-aea498ee9ab3
+		summarizeBy: none
+		sourceColumn: Retention label Applied
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Label applied by'
+		dataType: string
+		lineageTag: bdaeb8b9-057e-4d27-81c9-3c69c711d6c5
+		summarizeBy: none
+		sourceColumn: Label applied by
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item is a Record'
+		dataType: string
+		lineageTag: 317b099e-c288-4d4e-ab59-ac11bb630b67
+		summarizeBy: none
+		sourceColumn: Item is a Record
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'App Created By'
+		dataType: string
+		lineageTag: 4d94fba4-4b76-4d57-aefb-e6f42912ab6e
+		summarizeBy: none
+		sourceColumn: App Created By
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'App Modified By'
+		dataType: string
+		lineageTag: e3b7da47-225a-49c0-9dcb-00fac4dffb1d
+		summarizeBy: none
+		sourceColumn: App Modified By
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Portfolio_LifecyclePhase = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Tables("https://bristowgroupinc.sharepoint.com/sites/BristowInsight/", [Implementation="2.0", ViewMode="All"]),
+				    #"b6dcab2e-2447-43e0-9747-72a3c3eeaefb" = Source{[Id="b6dcab2e-2447-43e0-9747-72a3c3eeaefb"]}[Items]
+				in
+				    #"b6dcab2e-2447-43e0-9747-72a3c3eeaefb"
+
+	annotation PBI_ResultType = Table
+

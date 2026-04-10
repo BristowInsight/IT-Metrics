@@ -1,0 +1,66 @@
+relationship d277518f-4d23-4d5d-bc00-5296e8e4893c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Portfolio.Modified
+	toColumn: LocalDateTable_ed8ade0f-a73b-42fb-ae3a-fc340e1c7dda.Date
+
+relationship a76ff3e8-8421-4ceb-9126-794ef0e17948
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Portfolio.Created
+	toColumn: LocalDateTable_c4ed3a9e-f9bf-43d8-a562-995e2af37723.Date
+
+relationship 29247c4e-b76d-4010-809f-f1e7cde277b6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Portfolio_LifecyclePhase.Modified
+	toColumn: LocalDateTable_d2c346ca-d6af-4fc4-895b-53e935c502d3.Date
+
+relationship 984cc71d-5e34-4abe-a826-8a6209874eb4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Portfolio_LifecyclePhase.Created
+	toColumn: LocalDateTable_ab6efe6e-00a4-4944-bd0c-df9e0bfeb5d0.Date
+
+relationship 45b180cf-813e-47da-9edf-9d724789bdcd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Portfolio_Program.Modified
+	toColumn: LocalDateTable_c63c1aea-e1ab-4f59-83bd-c4584a1d033d.Date
+
+relationship 7d6a64b2-1f87-4962-b229-eb01ae29fd48
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Portfolio_Program.Created
+	toColumn: LocalDateTable_81356df0-0a79-4793-89ad-e96604341876.Date
+
+relationship fcbb1fc5-025f-4479-a9bf-a46228325ebf
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Portfolio_ServiceCategory.Modified
+	toColumn: LocalDateTable_a7d540fc-8c65-4c79-989c-7d91b2a66cc3.Date
+
+relationship 83e80cee-b5cd-45cd-a981-ddf5a03b5212
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Portfolio_ServiceCategory.Created
+	toColumn: LocalDateTable_3f0555a1-e79d-4833-b050-ccdd633366ca.Date
+
+relationship 2ae5b4b2-57d2-47ec-ba9e-bda556748c22
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Portfolio_StrategicPriority.Modified
+	toColumn: LocalDateTable_d0f3e1d8-ed2f-4466-bfdd-113613467b90.Date
+
+relationship 41fc1615-757a-4062-ac97-ead26ae0f395
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Portfolio_StrategicPriority.Created
+	toColumn: LocalDateTable_cd1c5aff-f3ac-4cb6-93e8-6343f53792bc.Date
+
+relationship AutoDetected_3f4fc588-f678-4417-a25c-759f05661249
+	fromColumn: Portfolio.Program
+	toColumn: Portfolio_Program.Program
+
+relationship AutoDetected_2d99df3c-c009-439a-a9ba-5407a3dadded
+	fromColumn: Portfolio.'Strategic Alignment'
+	toColumn: Portfolio_StrategicPriority.'Strategic Alignment'
+
+relationship AutoDetected_2f125001-4945-4a55-876b-59d9e16f7e77
+	fromColumn: Portfolio.'Service Category'
+	toColumn: Portfolio_ServiceCategory.'Service Category'
+
+relationship AutoDetected_8a3319b4-06fc-4164-816f-e2ca73640086
+	fromColumn: Portfolio.'Lifecycle Phase'
+	toColumn: Portfolio_LifecyclePhase.'Lifecycle Phase'
+
