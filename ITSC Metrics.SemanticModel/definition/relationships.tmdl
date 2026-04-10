@@ -1,0 +1,15 @@
+relationship c8851279-270c-4202-95fc-f05f8f7b90ad
+	joinOnDateBehavior: datePartOnly
+	fromColumn: ServiceNowTickets.Closed_At
+	toColumn: LocalDateTable_caefe953-ed24-4164-bdf6-cf7d46f94f76.Date
+
+relationship 82a77bf3-d18c-4a33-a118-a4bc49555dba
+	joinOnDateBehavior: datePartOnly
+	fromColumn: ServiceNowTickets.Opened_At
+	toColumn: LocalDateTable_95a2a12a-0b88-4bb2-b894-ffc463aa3e24.Date
+
+relationship 11a373b5-471b-4704-8310-bba516598aff
+	joinOnDateBehavior: datePartOnly
+	fromColumn: ServiceNowTickets.Resolved_At
+	toColumn: LocalDateTable_c1898ddb-001a-458c-be2e-7b0aeead62c3.Date
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "ISMS KPI Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c96584c9-9763-b8a6-4818-5b8c82988df7"
+  }
+}

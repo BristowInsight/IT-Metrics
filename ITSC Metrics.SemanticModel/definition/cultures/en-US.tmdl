@@ -1,0 +1,2227 @@
+cultureInfo en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "3.1.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "service_now_ticket": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ServiceNowTickets"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "service now ticket": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "ServiceNowTickets": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "ticket": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "now ticket": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "maintenance now ticket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "examination now ticket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "svc now ticket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "package now ticket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "repair now ticket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "benefit now ticket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "servicing now ticket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "service now coupon": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "now coupon": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "service now permit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        }
+			      ]
+			    },
+			    "service_now_ticket.number": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ServiceNowTickets",
+			          "ConceptualProperty": "Number"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "number": {
+			            "State": "Generated"
+			          }
+			        }
+			      ],
+			      "NameType": "Identifier"
+			    },
+			    "service_now_ticket.opened_at.variation.date_hierarchy": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ServiceNowTickets",
+			          "VariationSource": "Opened At",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Date Hierarchy"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "opened at date hierarchy": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date hierarchy": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "service_now_ticket.opened_at.variation.date_hierarchy.year": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ServiceNowTickets",
+			          "VariationSource": "Opened At",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Date Hierarchy",
+			          "HierarchyLevel": "Year"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "opened at year": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "year": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "opened at yr": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "yr": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "service_now_ticket.opened_at.variation.date_hierarchy.quarter": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ServiceNowTickets",
+			          "VariationSource": "Opened At",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Date Hierarchy",
+			          "HierarchyLevel": "Quarter"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "opened at quarter": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "quarter": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "opened at qtr": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.846
+			          }
+			        },
+			        {
+			          "qtr": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.818
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "service_now_ticket.opened_at.variation.date_hierarchy.month": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ServiceNowTickets",
+			          "VariationSource": "Opened At",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Date Hierarchy",
+			          "HierarchyLevel": "Month"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "opened at month": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "month": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "opened at mth": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "mth": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "service_now_ticket.opened_at.variation.date_hierarchy.day": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ServiceNowTickets",
+			          "VariationSource": "Opened At",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Date Hierarchy",
+			          "HierarchyLevel": "Day"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "opened at day": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "day": {
+			            "State": "Generated"
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "service_now_ticket.state": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ServiceNowTickets",
+			          "ConceptualProperty": "State"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {},
+			        {
+			          "location": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "province": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "territory": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "nation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "condition": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "country": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ]
+			    },
+			    "service_now_ticket.closed_at.variation.date_hierarchy": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ServiceNowTickets",
+			          "VariationSource": "Closed At",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Date Hierarchy"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "closed at date hierarchy": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date hierarchy": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "service_now_ticket.closed_at.variation.date_hierarchy.year": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ServiceNowTickets",
+			          "VariationSource": "Closed At",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Date Hierarchy",
+			          "HierarchyLevel": "Year"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "closed at year": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "year": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "closed at yr": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "yr": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "service_now_ticket.closed_at.variation.date_hierarchy.quarter": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ServiceNowTickets",
+			          "VariationSource": "Closed At",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Date Hierarchy",
+			          "HierarchyLevel": "Quarter"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "closed at quarter": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "quarter": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "closed at qtr": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.846
+			          }
+			        },
+			        {
+			          "qtr": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.818
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "service_now_ticket.closed_at.variation.date_hierarchy.month": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ServiceNowTickets",
+			          "VariationSource": "Closed At",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Date Hierarchy",
+			          "HierarchyLevel": "Month"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "closed at month": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "month": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "closed at mth": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "mth": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "service_now_ticket.closed_at.variation.date_hierarchy.day": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ServiceNowTickets",
+			          "VariationSource": "Closed At",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Date Hierarchy",
+			          "HierarchyLevel": "Day"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "closed at day": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "day": {
+			            "State": "Generated"
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "service_now_ticket.category": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ServiceNowTickets",
+			          "ConceptualProperty": "Category"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "category": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "classification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "class": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "grouping": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "kind": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ]
+			    },
+			    "service_now_ticket.subcategory": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ServiceNowTickets",
+			          "ConceptualProperty": "Subcategory"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "subcategory": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "service_now_ticket.priority": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ServiceNowTickets",
+			          "ConceptualProperty": "Priority"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "priority": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "importance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "precedence": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "urgency": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "significance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "primacy": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "import": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures Table"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "measures table": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "measure table": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "measure tabletop": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "measure bench": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "measure board": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "measure counter": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "measure stand": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "measure slab": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "measure desk": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "measure stall": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "measure table top": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "measure spreadsheet": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.number_of_tickets": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures Table",
+			          "ConceptualProperty": "Number of Tickets"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "number of tickets": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "quantity of ticket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.769
+			          }
+			        },
+			        {
+			          "amount of ticket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.746
+			          }
+			        },
+			        {
+			          "count of ticket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.746
+			          }
+			        },
+			        {
+			          "number of ticket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.746
+			          }
+			        },
+			        {
+			          "no of ticket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "aggregate": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "overall": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.number_of_open_tickets": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures Table",
+			          "ConceptualProperty": "Number of Open Tickets"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "number of open tickets": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "quantity of open ticket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.786
+			          }
+			        },
+			        {
+			          "amount of open ticket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "count of open ticket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "number of open ticket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "no of open ticket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.number_of_closed_tickets": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures Table",
+			          "ConceptualProperty": "Number of Closed Tickets"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "number of closed tickets": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "quantity of closed ticket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.786
+			          }
+			        },
+			        {
+			          "amount of closed ticket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "count of closed ticket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "number of closed ticket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "no of closed ticket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "OfficeThesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        }
+			      ]
+			    },
+			    "hse_data.occurrence_number": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "HSE_data",
+			          "ConceptualProperty": "Occurrence Number"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Number": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "hse_data.occurrence_location": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "HSE_data",
+			          "ConceptualProperty": "Occurrence Location"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Location": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "hse_data.event_number": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "HSE_data",
+			          "ConceptualProperty": "Event Number"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Event": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "hse_data.occurrence_title": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "HSE_data",
+			          "ConceptualProperty": "Occurrence Title"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Title": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "hse_data.occurrence_reported_date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "HSE_data",
+			          "ConceptualProperty": "Occurrence Reported Date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Reported Date": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  },
+			  "Relationships": {
+			    "service_now_ticket_closed_at_variation_date_hierarchy_has_quarter": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket.closed_at.variation.date_hierarchy": {
+			          "Target": {
+			            "Entity": "service_now_ticket.closed_at.variation.date_hierarchy"
+			          }
+			        },
+			        "service_now_ticket.closed_at.variation.date_hierarchy.quarter": {
+			          "Target": {
+			            "Entity": "service_now_ticket.closed_at.variation.date_hierarchy.quarter"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket.closed_at.variation.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.closed_at.variation.date_hierarchy.quarter"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_closed_at_variation_date_hierarchy_has_year": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket.closed_at.variation.date_hierarchy": {
+			          "Target": {
+			            "Entity": "service_now_ticket.closed_at.variation.date_hierarchy"
+			          }
+			        },
+			        "service_now_ticket.closed_at.variation.date_hierarchy.year": {
+			          "Target": {
+			            "Entity": "service_now_ticket.closed_at.variation.date_hierarchy.year"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket.closed_at.variation.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.closed_at.variation.date_hierarchy.year"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_closed_at_has_variation_date_hierarchy": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket.closed_at": {
+			          "Target": {
+			            "Entity": "service_now_ticket.closed_at"
+			          }
+			        },
+			        "service_now_ticket.closed_at.variation.date_hierarchy": {
+			          "Target": {
+			            "Entity": "service_now_ticket.closed_at.variation.date_hierarchy"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket.closed_at"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.closed_at.variation.date_hierarchy"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_opened_at_variation_date_hierarchy_has_day": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket.opened_at.variation.date_hierarchy": {
+			          "Target": {
+			            "Entity": "service_now_ticket.opened_at.variation.date_hierarchy"
+			          }
+			        },
+			        "service_now_ticket.opened_at.variation.date_hierarchy.day": {
+			          "Target": {
+			            "Entity": "service_now_ticket.opened_at.variation.date_hierarchy.day"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket.opened_at.variation.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.opened_at.variation.date_hierarchy.day"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_opened_at_variation_date_hierarchy_has_month": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket.opened_at.variation.date_hierarchy": {
+			          "Target": {
+			            "Entity": "service_now_ticket.opened_at.variation.date_hierarchy"
+			          }
+			        },
+			        "service_now_ticket.opened_at.variation.date_hierarchy.month": {
+			          "Target": {
+			            "Entity": "service_now_ticket.opened_at.variation.date_hierarchy.month"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket.opened_at.variation.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.opened_at.variation.date_hierarchy.month"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_opened_at_variation_date_hierarchy_has_quarter": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket.opened_at.variation.date_hierarchy": {
+			          "Target": {
+			            "Entity": "service_now_ticket.opened_at.variation.date_hierarchy"
+			          }
+			        },
+			        "service_now_ticket.opened_at.variation.date_hierarchy.quarter": {
+			          "Target": {
+			            "Entity": "service_now_ticket.opened_at.variation.date_hierarchy.quarter"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket.opened_at.variation.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.opened_at.variation.date_hierarchy.quarter"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_opened_at_variation_date_hierarchy_has_year": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket.opened_at.variation.date_hierarchy": {
+			          "Target": {
+			            "Entity": "service_now_ticket.opened_at.variation.date_hierarchy"
+			          }
+			        },
+			        "service_now_ticket.opened_at.variation.date_hierarchy.year": {
+			          "Target": {
+			            "Entity": "service_now_ticket.opened_at.variation.date_hierarchy.year"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket.opened_at.variation.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.opened_at.variation.date_hierarchy.year"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_opened_at_has_variation_date_hierarchy": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket.opened_at": {
+			          "Target": {
+			            "Entity": "service_now_ticket.opened_at"
+			          }
+			        },
+			        "service_now_ticket.opened_at.variation.date_hierarchy": {
+			          "Target": {
+			            "Entity": "service_now_ticket.opened_at.variation.date_hierarchy"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket.opened_at"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.opened_at.variation.date_hierarchy"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_has_measures_table_number_of_closed_tickets": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket": {
+			          "Target": {
+			            "Entity": "service_now_ticket"
+			          }
+			        },
+			        "measures_table.number_of_closed_tickets": {
+			          "Target": {
+			            "Entity": "measures_table.number_of_closed_tickets"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket"
+			            },
+			            "Object": {
+			              "Role": "measures_table.number_of_closed_tickets"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_has_measures_table_number_of_open_tickets": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket": {
+			          "Target": {
+			            "Entity": "service_now_ticket"
+			          }
+			        },
+			        "measures_table.number_of_open_tickets": {
+			          "Target": {
+			            "Entity": "measures_table.number_of_open_tickets"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket"
+			            },
+			            "Object": {
+			              "Role": "measures_table.number_of_open_tickets"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_has_measures_table_number_of_tickets": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket": {
+			          "Target": {
+			            "Entity": "service_now_ticket"
+			          }
+			        },
+			        "measures_table.number_of_tickets": {
+			          "Target": {
+			            "Entity": "measures_table.number_of_tickets"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket"
+			            },
+			            "Object": {
+			              "Role": "measures_table.number_of_tickets"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_has_request_type": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket": {
+			          "Target": {
+			            "Entity": "service_now_ticket"
+			          }
+			        },
+			        "service_now_ticket.request_type": {
+			          "Target": {
+			            "Entity": "service_now_ticket.request_type"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.request_type"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_has_aircraft_type": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket": {
+			          "Target": {
+			            "Entity": "service_now_ticket"
+			          }
+			        },
+			        "service_now_ticket.aircraft_type": {
+			          "Target": {
+			            "Entity": "service_now_ticket.aircraft_type"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.aircraft_type"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_has_age": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket": {
+			          "Target": {
+			            "Entity": "service_now_ticket"
+			          }
+			        },
+			        "service_now_ticket.age": {
+			          "Target": {
+			            "Entity": "service_now_ticket.age"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.age"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        },
+			        {
+			          "Adjective": {
+			            "Subject": {
+			              "Role": "service_now_ticket"
+			            },
+			            "Adjectives": [
+			              {
+			                "old": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Antonyms": [
+			              {
+			                "young": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Measurement": {
+			              "Role": "service_now_ticket.age"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_has_mttr": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket": {
+			          "Target": {
+			            "Entity": "service_now_ticket"
+			          }
+			        },
+			        "service_now_ticket.mttr": {
+			          "Target": {
+			            "Entity": "service_now_ticket.mttr"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.mttr"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_has_ticket_type": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket": {
+			          "Target": {
+			            "Entity": "service_now_ticket"
+			          }
+			        },
+			        "service_now_ticket.ticket_type": {
+			          "Target": {
+			            "Entity": "service_now_ticket.ticket_type"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.ticket_type"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_has_priority": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket": {
+			          "Target": {
+			            "Entity": "service_now_ticket"
+			          }
+			        },
+			        "service_now_ticket.priority": {
+			          "Target": {
+			            "Entity": "service_now_ticket.priority"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.priority"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_has_subcategory": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket": {
+			          "Target": {
+			            "Entity": "service_now_ticket"
+			          }
+			        },
+			        "service_now_ticket.subcategory": {
+			          "Target": {
+			            "Entity": "service_now_ticket.subcategory"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.subcategory"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_has_category": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket": {
+			          "Target": {
+			            "Entity": "service_now_ticket"
+			          }
+			        },
+			        "service_now_ticket.category": {
+			          "Target": {
+			            "Entity": "service_now_ticket.category"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.category"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_has_closed_at": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket": {
+			          "Target": {
+			            "Entity": "service_now_ticket"
+			          }
+			        },
+			        "service_now_ticket.closed_at": {
+			          "Target": {
+			            "Entity": "service_now_ticket.closed_at"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.closed_at"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_has_assignment_group": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket": {
+			          "Target": {
+			            "Entity": "service_now_ticket"
+			          }
+			        },
+			        "service_now_ticket.assignment_group": {
+			          "Target": {
+			            "Entity": "service_now_ticket.assignment_group"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.assignment_group"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_has_state": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket": {
+			          "Target": {
+			            "Entity": "service_now_ticket"
+			          }
+			        },
+			        "service_now_ticket.state": {
+			          "Target": {
+			            "Entity": "service_now_ticket.state"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.state"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_has_short_description": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket": {
+			          "Target": {
+			            "Entity": "service_now_ticket"
+			          }
+			        },
+			        "service_now_ticket.short_description": {
+			          "Target": {
+			            "Entity": "service_now_ticket.short_description"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.short_description"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_has_opened_at": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket": {
+			          "Target": {
+			            "Entity": "service_now_ticket"
+			          }
+			        },
+			        "service_now_ticket.opened_at": {
+			          "Target": {
+			            "Entity": "service_now_ticket.opened_at"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.opened_at"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_has_number": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket": {
+			          "Target": {
+			            "Entity": "service_now_ticket"
+			          }
+			        },
+			        "service_now_ticket.number": {
+			          "Target": {
+			            "Entity": "service_now_ticket.number"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.number"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        },
+			        {
+			          "Name": {
+			            "Subject": {
+			              "Role": "service_now_ticket"
+			            },
+			            "Name": {
+			              "Role": "service_now_ticket.number"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_in_state": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket": {
+			          "Target": {
+			            "Entity": "service_now_ticket"
+			          }
+			        },
+			        "service_now_ticket.state": {
+			          "Target": {
+			            "Entity": "service_now_ticket.state"
+			          }
+			        }
+			      },
+			      "SemanticSlots": {
+			        "Where": {
+			          "Role": "service_now_ticket.state"
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "service_now_ticket"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "service_now_ticket.state"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_is_closed_on_closed_at": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket": {
+			          "Target": {
+			            "Entity": "service_now_ticket"
+			          }
+			        },
+			        "service_now_ticket.closed_at": {
+			          "Target": {
+			            "Entity": "service_now_ticket.closed_at"
+			          }
+			        }
+			      },
+			      "SemanticSlots": {
+			        "When": {
+			          "Role": "service_now_ticket.closed_at"
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Verb": {
+			            "Verbs": [
+			              {
+			                "close": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "service_now_ticket"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.9
+			        }
+			      ]
+			    },
+			    "service_now_ticket_is_opened_on_opened_at": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket": {
+			          "Target": {
+			            "Entity": "service_now_ticket"
+			          }
+			        },
+			        "service_now_ticket.opened_at": {
+			          "Target": {
+			            "Entity": "service_now_ticket.opened_at"
+			          }
+			        }
+			      },
+			      "SemanticSlots": {
+			        "When": {
+			          "Role": "service_now_ticket.opened_at"
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Verb": {
+			            "Verbs": [
+			              {
+			                "open": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "service_now_ticket"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.9
+			        }
+			      ]
+			    },
+			    "service_now_ticket_closed_at_variation_date_hierarchy_has_month": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket.closed_at.variation.date_hierarchy": {
+			          "Target": {
+			            "Entity": "service_now_ticket.closed_at.variation.date_hierarchy"
+			          }
+			        },
+			        "service_now_ticket.closed_at.variation.date_hierarchy.month": {
+			          "Target": {
+			            "Entity": "service_now_ticket.closed_at.variation.date_hierarchy.month"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket.closed_at.variation.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.closed_at.variation.date_hierarchy.month"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    },
+			    "service_now_ticket_closed_at_variation_date_hierarchy_has_day": {
+			      "Binding": {
+			        "ConceptualEntity": "ServiceNowTickets"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "service_now_ticket.closed_at.variation.date_hierarchy": {
+			          "Target": {
+			            "Entity": "service_now_ticket.closed_at.variation.date_hierarchy"
+			          }
+			        },
+			        "service_now_ticket.closed_at.variation.date_hierarchy.day": {
+			          "Target": {
+			            "Entity": "service_now_ticket.closed_at.variation.date_hierarchy.day"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "service_now_ticket.closed_at.variation.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "service_now_ticket.closed_at.variation.date_hierarchy.day"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

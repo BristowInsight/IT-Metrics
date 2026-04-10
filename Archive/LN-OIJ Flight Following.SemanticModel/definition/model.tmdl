@@ -1,0 +1,19 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["LN-OIJ Flight Following"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.124.1805.0 (23.12)
+
+ref table 'LN-OIJ Flight Following'
+ref table DateTableTemplate_f0b3cbdb-1516-4a7f-aff1-ac07edd3f80e
+
+ref cultureInfo en-US
+

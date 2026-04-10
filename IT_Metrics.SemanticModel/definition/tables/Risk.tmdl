@@ -1,0 +1,562 @@
+table Risk
+	lineageTag: 2bc5ac6d-ce70-4b37-b990-327ed72a710d
+	sourceLineageTag: [dbo].[Risk]
+
+	column Compliance_Framework
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: f14fabd4-8901-4c41-b554-807fb5877c15
+		sourceLineageTag: Compliance_Framework
+		summarizeBy: none
+		sourceColumn: Compliance_Framework
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sys_Updated_On
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: bd44062c-1526-4acc-a39f-72053c7c1a99
+		sourceLineageTag: Sys_Updated_On
+		summarizeBy: none
+		sourceColumn: Sys_Updated_On
+
+		annotation SummarizationSetBy = Automatic
+
+	column Score
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 619f88bb-ee17-489e-a395-b7e801162c92
+		sourceLineageTag: Score
+		summarizeBy: none
+		sourceColumn: Score
+
+		annotation SummarizationSetBy = Automatic
+
+	column Availablity
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: f03ff34a-553f-47d0-9fed-9eb611785b96
+		sourceLineageTag: Availablity
+		summarizeBy: none
+		sourceColumn: Availablity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Number
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: da18faea-95c2-4397-a20a-2540fb9c2435
+		sourceLineageTag: Number
+		summarizeBy: none
+		sourceColumn: Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Top_Program
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 2b055c48-46f4-455d-8e95-88e7abcc8b8b
+		sourceLineageTag: Top_Program
+		summarizeBy: none
+		sourceColumn: Top_Program
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sys_Updated_By
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: b985f3b3-278f-49de-b638-d82e025e1058
+		sourceLineageTag: Sys_Updated_By
+		summarizeBy: none
+		sourceColumn: Sys_Updated_By
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sys_Created_On
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: f5166d4d-1ed7-46f0-97c0-2dd394c9e8b6
+		sourceLineageTag: Sys_Created_On
+		summarizeBy: none
+		sourceColumn: Sys_Created_On
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sys_Domain
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: e1460fb8-8490-4f32-9c18-4105c0fc89e3
+		sourceLineageTag: Sys_Domain
+		summarizeBy: none
+		sourceColumn: Sys_Domain
+
+		annotation SummarizationSetBy = Automatic
+
+	column Active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: cbbe1728-6c82-453b-a87d-b001ffadd61f
+		sourceLineageTag: Active
+		summarizeBy: none
+		sourceColumn: Active
+
+		annotation SummarizationSetBy = Automatic
+
+	column Additional_Comments
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: d15aa039-18e5-4f8b-a1ac-5abeb6c70ffe
+		sourceLineageTag: Additional_Comments
+		summarizeBy: none
+		sourceColumn: Additional_Comments
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: a6b0b855-c849-4706-b423-c0c78cb82f4f
+		sourceLineageTag: State
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sys_Created_By
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 06583430-708e-4123-bccd-a144311656aa
+		sourceLineageTag: Sys_Created_By
+		summarizeBy: none
+		sourceColumn: Sys_Created_By
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mitigation
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: a9ca87ac-c02f-422f-9128-2dbbb9be9a80
+		sourceLineageTag: Mitigation
+		summarizeBy: none
+		sourceColumn: Mitigation
+
+		annotation SummarizationSetBy = Automatic
+
+	column Original_Task
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 33ff7cd2-5608-4c13-8ca3-6fe1fbfc0a03
+		sourceLineageTag: Original_Task
+		summarizeBy: none
+		sourceColumn: Original_Task
+
+		annotation SummarizationSetBy = Automatic
+
+	column Integrity
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 29712864-47a3-4699-ad75-7b9f5863286a
+		sourceLineageTag: Integrity
+		summarizeBy: none
+		sourceColumn: Integrity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Probability
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 8ecd07eb-7d70-4ce4-8bf3-4383162ac903
+		sourceLineageTag: Probability
+		summarizeBy: none
+		sourceColumn: Probability
+
+		annotation SummarizationSetBy = Automatic
+
+	column Impact
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: f734c249-000d-4680-b755-028400373338
+		sourceLineageTag: Impact
+		summarizeBy: none
+		sourceColumn: Impact
+
+		annotation SummarizationSetBy = Automatic
+
+	column Control_Description
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 58c0911c-d3df-4b5e-a4d9-d90e61ed7e53
+		sourceLineageTag: Control_Description
+		summarizeBy: none
+		sourceColumn: Control_Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Control_Reference
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: bf33674f-b79f-486e-8b58-f2b6aa96af39
+		sourceLineageTag: Control_Reference
+		summarizeBy: none
+		sourceColumn: Control_Reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column Next_Review
+		dataType: dateTime
+		formatString: Short Date
+		sourceProviderType: date
+		lineageTag: 2aeec155-2c63-4ecc-97e3-1e3648b0061d
+		sourceLineageTag: Next_Review
+		summarizeBy: none
+		sourceColumn: Next_Review
+
+		annotation SummarizationSetBy = Automatic
+
+	column Task
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 9a2ab56c-ff08-470b-896a-493ba4f63124
+		sourceLineageTag: Task
+		summarizeBy: none
+		sourceColumn: Task
+
+		annotation SummarizationSetBy = Automatic
+
+	column Show_On_Status_Report
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 62dc8043-8ddd-4760-86eb-f4b6b100bb0b
+		sourceLineageTag: Show_On_Status_Report
+		summarizeBy: none
+		sourceColumn: Show_On_Status_Report
+
+		annotation SummarizationSetBy = Automatic
+
+	column Control_Areas_For_Existing_Controls
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: fdda5f05-1fb8-4e89-9fa1-fb003082b017
+		sourceLineageTag: Control_Areas_For_Existing_Controls
+		summarizeBy: none
+		sourceColumn: Control_Areas_For_Existing_Controls
+
+		annotation SummarizationSetBy = Automatic
+
+	column Work_Notes
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: c65f33fe-19aa-4461-abcc-d0aa09e709ac
+		sourceLineageTag: Work_Notes
+		summarizeBy: none
+		sourceColumn: Work_Notes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Affected_Asset
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 5e144490-32a8-48ac-8351-67f5a1e7fc0c
+		sourceLineageTag: Affected_Asset
+		summarizeBy: none
+		sourceColumn: Affected_Asset
+
+		annotation SummarizationSetBy = Automatic
+
+	column Short_Description
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 3fc6b379-3450-4b06-a5d2-82b8a5da1dbe
+		sourceLineageTag: Short_Description
+		summarizeBy: none
+		sourceColumn: Short_Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Work_Cost
+		dataType: double
+		sourceProviderType: float
+		lineageTag: f7f14b79-7ed4-4efc-8686-15bbedeba083
+		sourceLineageTag: Work_Cost
+		summarizeBy: sum
+		sourceColumn: Work_Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Top_Task
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: cdabb40b-1dee-4d12-b93d-e1086143d743
+		sourceLineageTag: Top_Task
+		summarizeBy: none
+		sourceColumn: Top_Task
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 636d97c2-78cd-4bc9-abdf-81da1647eeaf
+		sourceLineageTag: Description
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Affected_CI
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: a6e06976-5eb9-4085-842f-b478cbf6626c
+		sourceLineageTag: Affected_CI
+		summarizeBy: none
+		sourceColumn: Affected_CI
+
+		annotation SummarizationSetBy = Automatic
+
+	column Raised_By
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 5adeffe2-da9c-4e45-a36d-2a328e37e1ae
+		sourceLineageTag: Raised_By
+		summarizeBy: none
+		sourceColumn: Raised_By
+
+		annotation SummarizationSetBy = Automatic
+
+	column Top_Portfolio
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 0d348b87-cab5-475c-ad23-f3eec8c4f7e6
+		sourceLineageTag: Top_Portfolio
+		summarizeBy: none
+		sourceColumn: Top_Portfolio
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sys_ID
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 7866da37-c5c4-438b-a51a-92fb70c12924
+		sourceLineageTag: Sys_ID
+		summarizeBy: none
+		sourceColumn: Sys_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Risk_Rank
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 4403a778-9f5c-4c44-a656-3758e11b3ca3
+		sourceLineageTag: Risk_Rank
+		summarizeBy: sum
+		sourceColumn: Risk_Rank
+
+		annotation SummarizationSetBy = Automatic
+
+	column Risk_Owner
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: d41d07a5-49fb-470f-8033-7e89b67f9f7c
+		sourceLineageTag: Risk_Owner
+		summarizeBy: none
+		sourceColumn: Risk_Owner
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date_Of_Risk_Owners_Acceptance_Treatment_Approval
+		dataType: dateTime
+		formatString: Short Date
+		sourceProviderType: date
+		lineageTag: 82eb839b-4352-4d9b-8f6e-b98f8a827872
+		sourceLineageTag: Date_Of_Risk_Owners_Acceptance_Treatment_Approval
+		summarizeBy: none
+		sourceColumn: Date_Of_Risk_Owners_Acceptance_Treatment_Approval
+
+		annotation SummarizationSetBy = Automatic
+
+	column Assigned_To
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: a0282049-a13a-48d6-ba77-cde72e20a470
+		sourceLineageTag: Assigned_To
+		summarizeBy: none
+		sourceColumn: Assigned_To
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cost
+		dataType: double
+		sourceProviderType: float
+		lineageTag: b8882fda-b92b-47da-937e-d42852d55acd
+		sourceLineageTag: Cost
+		summarizeBy: sum
+		sourceColumn: Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Treatment_Decision
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: b06fa7df-e670-4ee4-a85b-988bceb780bc
+		sourceLineageTag: Treatment_Decision
+		summarizeBy: none
+		sourceColumn: Treatment_Decision
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sys_Mod_Count
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 4b4ea174-a8d5-44e9-a2f8-85fbf5a74332
+		sourceLineageTag: Sys_Mod_Count
+		summarizeBy: sum
+		sourceColumn: Sys_Mod_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Due_Date
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 669242b4-d768-4ffa-a409-851cd15b1081
+		sourceLineageTag: Due_Date
+		summarizeBy: none
+		sourceColumn: Due_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sys_Tags
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: dac6b586-8b8d-459b-8f83-b3d9fc4cc5f4
+		sourceLineageTag: Sys_Tags
+		summarizeBy: none
+		sourceColumn: Sys_Tags
+
+		annotation SummarizationSetBy = Automatic
+
+	column Opened
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: edbd68da-1eb6-461f-b92d-9a300158d64a
+		sourceLineageTag: Opened
+		summarizeBy: none
+		sourceColumn: Opened
+
+		annotation SummarizationSetBy = Automatic
+
+	column Risk_State
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: acc20067-8f01-4a0f-a0da-ca6dbb1d240f
+		sourceLineageTag: Risk_State
+		summarizeBy: none
+		sourceColumn: Risk_State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 24d586b8-9231-45cf-b1f7-61104db534b8
+		sourceLineageTag: Category
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Risk_Value
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 59c65929-8bea-4bd0-99df-7cc7aff4a3c1
+		sourceLineageTag: Risk_Value
+		summarizeBy: none
+		sourceColumn: Risk_Value
+
+		annotation SummarizationSetBy = Automatic
+
+	column Treatment_Implemented
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 62b3110f-3526-4ca7-b9b2-53ef069e1042
+		sourceLineageTag: Treatment_Implemented
+		summarizeBy: none
+		sourceColumn: Treatment_Implemented
+
+		annotation SummarizationSetBy = Automatic
+
+	column Last_Review
+		dataType: dateTime
+		formatString: Short Date
+		sourceProviderType: date
+		lineageTag: dbb91508-2211-4dee-98de-5d1e943fbf21
+		sourceLineageTag: Last_Review
+		summarizeBy: none
+		sourceColumn: Last_Review
+
+		annotation SummarizationSetBy = Automatic
+
+	column Confidentiality
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 2b58f19a-3bc1-4288-b076-15f8646b7009
+		sourceLineageTag: Confidentiality
+		summarizeBy: none
+		sourceColumn: Confidentiality
+
+		annotation SummarizationSetBy = Automatic
+
+	column Treatment_Due
+		dataType: dateTime
+		formatString: Short Date
+		sourceProviderType: date
+		lineageTag: d3102d3a-b328-409e-ab56-cb2941a32d3f
+		sourceLineageTag: Treatment_Due
+		summarizeBy: none
+		sourceColumn: Treatment_Due
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateStamp
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 9477cf81-ccc4-4408-91a4-e24ca8bc503b
+		sourceLineageTag: DateStamp
+		summarizeBy: none
+		sourceColumn: DateStamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column AOC
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 64785d65-27ba-4fe7-87f0-312dc9a6aa0c
+		sourceLineageTag: AOC
+		summarizeBy: none
+		sourceColumn: AOC
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Risk-67a9d487-806c-4d6d-995c-58c8904148c6 = entity
+		mode: directLake
+		source
+			entityName: Risk
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation IsTableInBiModel = True
+
+	annotation PBI_ResultType = Table
+

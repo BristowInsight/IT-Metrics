@@ -1,0 +1,35 @@
+table 'Measures Table'
+	lineageTag: f571ebef-59b4-4274-aaca-cba139fa6153
+
+	measure 'Number of Tickets' = DISTINCTCOUNT(ServiceNowTickets[Number])
+		formatString: 0
+		lineageTag: 2d365fea-f66b-43c3-b5a3-14d4db9fa6cf
+
+	measure 'Number of Open Tickets' = CALCULATE([Number of Tickets], ISBLANK(ServiceNowTickets[Closed_At]))
+		formatString: 0
+		lineageTag: 60c66abe-dfb6-442a-a723-45af063ff329
+
+	measure 'Number of Closed Tickets' = CALCULATE([Number of Tickets], NOT(ISBLANK(ServiceNowTickets[Closed_At])))
+		formatString: 0
+		lineageTag: 19f3447a-061f-4112-be71-ab23589ff9ea
+
+	measure 'Average Age of Open Tickets' = CALCULATE(AVERAGE(ServiceNowTickets[Days_Open]), ServiceNowTickets[Status] = "Open")
+		formatString: 0
+		lineageTag: afc66e04-5924-4159-aead-784f50d31e43
+
+	measure 'Average Reaction Time of Closed Tickets' = CALCULATE(AVERAGE(ServiceNowTickets[Reaction_Time]), ServiceNowTickets[Status] = "Closed")
+		formatString: 0
+		lineageTag: 9c9d1562-0e2c-4858-81d9-823b7badcbd0
+
+	partition 'Measures Table-7ebdc84a-4014-4ebb-a235-ed3e8e96dead' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

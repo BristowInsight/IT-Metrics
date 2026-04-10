@@ -1,0 +1,100 @@
+table Phishing_Simulation_Schedule
+	lineageTag: aff78570-fb87-408a-9ab8-92f789e8bf46
+	sourceLineageTag: [dbo].[Phishing_Simulation_Schedule]
+
+	column ID
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 0a49d151-0e07-4b38-a8c9-f24a0db124cd
+		sourceLineageTag: ID
+		summarizeBy: sum
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Clicks
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 67379056-f411-4de8-bd46-fbbbf2f1f570
+		sourceLineageTag: Clicks
+		summarizeBy: sum
+		sourceColumn: Clicks
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: a38b1765-f356-43b5-8554-e63d4dae6848
+		sourceLineageTag: Title
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modified
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: f728addc-0011-4312-a8a4-d3703b635b87
+		sourceLineageTag: Modified
+		summarizeBy: none
+		sourceColumn: Modified
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Emails Sent'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 8f708335-1ec4-4738-99b7-6731eda7a7f6
+		sourceLineageTag: Emails Sent
+		summarizeBy: sum
+		sourceColumn: Emails Sent
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Target Audience'
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: d1a0a122-4b19-4f19-b54d-5e7fba556f82
+		sourceLineageTag: Target Audience
+		summarizeBy: none
+		sourceColumn: Target Audience
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Campaign Date'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: f87c3e69-e69f-42c4-ba55-9ebbf93df4c8
+		sourceLineageTag: Campaign Date
+		summarizeBy: none
+		sourceColumn: Campaign Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Template Name and Difficulty Level'
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 44cdac37-1f19-4546-adac-f4c681ac5692
+		sourceLineageTag: Template Name and Difficulty Level
+		summarizeBy: none
+		sourceColumn: Template Name and Difficulty Level
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Phishing_Simulation_Schedule-8d6058eb-54af-4a1c-bd8a-e1c89f9cfbce = entity
+		mode: directLake
+		source
+			entityName: Phishing_Simulation_Schedule
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation IsTableInBiModel = True
+
+	annotation PBI_ResultType = Table
+

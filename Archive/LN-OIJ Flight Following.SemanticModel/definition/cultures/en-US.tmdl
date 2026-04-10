@@ -1,0 +1,54 @@
+cultureInfo en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "DynamicImprovement": "HighConfidence",
+			  "Entities": {
+			    "lnoij_flight_following.feet": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "LN-OIJ Flight Following",
+			          "ConceptualProperty": "feet"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Altitude (ft)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "lnoij_flight_following.mph": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "LN-OIJ Flight Following",
+			          "ConceptualProperty": "mph"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Speed (mph)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

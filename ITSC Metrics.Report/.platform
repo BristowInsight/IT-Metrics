@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "ITSC Metrics"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "87c5ed2f-4ec8-9c9d-4f3d-4ff0cc767bf7"
+  }
+}

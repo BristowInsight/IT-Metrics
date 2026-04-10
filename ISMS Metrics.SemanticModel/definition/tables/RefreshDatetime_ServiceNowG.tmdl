@@ -1,0 +1,24 @@
+table RefreshDatetime_ServiceNowG
+	lineageTag: 8c5bd2ba-f4ed-4d5b-bf09-79d451e99569
+	sourceLineageTag: [dbo].[RefreshDatetime_ServiceNowG]
+
+	column Refresh_Datetime
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: c8128006-34a6-46ce-a91b-a24256de99fe
+		sourceLineageTag: Refresh_Datetime
+		summarizeBy: none
+		sourceColumn: Refresh_Datetime
+
+		annotation SummarizationSetBy = Automatic
+
+	partition RefreshDatetime_ServiceNowG = entity
+		mode: directLake
+		source
+			entityName: RefreshDatetime_ServiceNowG
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

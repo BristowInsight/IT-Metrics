@@ -1,0 +1,268 @@
+table eLearning_ISMS_Snapshots
+	lineageTag: b255f39d-320c-45dd-bfde-ce2de6f55c68
+	sourceLineageTag: [dbo].[eLearning_ISMS_Snapshots]
+
+	column 'Source.Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: ab825aa2-588a-4f61-a039-dbbd153f9145
+		sourceLineageTag: Source.Name
+		summarizeBy: none
+		sourceColumn: Source.Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: c1268633-2dc2-437a-8c14-8cd4a99f7aed
+		sourceLineageTag: Date
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f2d64fed-7654-4e68-bafb-9794318da17e
+		sourceLineageTag: Last Name
+		summarizeBy: none
+		sourceColumn: Last Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'First Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 2e448af8-6a36-4ade-86b3-c4da2dd94556
+		sourceLineageTag: First Name
+		summarizeBy: none
+		sourceColumn: First Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Email ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 009b26f5-a09a-4a7e-86b9-0cf1aaef47b4
+		sourceLineageTag: Email ID
+		summarizeBy: none
+		sourceColumn: Email ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Employee ID'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 9852192a-5656-4b18-af67-7bb7eecbcfdd
+		sourceLineageTag: Employee ID
+		summarizeBy: none
+		sourceColumn: Employee ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Supervisor Email'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 0f9e2cda-1371-4d1a-8449-8932a86c103b
+		sourceLineageTag: Supervisor Email
+		summarizeBy: none
+		sourceColumn: Supervisor Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Course Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: cfef7ece-f8fd-4807-a0aa-a103ee0d2aec
+		sourceLineageTag: Course Name
+		summarizeBy: none
+		sourceColumn: Course Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 08d169a2-0627-4989-a6fe-e9d88aba5148
+		sourceLineageTag: Region
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Division
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 0312cdfa-d873-4c8f-9480-c6ebd3c7eed2
+		sourceLineageTag: Division
+		summarizeBy: none
+		sourceColumn: Division
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Enrollment Date'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 794bb3ef-e603-41a0-8189-feb374e521e9
+		sourceLineageTag: Enrollment Date
+		summarizeBy: none
+		sourceColumn: Enrollment Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start Date'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 10dacd9f-3e5d-4f9e-95f5-0ef7887859b5
+		sourceLineageTag: Start Date
+		summarizeBy: none
+		sourceColumn: Start Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Due Date'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: edf3defc-67d3-4898-b491-2b34d863b81a
+		sourceLineageTag: Due Date
+		summarizeBy: none
+		sourceColumn: Due Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Custom Field 1'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c9a91b1c-e7a2-453b-a0c5-8e344ebb7da9
+		sourceLineageTag: Custom Field 1
+		summarizeBy: none
+		sourceColumn: Custom Field 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Custom Field 2'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 4a64459d-0011-4204-91d7-20c9b31c0e09
+		sourceLineageTag: Custom Field 2
+		summarizeBy: none
+		sourceColumn: Custom Field 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Learner Course Status'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: ab9147f1-bfd9-46e8-b797-f48b43aa5e42
+		sourceLineageTag: Learner Course Status
+		summarizeBy: none
+		sourceColumn: Learner Course Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Learner Status'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 1eaab6de-71d7-4d4d-aa7a-cd03aa4bce4f
+		sourceLineageTag: Learner Status
+		summarizeBy: none
+		sourceColumn: Learner Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Custom Field 2_1'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c4f61cb7-bac8-4cbb-8081-c48a6ae2702e
+		sourceLineageTag: Custom Field 2_1
+		summarizeBy: none
+		sourceColumn: Custom Field 2_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Employer
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 9f2b4fe2-b594-4917-90c8-c9ecd22f1de2
+		sourceLineageTag: Employer
+		summarizeBy: sum
+		sourceColumn: Employer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Overdue
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c41831fb-fe53-4d70-9132-ae9db9908137
+		sourceLineageTag: Overdue
+		summarizeBy: none
+		sourceColumn: Overdue
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Full Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: cdba92cf-b333-4afc-a75a-538d9bea1f33
+		sourceLineageTag: Full Name
+		summarizeBy: none
+		sourceColumn: Full Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ISO 27001'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: b07a8839-cc56-4cb0-8375-bdc5c02db3c6
+		sourceLineageTag: ISO 27001
+		summarizeBy: none
+		sourceColumn: ISO 27001
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Course Overdue'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 4d3dd232-679a-487f-8e87-e7e22abc0994
+		sourceLineageTag: Course Overdue
+		summarizeBy: none
+		sourceColumn: Course Overdue
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status+Overdue
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: beaf2ee2-9d8f-426f-a1a4-29daaae90e48
+		sourceLineageTag: Status+Overdue
+		summarizeBy: none
+		sourceColumn: Status+Overdue
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 1bd7d611-76a7-4a98-aa28-aab971e2f77d
+		sourceLineageTag: Country
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	partition eLearning_ISMS_Snapshots = entity
+		mode: directLake
+		source
+			entityName: eLearning_ISMS_Snapshots
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,113 @@
+table 'LN-OIJ Flight Following'
+	lineageTag: f60662da-806a-4c8d-8fdc-dbcda2e9ed73
+
+	column 'Time (EST)'
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: ffdab05c-e544-4809-b44e-d1915cbb188d
+		summarizeBy: none
+		sourceColumn: Time (EST)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column Latitude
+		dataType: double
+		lineageTag: 4e7c04ee-cd0d-4f1f-b414-c43c22aee09f
+		dataCategory: Latitude
+		summarizeBy: none
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Longitude
+		dataType: double
+		lineageTag: 4085f71f-ae35-4793-b917-6df7aa1872c2
+		dataCategory: Longitude
+		summarizeBy: none
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Course
+		dataType: string
+		lineageTag: d4ec39a7-0eff-4200-92f6-aa92c817013d
+		summarizeBy: none
+		sourceColumn: Course
+
+		annotation SummarizationSetBy = Automatic
+
+	column kts
+		dataType: int64
+		formatString: 0
+		lineageTag: df301019-323e-44d4-bddd-7bda9d9d94e0
+		summarizeBy: sum
+		sourceColumn: kts
+
+		annotation SummarizationSetBy = Automatic
+
+	column mph
+		dataType: int64
+		formatString: 0
+		lineageTag: 8773d4d3-a99e-47cf-8ce0-95f62aa18dde
+		summarizeBy: sum
+		sourceColumn: mph
+
+		annotation SummarizationSetBy = Automatic
+
+	column feet
+		dataType: int64
+		formatString: 0
+		lineageTag: c4e31e8c-ab04-4ffa-b1e5-64bf84973a1b
+		summarizeBy: sum
+		sourceColumn: feet
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rate
+		dataType: int64
+		formatString: 0
+		lineageTag: 0143d64f-b2d2-47fc-9cbb-ac3143a1938d
+		summarizeBy: sum
+		sourceColumn: Rate
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Time (CET)'
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 97732080-0565-4176-baed-14a30bb9b69b
+		summarizeBy: none
+		sourceColumn: Time (CET)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	partition 'LN-OIJ Flight Following' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://bristowgroupinc.sharepoint.com/sites/BristowInsight/", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Folder Path] = "https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/" or [Folder Path] = "https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/Active User Export/" or [Folder Path] = "https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/Audit and CAPA Managed Lists/" or [Folder Path] = "https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/eCO2 Conversion Table/" or [Folder Path] = "https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/eLearning Course Completion/" or [Folder Path] = "https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/eLearning Users/" or [Folder Path] = "https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/Engine Movement/" or [Folder Path] = "https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/Fleet Master/" or [Folder Path] = "https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/Global Flight Hours/" or [Folder Path] = "https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/ICAO Airport Codes/" or [Folder Path] = "https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/iConnect Contingent Status/" or [Folder Path] = "https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/iConnect Employee Status/" or [Folder Path] = "https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/iConnect Global Headcount/" or [Folder Path] = "https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/IFS TechLog Hours/" or [Folder Path] = "https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/ISO Country Codes/" or [Folder Path] = "https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/IT Metrics/" or [Folder Path] = "https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/LMS Training/" or [Folder Path] = "https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/Manual Work Hours/" or [Folder Path] = "https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/Occidental Safety/" or [Folder Path] = "https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/Old Insight/" or [Folder Path] = "https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/Ramco Fuel Consumption/" or [Folder Path] = "https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/UK Engineering Training/")),
+				    #"LN-OIJ Flight Following xlsx_https://bristowgroupinc sharepoint com/sites/BristowInsight/Shared Documents/General/BI Data/" = #"Filtered Rows"{[Name="LN-OIJ Flight Following.xlsx",#"Folder Path"="https://bristowgroupinc.sharepoint.com/sites/BristowInsight/Shared Documents/General/BI Data/"]}[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(#"LN-OIJ Flight Following xlsx_https://bristowgroupinc sharepoint com/sites/BristowInsight/Shared Documents/General/BI Data/"),
+				    Sheet1_Sheet = #"Imported Excel Workbook"{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Latitude", type number}, {"Longitude", type number}, {"Course", type text}, {"kts", Int64.Type}, {"mph", Int64.Type}, {"feet", Int64.Type}, {"Rate", Int64.Type}}),
+				    #"Extracted Text After Delimiter" = Table.TransformColumns(#"Changed Type", {{"Time (EST)", each Text.AfterDelimiter(_, "Wed "), type text}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Extracted Text After Delimiter",{{"Time (EST)", type time}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type1", "Time (CET)", each [#"Time (EST)"] + #duration(0, 6, 0, 0)),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom",{{"Time (CET)", type time}})
+				in
+				    #"Changed Type2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,54 @@
+relationship 6fc3df8e-f8cc-6674-4a90-25bcc5f9a919
+	isActive: false
+	fromColumn: Tickets.Opened_At
+	toColumn: Calendar.Date
+
+relationship de752cef-bd39-1f95-d78e-7fa3b470c9e9
+	isActive: false
+	fromColumn: Tickets.Closed_At
+	toColumn: Calendar.Date
+
+relationship c76c9066-5d49-d537-40e9-bdf13ed6e8a2
+	fromColumn: Tickets.Resolved_At
+	toColumn: Calendar.Date
+
+relationship 8c1f4041-5eb1-2d79-c5db-e4d1cb9834a0
+	fromColumn: Risk.Opened
+	toColumn: Calendar.Date
+
+relationship c059ac1d-887a-4a7e-f3ab-8df301c9e05f
+	isActive: false
+	fromColumn: Risk.Treatment_Due
+	toColumn: Calendar.Date
+
+relationship fe5499be-72ff-0549-6ad7-dead00bd2430
+	isActive: false
+	fromColumn: Risk.Treatment_Implemented
+	toColumn: Calendar.Date
+
+relationship 667aa6b0-be3d-9362-aeb2-01d2dddf93ba
+	isActive: false
+	fromColumn: Risk.Date_Of_Risk_Owners_Acceptance_Treatment_Approval
+	toColumn: Calendar.Date
+
+relationship 9878f1d4-d74f-9bb7-5853-8b0e213bd1a7
+	fromColumn: eLearning_ISMS.Date
+	toColumn: Calendar.Date
+
+relationship 3dd79ff9-9f99-6763-c25e-160159574591
+	isActive: false
+	fromColumn: Enhancements.'Closed Date'
+	toColumn: Calendar.Date
+
+relationship a1226a3f-4ef9-5909-d67a-aac72c7c8979
+	fromColumn: Enhancements.'Opened Date'
+	toColumn: Calendar.Date
+
+relationship 69e84522-ff87-16d1-d3d6-03a40ccdee07
+	fromColumn: Phishing_Simulation_Schedule.'Campaign Date'
+	toColumn: Calendar.Date
+
+relationship fee4d060-6679-c0b9-9a8b-5008fbfebbd8
+	fromColumn: eLearning_ISMS_Snapshots.Date
+	toColumn: Calendar.Date
+

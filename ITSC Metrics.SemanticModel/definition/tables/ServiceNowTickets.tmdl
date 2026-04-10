@@ -1,0 +1,210 @@
+table ServiceNowTickets
+	lineageTag: 68bebac7-107f-499f-85e9-22799350d8b4
+
+	column Number
+		dataType: string
+		lineageTag: 79dbc167-4d52-483a-86e1-30d14564dd7b
+		summarizeBy: none
+		sourceColumn: Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 426168c3-b445-4264-81b8-39bbf06e189f
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: d50f0ea5-da8d-4b1c-85b4-c66a2d40d69b
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subcategory
+		dataType: string
+		lineageTag: fea0633a-4baf-452c-b052-7fff6a652a47
+		summarizeBy: none
+		sourceColumn: Subcategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column Priority
+		dataType: string
+		lineageTag: 303b5b57-e19f-41d9-8980-70c77d793946
+		summarizeBy: none
+		sourceColumn: Priority
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 44c6de51-33cd-4b9b-8fca-b5b7e089bb84
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Short_Description
+		dataType: string
+		lineageTag: 93d89ad2-4a73-4349-b510-ebffb29a2ba0
+		summarizeBy: none
+		sourceColumn: Short_Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Assignment_Group
+		dataType: string
+		lineageTag: 1c697a77-e8dc-4be6-8397-4df2f3edc393
+		summarizeBy: none
+		sourceColumn: Assignment_Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sys_Class_Name
+		dataType: string
+		lineageTag: 4c1661ba-bc86-4207-8909-45d5a9c5e89e
+		summarizeBy: none
+		sourceColumn: Sys_Class_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Closed_At
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 338f5015-f587-4a01-95ac-641529de3cb5
+		summarizeBy: none
+		sourceColumn: Closed_At
+
+		variation Variation
+			isDefault
+			relationship: c8851279-270c-4202-95fc-f05f8f7b90ad
+			defaultHierarchy: LocalDateTable_caefe953-ed24-4164-bdf6-cf7d46f94f76.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Opened_At
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 2e610c81-675d-47da-8c54-1db0925664a6
+		summarizeBy: none
+		sourceColumn: Opened_At
+
+		variation Variation
+			isDefault
+			relationship: 82a77bf3-d18c-4a33-a118-a4bc49555dba
+			defaultHierarchy: LocalDateTable_95a2a12a-0b88-4bb2-b894-ffc463aa3e24.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Resolved_At
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: dbd54abe-c2da-46ce-b3da-a7468aee14d8
+		summarizeBy: none
+		sourceColumn: Resolved_At
+
+		variation Variation
+			isDefault
+			relationship: 11a373b5-471b-4704-8310-bba516598aff
+			defaultHierarchy: LocalDateTable_c1898ddb-001a-458c-be2e-7b0aeead62c3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Time_To_Resolution
+		dataType: int64
+		formatString: 0
+		lineageTag: 66afda05-eced-4b83-8081-688720a21054
+		summarizeBy: sum
+		sourceColumn: Time_To_Resolution
+
+		annotation SummarizationSetBy = Automatic
+
+	column Time_To_Resolution_Hours
+		dataType: int64
+		formatString: 0
+		lineageTag: c2dab63f-b0af-4ba0-b500-225bf027c6dc
+		summarizeBy: sum
+		sourceColumn: Time_To_Resolution_Hours
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ticket_Type
+		dataType: string
+		lineageTag: 2f856b8a-018b-4b35-a219-0a9ec5edbc26
+		summarizeBy: none
+		sourceColumn: Ticket_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Request_Type
+		dataType: string
+		lineageTag: 5d6107a2-5d24-4e5c-bd55-80c88c35177a
+		summarizeBy: none
+		sourceColumn: Request_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Time_Open_Hours_L
+		dataType: double
+		lineageTag: af8ce594-d676-439b-b6e9-e7bfe4e2a27f
+		summarizeBy: sum
+		sourceColumn: Time_Open_Hours_L
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Reaction_Time
+		dataType: int64
+		formatString: 0
+		lineageTag: 7545a99a-c69e-4174-9e5d-c83a41457ca5
+		summarizeBy: sum
+		sourceColumn: Reaction_Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column Days_Open
+		dataType: int64
+		formatString: 0
+		lineageTag: bfea7b3c-e730-4ea4-a8c4-05289d152642
+		summarizeBy: sum
+		sourceColumn: Days_Open
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ServiceNowTickets-690e769c-44d0-40ef-ac46-61920cd221cf = m
+		mode: import
+		source =
+				// let
+				//     Source = PowerPlatform.Dataflows([]),
+				//     Workspaces = Source{[Id="Workspaces"]}[Data],
+				//     #"74a3a3de-f488-47d6-b24e-dbab9372eb76" = Workspaces{[workspaceId="74a3a3de-f488-47d6-b24e-dbab9372eb76"]}[Data],
+				//     #"0a539c71-32dc-4600-a6c2-3fde6d984ec0" = #"74a3a3de-f488-47d6-b24e-dbab9372eb76"{[dataflowId="0a539c71-32dc-4600-a6c2-3fde6d984ec0"]}[Data],
+				//     ServiceNowTickets_ = #"0a539c71-32dc-4600-a6c2-3fde6d984ec0"{[entity="ServiceNowTickets",version=""]}[Data],
+				let
+				    Source = Sql.Database("4mwxe3jbyb2uvjjz7azbbqtqnu-uxlphi2c3moepfcv475wr3zywi.datawarehouse.fabric.microsoft.com", "IT_Metrics"),
+				    dbo_Tickets = Source{[Schema="dbo",Item="Tickets"]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(dbo_Tickets, each ([Ticket_Type] <> "FLT")),
+				    #"Replaced Value" = Table.ReplaceValue(#"Filtered Rows","","Unassigned",Replacer.ReplaceValue,{"Category"}),
+				    #"Added Custom1" = Table.AddColumn(#"Replaced Value", "Reaction_Time", each if [Status] = "Closed" then Duration.Days([Closed_At] - [Opened_At]) else 0),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom1",{{"Reaction_Time", Int64.Type}}),
+				    #"Added Custom2" = Table.AddColumn(#"Changed Type1", "Days_Open", each if [Closed_At] = null then Duration.Days(DateTime.LocalNow() - [Opened At]) else Duration.Days([Closed_At] - [Opened_At])),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom2",{{"Days_Open", Int64.Type}})
+				in
+				    #"Changed Type2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

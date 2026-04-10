@@ -1,0 +1,295 @@
+table Enhancements
+	lineageTag: 271cbc05-4ced-4fc6-9978-6d28650a7192
+	sourceLineageTag: [dbo].[Enhancements]
+
+	column sys_updated_on
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: c59f930b-2b29-4794-8886-458b67e41192
+		sourceLineageTag: sys_updated_on
+		summarizeBy: none
+		sourceColumn: sys_updated_on
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 40169c6c-5d23-4077-ba9e-fef716753db7
+		sourceLineageTag: Product
+		summarizeBy: none
+		sourceColumn: Product
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 9545ffac-64ac-4f02-8bc3-947e44a3f7da
+		sourceLineageTag: Value
+		summarizeBy: sum
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 23d9fde1-600f-4f2c-9edd-ea0c2a1cf836
+		sourceLineageTag: Description
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Priority
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: fa0be0fe-1c28-4bc5-a3b4-27f5b20f5392
+		sourceLineageTag: Priority
+		summarizeBy: none
+		sourceColumn: Priority
+
+		annotation SummarizationSetBy = Automatic
+
+	column Release
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: d353d778-182b-46b4-b68e-121bed09f289
+		sourceLineageTag: Release
+		summarizeBy: none
+		sourceColumn: Release
+
+		annotation SummarizationSetBy = Automatic
+
+	column Themes
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 4d4bd453-5907-43b4-977b-63e522cc23c8
+		sourceLineageTag: Themes
+		summarizeBy: none
+		sourceColumn: Themes
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Opened Datetime'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: ef6acc7f-58b1-4f70-bf07-6d2e85941ee7
+		sourceLineageTag: Opened Datetime
+		summarizeBy: none
+		sourceColumn: Opened Datetime
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Requested By Date'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 994c362a-d57d-4eb9-8017-79d944621552
+		sourceLineageTag: Requested By Date
+		summarizeBy: none
+		sourceColumn: Requested By Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Planned Start Datetime'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: c4391c4e-e7e6-4ca4-9fbc-acf0f287666a
+		sourceLineageTag: Planned Start Datetime
+		summarizeBy: none
+		sourceColumn: Planned Start Datetime
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Planned End Datetime'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: c7aa4ffb-f8f8-4360-8c63-38fe7d4756f2
+		sourceLineageTag: Planned End Datetime
+		summarizeBy: none
+		sourceColumn: Planned End Datetime
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Closed Datetime'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: c1fe4e0b-bf1a-47ad-9e37-fbbcc92693cd
+		sourceLineageTag: Closed Datetime
+		summarizeBy: none
+		sourceColumn: Closed Datetime
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ticket Number'
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 6c19452f-d667-4e6b-80a5-a6d072981703
+		sourceLineageTag: Ticket Number
+		summarizeBy: none
+		sourceColumn: Ticket Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Requested By'
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 31153bdb-6a5d-4fa5-8db3-24669efedf05
+		sourceLineageTag: Requested By
+		summarizeBy: none
+		sourceColumn: Requested By
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ticket State'
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 1be52961-7570-46e7-b17d-c5b5747fdb5a
+		sourceLineageTag: Ticket State
+		summarizeBy: none
+		sourceColumn: Ticket State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Security Impact Assessment'
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 5839559c-58c8-4b52-a618-fefeb2f3812b
+		sourceLineageTag: Security Impact Assessment
+		summarizeBy: none
+		sourceColumn: Security Impact Assessment
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Short Description'
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: acc90141-da73-44cd-bff8-a44fb74b9c7a
+		sourceLineageTag: Short Description
+		summarizeBy: none
+		sourceColumn: Short Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Assignment Group'
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 193dda5f-f2e3-42e7-a66c-a0a7ffc25c3c
+		sourceLineageTag: Assignment Group
+		summarizeBy: none
+		sourceColumn: Assignment Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Enhancement State'
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: da7bfafd-dd76-4ba3-8435-333c8a6d1327
+		sourceLineageTag: Enhancement State
+		summarizeBy: none
+		sourceColumn: Enhancement State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Security Impact'
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 54d08e5a-79b2-4800-a2c7-882efdb2665a
+		sourceLineageTag: Security Impact
+		summarizeBy: none
+		sourceColumn: Security Impact
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Assigned To'
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: c0dc7d35-71fb-4fd8-b212-0e6b6dae8239
+		sourceLineageTag: Assigned To
+		summarizeBy: none
+		sourceColumn: Assigned To
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Planned End Date'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 290a84c0-fb1e-42ef-9213-7d54b5ff31f7
+		sourceLineageTag: Planned End Date
+		summarizeBy: none
+		sourceColumn: Planned End Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ticket Complete Status'
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 20b307b2-4205-4760-aab9-763b0fde0369
+		sourceLineageTag: Ticket Complete Status
+		summarizeBy: none
+		sourceColumn: Ticket Complete Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Closed Date'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: cec38878-f9d2-49c7-bba6-3956e618d542
+		sourceLineageTag: Closed Date
+		summarizeBy: none
+		sourceColumn: Closed Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ticket Overdue-Ontime Flag'
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: d1863196-50ad-4092-87c2-1da69ecd040b
+		sourceLineageTag: Ticket Overdue-Ontime Flag
+		summarizeBy: none
+		sourceColumn: Ticket Overdue-Ontime Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Opened Date'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: eddb6901-5738-40e7-9823-ed672c780f4c
+		sourceLineageTag: Opened Date
+		summarizeBy: none
+		sourceColumn: Opened Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ticket Overdue-Ontime'
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: bd13a237-9176-4e87-8f02-ca66b447a2df
+		sourceLineageTag: Ticket Overdue-Ontime
+		summarizeBy: none
+		sourceColumn: Ticket Overdue-Ontime
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Enhancements-a6f2ea4e-cf81-48c6-9b0a-a1e419aec6d7 = entity
+		mode: directLake
+		source
+			entityName: Enhancements
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation IsTableInBiModel = True
+
+	annotation PBI_ResultType = Table
+

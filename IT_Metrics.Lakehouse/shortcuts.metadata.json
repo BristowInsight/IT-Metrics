@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Phishing_Simulation_Schedule",
+    "path": "/Tables",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Tables/Phishing_Simulation_Schedule",
+        "itemId": "df7e0c00-0eae-43e4-afe9-045265e64196",
+        "workspaceId": "ff5f3a73-b648-4665-b431-78485c62991c"
+      }
+    }
+  },
+  {
+    "name": "eLearning_ISMS_Snapshots",
+    "path": "/Tables",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Tables/eLearning_ISMS_Snapshots",
+        "itemId": "df7e0c00-0eae-43e4-afe9-045265e64196",
+        "workspaceId": "ff5f3a73-b648-4665-b431-78485c62991c"
+      }
+    }
+  },
+  {
+    "name": "eLearning_ISMS",
+    "path": "/Tables",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Tables/eLearning_ISMS",
+        "itemId": "df7e0c00-0eae-43e4-afe9-045265e64196",
+        "workspaceId": "ff5f3a73-b648-4665-b431-78485c62991c"
+      }
+    }
+  },
+  {
+    "name": "eLearning_Compliance_Snapshots",
+    "path": "/Tables",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Tables/eLearning_Compliance_Snapshots",
+        "itemId": "df7e0c00-0eae-43e4-afe9-045265e64196",
+        "workspaceId": "ff5f3a73-b648-4665-b431-78485c62991c"
+      }
+    }
+  },
+  {
+    "name": "Calendar",
+    "path": "/Tables",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Tables/Calendar",
+        "itemId": "60e84545-7707-45cb-9d02-77ee94cae594",
+        "workspaceId": "328b3e86-ae89-420f-9357-52cfc7880b0f"
+      }
+    }
+  }
+]

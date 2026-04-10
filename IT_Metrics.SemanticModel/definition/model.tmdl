@@ -1,0 +1,25 @@
+model 71e48f80-8ba6-4551-b88c-e606397c4014
+	culture: en-US
+	collation: Latin1_General_100_BIN2_UTF8
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["DatabaseQuery"]
+
+annotation SourceLineageTagType = DatabaseFullyQualifiedName
+
+annotation PBI_ProTooling = ["WebModelingEdit"]
+
+ref table Calendar
+ref table Risk
+ref table Tickets
+ref table eLearning_ISMS
+ref table Phishing_Simulation_Schedule
+ref table Enhancements
+ref table RefreshDatetime_ServiceNowG
+

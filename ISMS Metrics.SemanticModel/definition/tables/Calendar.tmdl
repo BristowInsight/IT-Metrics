@@ -1,0 +1,220 @@
+table Calendar
+	lineageTag: 841b4ef1-dc3b-4a3f-95de-0e67e583cfd7
+	sourceLineageTag: [dbo].[Calendar]
+
+	measure 'Risk Treatments Implemented' = CALCULATE(COUNTA(Risk[Treatment_Implemented]), USERELATIONSHIP('Calendar'[Date], Risk[Treatment_Implemented]))
+		formatString: 0
+		lineageTag: 9f3d9c92-b3c3-4aa4-aa6f-6444570addba
+
+		changedProperty = Name
+
+	measure 'Risk Opened' = CALCULATE(COUNTA(Risk[Opened]), USERELATIONSHIP('Calendar'[Date], Risk[Opened]))
+		formatString: 0
+		lineageTag: a9911f46-6d28-49ae-b8f9-aaf42ba12a72
+
+		changedProperty = Name
+
+	measure 'Risk Treatments Approved' = CALCULATE(COUNTA(Risk[Date_Of_Risk_Owners_Acceptance_Treatment_Approval]), USERELATIONSHIP('Calendar'[Date], Risk[Date_Of_Risk_Owners_Acceptance_Treatment_Approval]))
+		formatString: 0
+		lineageTag: 87b8001b-a7dc-4be1-8788-b7856e59b5bd
+
+		changedProperty = Name
+
+	measure 'Incidents Security and Compliance by Opened At' = if(isblank(CALCULATE(COUNTA(Tickets[Opened_At]), Tickets[Category] = "Security and Compliance", USERELATIONSHIP('Calendar'[Date], Tickets[Opened_At]))),0,CALCULATE(COUNTA(Tickets[Opened_At]), Tickets[Category] = "Security and Compliance", USERELATIONSHIP('Calendar'[Date], Tickets[Opened_At])))
+		formatString: 0
+		lineageTag: e5fc6826-a589-441f-af5b-0cb626451637
+
+		changedProperty = Name
+
+	measure 'Incidents Security and Compliance by Resolved At' = CALCULATE(COUNTA(Tickets[Resolved_At]), Tickets[Category] = "Security and Compliance", USERELATIONSHIP('Calendar'[Date], Tickets[Resolved_At]))
+		formatString: 0
+		lineageTag: b70d9ff7-ab86-4b0f-bb61-56c9a1268b1b
+
+		changedProperty = Name
+
+	measure 'Cyber Incidents by Opened At' = CALCULATE(COUNTA(Tickets[Opened_At]), Tickets[Subcategory] = "Cyber Incident", USERELATIONSHIP('Calendar'[Date], Tickets[Opened_At]))
+		formatString: 0
+		lineageTag: 243a49b4-6bdc-453e-9044-a57379c0c50b
+
+		changedProperty = Name
+
+	measure 'Incidents Security and Compliance MTTR by Resolved At' = CALCULATE(AVERAGEA(Tickets[Time_Open_Hours_L]), Tickets[Category] = "Security and Compliance", USERELATIONSHIP('Calendar'[Date], Tickets[Resolved_At]))
+		lineageTag: 055a2ad2-bc1f-4173-9e29-5629fb6e43df
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: Short Date
+		sourceProviderType: date
+		lineageTag: 8ae08847-d309-4ce0-abc8-9dcb4da1635b
+		sourceLineageTag: Date
+		summarizeBy: none
+		sourceColumn: Date
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 23d52887-1cbc-4fe8-87ad-202c23c499db
+		sourceLineageTag: Year
+		summarizeBy: none
+		sourceColumn: Year
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column Month
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 63761170-a715-44ec-8ff8-a4ce99700890
+		sourceLineageTag: Month
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column LongMonth
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: b7374197-b30f-4493-bda7-b59cdca31b9e
+		sourceLineageTag: LongMonth
+		summarizeBy: none
+		sourceColumn: LongMonth
+		sortByColumn: Month
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShortMonth
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: ba4aff94-84ac-42c1-8da0-8bfb7974ccdf
+		sourceLineageTag: ShortMonth
+		summarizeBy: none
+		sourceColumn: ShortMonth
+		sortByColumn: Period
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: d5a19be0-165b-4b4f-905c-dd3051147ea8
+		sourceLineageTag: Quarter
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 9c8ac296-6b11-4833-8ed4-b0adec2a8f08
+		sourceLineageTag: Day
+		summarizeBy: none
+		sourceColumn: Day
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column Period
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 144a8e9e-dbd2-4f23-8a7e-dab436a0c70d
+		sourceLineageTag: Period
+		summarizeBy: sum
+		sourceColumn: Period
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthYear
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 67619081-0b23-4277-b0ae-2e99a512f71d
+		sourceLineageTag: MonthYear
+		summarizeBy: none
+		sourceColumn: MonthYear
+		sortByColumn: Date
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Month'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: d45d1eaf-1e6c-4640-941e-f00892271516
+		sourceLineageTag: Current Month
+		summarizeBy: none
+		sourceColumn: Current Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekEnd
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 66b63e67-353e-493f-8661-af7336578280
+		sourceLineageTag: WeekEnd
+		summarizeBy: none
+		sourceColumn: WeekEnd
+
+		annotation SummarizationSetBy = Automatic
+
+	column FridayWeekEnd
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f55e30e0-336b-481e-a916-d37b40086e23
+		sourceLineageTag: FridayWeekEnd
+		summarizeBy: none
+		sourceColumn: FridayWeekEnd
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Year Hierarchy'
+		lineageTag: 7ac5b650-c401-4072-b642-65edf77c90a7
+
+		level Year
+			lineageTag: 0088480b-21a7-4eaf-91a5-375396d36348
+			column: Year
+
+		level Quarter
+			lineageTag: b60de069-fbf5-4c16-bf12-0cc88515137f
+			column: Quarter
+
+		level LongMonth
+			lineageTag: 88a91fab-9b21-4389-b747-470662eeff08
+			column: LongMonth
+
+		level Day
+			lineageTag: 63d50d64-14fb-4fcc-8bc3-6f4d35e9e5b3
+			column: Day
+
+	partition Calendar = entity
+		mode: directLake
+		source
+			entityName: Calendar
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

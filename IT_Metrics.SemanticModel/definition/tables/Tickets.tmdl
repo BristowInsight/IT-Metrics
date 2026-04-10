@@ -1,0 +1,192 @@
+table Tickets
+	lineageTag: a126fb9a-916f-486a-9fe6-7d8313985d1c
+	sourceLineageTag: [dbo].[Tickets]
+
+	column Short_Description
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 227b2926-9d96-4c44-8750-dfb208e96c21
+		sourceLineageTag: Short_Description
+		summarizeBy: none
+		sourceColumn: Short_Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Assignment_Group
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: d7c768b4-1aac-4c50-ae13-9924e8e9de45
+		sourceLineageTag: Assignment_Group
+		summarizeBy: none
+		sourceColumn: Assignment_Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sys_Class_Name
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 7a414c0a-bc7f-43a7-8bae-bbb37226a172
+		sourceLineageTag: Sys_Class_Name
+		summarizeBy: none
+		sourceColumn: Sys_Class_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Number
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: dd3270bd-044f-4287-9e44-20d8e3c7b23f
+		sourceLineageTag: Number
+		summarizeBy: none
+		sourceColumn: Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: b2865b13-ecad-4c6b-9769-ee5e1bcfe4df
+		sourceLineageTag: State
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Closed_At
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: cfe053bb-8e6c-45c9-8a88-d97e4037eba2
+		sourceLineageTag: Closed_At
+		summarizeBy: none
+		sourceColumn: Closed_At
+
+		annotation SummarizationSetBy = Automatic
+
+	column Priority
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 88c47908-c697-4e69-85ea-ca48081ae23f
+		sourceLineageTag: Priority
+		summarizeBy: none
+		sourceColumn: Priority
+
+		annotation SummarizationSetBy = Automatic
+
+	column Opened_At
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 297e5f16-d056-4b9d-a677-e10d9dee92c8
+		sourceLineageTag: Opened_At
+		summarizeBy: none
+		sourceColumn: Opened_At
+
+		annotation SummarizationSetBy = Automatic
+
+	column Resolved_At
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 8f2108ee-2e5b-4ab0-a647-d01072b1aeba
+		sourceLineageTag: Resolved_At
+		summarizeBy: none
+		sourceColumn: Resolved_At
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subcategory
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 382a6345-f835-47b8-a047-d45b691ffb2c
+		sourceLineageTag: Subcategory
+		summarizeBy: none
+		sourceColumn: Subcategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 1902c8da-c3c2-4601-ae3e-677ca357136e
+		sourceLineageTag: Category
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 2de98149-0e8d-4a95-ab14-d6fafbc0f5f2
+		sourceLineageTag: Status
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Time_To_Resolution
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: d20900d6-58bf-44bf-91a5-b39046a80dd3
+		sourceLineageTag: Time_To_Resolution
+		summarizeBy: sum
+		sourceColumn: Time_To_Resolution
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ticket_Type
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 6d56eb17-f4e2-41aa-8869-1f4b47e17529
+		sourceLineageTag: Ticket_Type
+		summarizeBy: none
+		sourceColumn: Ticket_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Request_Type
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 52d0002a-2b81-42f6-9bc0-2010e352c150
+		sourceLineageTag: Request_Type
+		summarizeBy: none
+		sourceColumn: Request_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Time_To_Resolution_Hours
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 464b334c-a844-4e51-83c4-fb0105169aba
+		sourceLineageTag: Time_To_Resolution_Hours
+		summarizeBy: sum
+		sourceColumn: Time_To_Resolution_Hours
+
+		annotation SummarizationSetBy = Automatic
+
+	column Time_Open_Hours_L
+		dataType: double
+		sourceProviderType: float
+		lineageTag: f45442e5-baec-4a70-b6a7-efe8877967c6
+		sourceLineageTag: Time_Open_Hours_L
+		summarizeBy: sum
+		sourceColumn: Time_Open_Hours_L
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Tickets-55043725-be7b-4d05-9aa6-fc97e0a47177 = entity
+		mode: directLake
+		source
+			entityName: Tickets
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation IsTableInBiModel = True
+
+	annotation PBI_ResultType = Table
+
