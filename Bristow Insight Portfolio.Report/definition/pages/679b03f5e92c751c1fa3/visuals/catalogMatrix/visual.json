@@ -304,8 +304,29 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#323130'"
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "_Row FG Color"
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "_Row BG Color"
                     }
                   }
                 }
@@ -372,7 +393,85 @@
                   "Value": "true"
                 }
               }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "_Row BG Color"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "_Row FG Color"
+                    }
+                  }
+                }
+              }
             }
+          }
+        },
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "_Priority Color"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Catalog.Priority"
+          }
+        },
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "_Active Tasks FG"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Catalog.Active Tasks Display"
           }
         }
       ],
