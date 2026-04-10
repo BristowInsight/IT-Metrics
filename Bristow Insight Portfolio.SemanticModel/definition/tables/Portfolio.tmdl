@@ -54,28 +54,28 @@ table Portfolio
 		lineageTag: 3340b24e-823c-436f-8e8c-39e202e6f857
 
 	measure '_Row BG Color' =
-		VAR _IsProduct = ISINSCOPE('Portfolio'[Product])
-		VAR _IsSection = ISINSCOPE('Portfolio'[Section Icon Label]) && NOT _IsProduct
-		VAR _IsProgram = ISINSCOPE('Portfolio'[Program]) && NOT ISINSCOPE('Portfolio'[Section Icon Label])
-		RETURN
-		IF(_IsProgram, "#1B305A",
-		IF(_IsSection, [_Section Header BG],
-		IF(_IsProduct, [_Section BG Color],
-		"#FFFFFF")))
+			VAR _IsProduct = ISINSCOPE('Portfolio'[Product])
+			VAR _IsSection = ISINSCOPE('Portfolio'[Section Icon Label]) && NOT _IsProduct
+			VAR _IsProgram = ISINSCOPE('Portfolio'[Program]) && NOT ISINSCOPE('Portfolio'[Section Icon Label])
+			RETURN
+			IF(_IsProgram, "#1B305A",
+			IF(_IsSection, [_Section Header BG],
+			IF(_IsProduct, [_Section BG Color],
+			"#FFFFFF")))
 		isHidden
-		lineageTag: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+		lineageTag: 115e2e26-df8f-4adc-927a-d205c5456052
 
 	measure '_Row FG Color' =
-		VAR _IsProduct = ISINSCOPE('Portfolio'[Product])
-		VAR _IsSection = ISINSCOPE('Portfolio'[Section Icon Label]) && NOT _IsProduct
-		VAR _IsProgram = ISINSCOPE('Portfolio'[Program]) && NOT ISINSCOPE('Portfolio'[Section Icon Label])
-		RETURN
-		IF(_IsProgram, "#FFFFFF",
-		IF(_IsSection, [_Section Header FG],
-		IF(_IsProduct, "#323130",
-		"#000000")))
+			VAR _IsProduct = ISINSCOPE('Portfolio'[Product])
+			VAR _IsSection = ISINSCOPE('Portfolio'[Section Icon Label]) && NOT _IsProduct
+			VAR _IsProgram = ISINSCOPE('Portfolio'[Program]) && NOT ISINSCOPE('Portfolio'[Section Icon Label])
+			RETURN
+			IF(_IsProgram, "#FFFFFF",
+			IF(_IsSection, [_Section Header FG],
+			IF(_IsProduct, "#323130",
+			"#000000")))
 		isHidden
-		lineageTag: b2c3d4e5-f6a7-8901-bcde-f12345678901
+		lineageTag: f617ceb9-0239-4994-a9b2-e991152d02e6
 
 	column Program
 		dataType: string
