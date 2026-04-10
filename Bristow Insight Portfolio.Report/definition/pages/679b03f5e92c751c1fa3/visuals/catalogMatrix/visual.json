@@ -10,10 +10,10 @@
     "tabOrder": 10
   },
   "visual": {
-    "visualType": "pivotTable",
+    "visualType": "tableEx",
     "query": {
       "queryState": {
-        "Rows": {
+        "Values": {
           "projections": [
             {
               "field": {
@@ -26,7 +26,7 @@
                   "Property": "Program"
                 }
               },
-              "queryRef": "Catalog.Program",
+              "queryRef": "Portfolio.Program",
               "active": true
             },
             {
@@ -40,7 +40,7 @@
                   "Property": "Section Icon Label"
                 }
               },
-              "queryRef": "Catalog.Section Icon Label",
+              "queryRef": "Portfolio.Section Icon Label",
               "active": true
             },
             {
@@ -54,13 +54,9 @@
                   "Property": "Product"
                 }
               },
-              "queryRef": "Catalog.Product",
+              "queryRef": "Portfolio.Product",
               "active": true
-            }
-          ]
-        },
-        "Values": {
-          "projections": [
+            },
             {
               "field": {
                 "Column": {
@@ -72,7 +68,7 @@
                   "Property": "Strategic Alignment"
                 }
               },
-              "queryRef": "Catalog.Strategic Alignment",
+              "queryRef": "Portfolio.Strategic Alignment",
               "active": true
             },
             {
@@ -86,7 +82,7 @@
                   "Property": "Service Category"
                 }
               },
-              "queryRef": "Catalog.Service Category",
+              "queryRef": "Portfolio.Service Category",
               "active": true
             },
             {
@@ -100,7 +96,7 @@
                   "Property": "Business Objective"
                 }
               },
-              "queryRef": "Catalog.Business Objective",
+              "queryRef": "Portfolio.Business Objective",
               "active": true
             },
             {
@@ -114,7 +110,7 @@
                   "Property": "Business Sponsor"
                 }
               },
-              "queryRef": "Catalog.Business Sponsor",
+              "queryRef": "Portfolio.Business Sponsor",
               "active": true
             },
             {
@@ -128,7 +124,7 @@
                   "Property": "Phase Display"
                 }
               },
-              "queryRef": "Catalog.Phase Display",
+              "queryRef": "Portfolio.Phase Display",
               "active": true
             },
             {
@@ -142,7 +138,7 @@
                   "Property": "Initial Delivery"
                 }
               },
-              "queryRef": "Catalog.Initial Delivery",
+              "queryRef": "Portfolio.Initial Delivery",
               "active": true
             },
             {
@@ -156,7 +152,7 @@
                   "Property": "Active Tasks Display"
                 }
               },
-              "queryRef": "Catalog.Active Tasks Display",
+              "queryRef": "Portfolio.Active Tasks Display",
               "active": true
             },
             {
@@ -170,11 +166,54 @@
                   "Property": "Priority"
                 }
               },
-              "queryRef": "Catalog.Priority",
+              "queryRef": "Portfolio.Priority",
               "active": true
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Portfolio"
+                  }
+                },
+                "Property": "Program"
+              }
+            },
+            "direction": "Ascending"
+          },
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Portfolio"
+                  }
+                },
+                "Property": "Section Icon Label"
+              }
+            },
+            "direction": "Ascending"
+          },
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Portfolio"
+                  }
+                },
+                "Property": "Product"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
       }
     },
     "objects": {
@@ -297,79 +336,6 @@
           }
         }
       ],
-      "rowHeaders": [
-        {
-          "properties": {
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Portfolio"
-                        }
-                      },
-                      "Property": "_Row FG Color"
-                    }
-                  }
-                }
-              }
-            },
-            "backColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Portfolio"
-                        }
-                      },
-                      "Property": "_Row BG Color"
-                    }
-                  }
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Segoe UI'"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "wordWrap": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "stepped": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "steppedLayoutIndentation": {
-              "expr": {
-                "Literal": {
-                  "Value": "20D"
-                }
-              }
-            }
-          }
-        }
-      ],
       "values": [
         {
           "properties": {
@@ -404,7 +370,22 @@
                           "Entity": "Portfolio"
                         }
                       },
-                      "Property": "_Row BG Color"
+                      "Property": "_Section BG Color"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1B305A'"
                     }
                   }
                 }
@@ -414,18 +395,23 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Portfolio"
-                        }
-                      },
-                      "Property": "_Row FG Color"
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
               }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI Semibold'"
+                }
+              }
             }
+          },
+          "selector": {
+            "metadata": "Portfolio.Program"
           }
         },
         {
@@ -440,15 +426,22 @@
                           "Entity": "Portfolio"
                         }
                       },
-                      "Property": "_Priority Color"
+                      "Property": "_Section Header FG"
                     }
                   }
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI Semibold'"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Catalog.Priority"
+            "metadata": "Portfolio.Section Icon Label"
           }
         },
         {
@@ -471,21 +464,37 @@
             }
           },
           "selector": {
-            "metadata": "Catalog.Active Tasks Display"
+            "metadata": "Portfolio.Active Tasks Display"
+          }
+        },
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "_Priority Color"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Portfolio.Priority"
           }
         }
       ],
-      "subTotals": [
+      "total": [
         {
           "properties": {
-            "rowSubtotals": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "columnSubtotals": {
+            "totals": {
               "expr": {
                 "Literal": {
                   "Value": "false"
