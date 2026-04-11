@@ -29,7 +29,11 @@
 
 ## PBI Modeling MCP
 - Connect to Desktop: `Connect` with `Data Source=localhost:<port>` (find port via `ListLocalInstances`)
-- Connect to Fabric: `ConnectFabric` with workspaceName + semanticModelName
+- Connect to Fabric: `ConnectFabric` with workspaceName + semanticModelName (workspace: "IT Metrics")
+- **MCP or Git, never both in the same direction** — pick one write path per change:
+  - MCP path: modify live model via MCP, then "Commit to git" from Fabric to sync back
+  - Git path: edit TMDL/PBIR files, commit, push, then "Update from git" in Fabric
+  - Never push git changes to a model that was just modified via MCP (etag conflict)
 - Table refresh for SharePoint List sources fails via MCP — refresh in Desktop manually
 - DAX table names need single quotes: `'Catalog'[Column]` not `Catalog[Column]`
 

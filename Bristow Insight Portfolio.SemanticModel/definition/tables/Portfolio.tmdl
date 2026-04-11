@@ -53,6 +53,30 @@ table Portfolio
 		isHidden
 		lineageTag: 3340b24e-823c-436f-8e8c-39e202e6f857
 
+	measure '_Row BG Color' =
+			VAR _IsProduct = ISINSCOPE('Portfolio'[Product])
+			VAR _IsSection = ISINSCOPE('Portfolio'[State]) && NOT _IsProduct
+			VAR _IsProgram = ISINSCOPE('Portfolio'[Program]) && NOT ISINSCOPE('Portfolio'[State])
+			RETURN
+			IF(_IsProgram, "#1B305A",
+			IF(_IsSection, [_Section Header BG],
+			IF(_IsProduct, [_Section BG Color],
+			"#FFFFFF")))
+		isHidden
+		lineageTag: 115e2e26-df8f-4adc-927a-d205c5456052
+
+	measure '_Row FG Color' =
+			VAR _IsProduct = ISINSCOPE('Portfolio'[Product])
+			VAR _IsSection = ISINSCOPE('Portfolio'[State]) && NOT _IsProduct
+			VAR _IsProgram = ISINSCOPE('Portfolio'[Program]) && NOT ISINSCOPE('Portfolio'[State])
+			RETURN
+			IF(_IsProgram, "#FFFFFF",
+			IF(_IsSection, [_Section Header FG],
+			IF(_IsProduct, "#323130",
+			"#000000")))
+		isHidden
+		lineageTag: f617ceb9-0239-4994-a9b2-e991152d02e6
+
 	column Program
 		dataType: string
 		lineageTag: 6eafcf1e-74a1-4a9e-98e0-09088be8d27d
