@@ -53,6 +53,10 @@ table Portfolio
 		isHidden
 		lineageTag: 3340b24e-823c-436f-8e8c-39e202e6f857
 
+	measure '_Program Band' = IF(MOD(RANKX(ALL('Portfolio'[Program]), 'Portfolio'[Program], , ASC, DENSE), 2) = 0, "#F5F5F5", "#FFFFFF")
+		isHidden
+		lineageTag: c7d8e9f0-a1b2-c3d4-e5f6-789012345678
+
 	column Program
 		dataType: string
 		lineageTag: 6eafcf1e-74a1-4a9e-98e0-09088be8d27d
