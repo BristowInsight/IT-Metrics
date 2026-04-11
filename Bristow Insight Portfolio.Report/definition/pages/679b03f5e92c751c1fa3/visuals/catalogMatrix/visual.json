@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "catalogMatrix",
   "position": {
     "x": 16,
@@ -453,7 +453,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "274D"
+                  "Value": "122.4864482089645D"
                 }
               }
             }
@@ -467,7 +467,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "1400D"
+                  "Value": "268.03499947093064D"
                 }
               }
             }
@@ -502,7 +502,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "313D"
+                  "Value": "122.79400408185359D"
                 }
               }
             }
@@ -621,6 +621,48 @@
           },
           "selector": {
             "metadata": "Portfolio.Section"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "122.13020360562845D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Portfolio.Program"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "485D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Portfolio.Active Tasks Display"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "72D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Portfolio.Priority"
           }
         }
       ]
