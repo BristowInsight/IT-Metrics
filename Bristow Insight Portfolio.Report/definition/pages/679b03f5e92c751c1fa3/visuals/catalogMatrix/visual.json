@@ -309,6 +309,17 @@
         },
         {
           "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F5F5F5'"
+                    }
+                  }
+                }
+              }
+            },
             "fontColor": {
               "solid": {
                 "color": {
@@ -341,6 +352,17 @@
         },
         {
           "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F5F5F5'"
+                    }
+                  }
+                }
+              }
+            },
             "fontColor": {
               "solid": {
                 "color": {
@@ -374,6 +396,31 @@
               }
             ],
             "metadata": "Portfolio.Section"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F5F5F5'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Portfolio.Product"
           }
         },
         {
