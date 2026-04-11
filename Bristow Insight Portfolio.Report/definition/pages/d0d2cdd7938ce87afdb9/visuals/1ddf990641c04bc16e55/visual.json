@@ -1,19 +1,19 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "catalogMatrix",
+  "name": "1ddf990641c04bc16e55",
   "position": {
-    "x": 16,
+    "x": 18,
     "y": 140,
     "z": 9000,
     "height": 880,
-    "width": 1888,
+    "width": 1884,
     "tabOrder": 9000
   },
   "visual": {
-    "visualType": "tableEx",
+    "visualType": "pivotTable",
     "query": {
       "queryState": {
-        "Values": {
+        "Rows": {
           "projections": [
             {
               "field": {
@@ -26,7 +26,8 @@
                   "Property": "Program"
                 }
               },
-              "queryRef": "Portfolio.Program"
+              "queryRef": "Portfolio.Program",
+              "active": true
             },
             {
               "field": {
@@ -40,7 +41,8 @@
                 }
               },
               "queryRef": "Portfolio.Section",
-              "nativeQueryRef": "Section"
+              "nativeQueryRef": "Section",
+              "active": true
             },
             {
               "field": {
@@ -54,115 +56,172 @@
                 }
               },
               "queryRef": "Portfolio.Product",
-              "nativeQueryRef": "First Product"
+              "nativeQueryRef": "First Product",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "Strategic Alignment"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(Portfolio.Strategic Alignment)",
+              "nativeQueryRef": "Strategic Alignment",
+              "displayName": "Strategic Alignment"
             },
             {
               "field": {
-                "Column": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "Portfolio"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "Service Category"
                     }
                   },
-                  "Property": "Strategic Alignment"
+                  "Function": 3
                 }
               },
-              "queryRef": "Portfolio.Strategic Alignment",
-              "nativeQueryRef": "First Strategic Alignment"
+              "queryRef": "Min(Portfolio.Service Category)",
+              "nativeQueryRef": "Service Category",
+              "displayName": "Service Category"
             },
             {
               "field": {
-                "Column": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "Portfolio"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "Business Objective"
                     }
                   },
-                  "Property": "Service Category"
+                  "Function": 3
                 }
               },
-              "queryRef": "Portfolio.Service Category",
-              "nativeQueryRef": "First Service Category"
+              "queryRef": "Min(Portfolio.Business Objective)",
+              "nativeQueryRef": "Business Objective",
+              "displayName": "Business Objective"
             },
             {
               "field": {
-                "Column": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "Portfolio"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "Business Sponsor"
                     }
                   },
-                  "Property": "Business Objective"
+                  "Function": 3
                 }
               },
-              "queryRef": "Portfolio.Business Objective"
+              "queryRef": "Min(Portfolio.Business Sponsor)",
+              "nativeQueryRef": "Business Sponsor",
+              "displayName": "Business Sponsor"
             },
             {
               "field": {
-                "Column": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "Portfolio"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "Phase Display"
                     }
                   },
-                  "Property": "Business Sponsor"
+                  "Function": 3
                 }
               },
-              "queryRef": "Portfolio.Business Sponsor"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Portfolio"
-                    }
-                  },
-                  "Property": "Phase Display"
-                }
-              },
-              "queryRef": "Portfolio.Phase Display",
+              "queryRef": "Min(Portfolio.Phase Display)",
+              "nativeQueryRef": "First Phase Display",
               "displayName": "Phase"
             },
             {
               "field": {
-                "Column": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "Portfolio"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "Initial Delivery"
                     }
                   },
-                  "Property": "Initial Delivery"
+                  "Function": 3
                 }
               },
-              "queryRef": "Portfolio.Initial Delivery"
+              "queryRef": "Min(Portfolio.Initial Delivery)",
+              "nativeQueryRef": "Initial Delivery",
+              "displayName": "Initial Delivery"
             },
             {
               "field": {
-                "Column": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "Portfolio"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "Active Tasks Display"
                     }
                   },
-                  "Property": "Active Tasks Display"
+                  "Function": 3
                 }
               },
-              "queryRef": "Portfolio.Active Tasks Display",
+              "queryRef": "Min(Portfolio.Active Tasks Display)",
+              "nativeQueryRef": "First Active Tasks Display",
               "displayName": "Active Tasks"
             },
             {
               "field": {
-                "Column": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "Portfolio"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "Priority"
                     }
                   },
-                  "Property": "Priority"
+                  "Function": 3
                 }
               },
-              "queryRef": "Portfolio.Priority"
+              "queryRef": "Min(Portfolio.Priority)",
+              "nativeQueryRef": "Priority",
+              "displayName": "Priority"
             }
           ]
         }
@@ -211,6 +270,35 @@
         ]
       }
     },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "Portfolio.Program"
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Portfolio.Section"
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Portfolio.Product"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
     "objects": {
       "grid": [
         {
@@ -229,17 +317,6 @@
                 }
               }
             },
-            "gridHorizontalColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#E5E5E5'"
-                    }
-                  }
-                }
-              }
-            },
             "gridHorizontalWeight": {
               "expr": {
                 "Literal": {
@@ -247,17 +324,10 @@
                 }
               }
             },
-            "gridVertical": {
+            "outlineStyle": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "rowPadding": {
-              "expr": {
-                "Literal": {
-                  "Value": "6D"
+                  "Value": "0D"
                 }
               }
             }
@@ -267,46 +337,10 @@
       "columnHeaders": [
         {
           "properties": {
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
-                    }
-                  }
-                }
-              }
-            },
-            "backColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#1B305A'"
-                    }
-                  }
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Segoe UI Semibold'"
-                }
-              }
-            },
             "fontSize": {
               "expr": {
                 "Literal": {
                   "Value": "11D"
-                }
-              }
-            },
-            "wordWrap": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
                 }
               }
             },
@@ -345,6 +379,13 @@
                       "Value": "'#605E5C'"
                     }
                   }
+                }
+              }
+            },
+            "bandedRowHeaders": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -2852,7 +2893,15 @@
       ],
       "general": [
         {
-          "properties": {}
+          "properties": {
+            "layout": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Tabular'"
+                }
+              }
+            }
+          }
         }
       ],
       "columnWidth": [
@@ -2861,7 +2910,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "122.4864482089645D"
+                  "Value": "290.65355170567034D"
                 }
               }
             }
@@ -3036,7 +3085,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "122.13020360562845D"
+                  "Value": "123.61142927326753D"
                 }
               }
             }
@@ -3072,6 +3121,326 @@
           "selector": {
             "metadata": "Portfolio.Priority"
           }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "146D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Portfolio"
+                          }
+                        },
+                        "Property": "Section"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Active Development'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "64D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Portfolio"
+                          }
+                        },
+                        "Property": "Section"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Pipeline'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "84D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Portfolio"
+                          }
+                        },
+                        "Property": "Section"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Production'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "43D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "total": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "Section"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "252D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(Portfolio.Product)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "124.48047023615094D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(Portfolio.Strategic Alignment)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "127.86206896551724D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(Portfolio.Service Category)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "220.85946249246226D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(Portfolio.Business Objective)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "159D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(Portfolio.Business Sponsor)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "130D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(Portfolio.Phase Display)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "73.86206896551724D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(Portfolio.Initial Delivery)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "363.56446989146474D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(Portfolio.Active Tasks Display)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "92D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(Portfolio.Priority)"
+          }
+        }
+      ],
+      "subTotals": [
+        {
+          "properties": {
+            "columnSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "rowSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowHeaders": [
+        {
+          "properties": {
+            "showExpandCollapseButtons": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "italic": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
         }
       ]
     },
@@ -3094,7 +3463,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "d1c3468093bd43f89381",
+        "name": "ef2c01a1b9603b07ea35",
         "field": {
           "Column": {
             "Expression": {
@@ -3108,7 +3477,40 @@
         "type": "Categorical"
       },
       {
-        "name": "72308b5887b3f555a0a8",
+        "name": "6a949a968f98d8d5dfa8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Portfolio"
+              }
+            },
+            "Property": "Section"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "146ee5581e0374d820e6",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Portfolio"
+                  }
+                },
+                "Property": "Strategic Alignment"
+              }
+            },
+            "Function": 3
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "90364e836b65ed44f9d2",
         "field": {
           "Column": {
             "Expression": {
@@ -3122,130 +3524,137 @@
         "type": "Categorical"
       },
       {
-        "name": "9dc3e9a20a30da1a33c4",
+        "name": "9e37c9307a16ac4d3991",
         "field": {
-          "Column": {
+          "Aggregation": {
             "Expression": {
-              "SourceRef": {
-                "Entity": "Portfolio"
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Portfolio"
+                  }
+                },
+                "Property": "Service Category"
               }
             },
-            "Property": "Strategic Alignment"
+            "Function": 3
           }
         },
-        "type": "Categorical"
+        "type": "Advanced"
       },
       {
-        "name": "579f2937ed8d3bb2bdb4",
+        "name": "d6a15bbefd667fda5059",
         "field": {
-          "Column": {
+          "Aggregation": {
             "Expression": {
-              "SourceRef": {
-                "Entity": "Portfolio"
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Portfolio"
+                  }
+                },
+                "Property": "Business Objective"
               }
             },
-            "Property": "Service Category"
+            "Function": 3
           }
         },
-        "type": "Categorical"
+        "type": "Advanced"
       },
       {
-        "name": "b95d7bf107131d350f9a",
+        "name": "6e27c73b605a88058d9e",
         "field": {
-          "Column": {
+          "Aggregation": {
             "Expression": {
-              "SourceRef": {
-                "Entity": "Portfolio"
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Portfolio"
+                  }
+                },
+                "Property": "Business Sponsor"
               }
             },
-            "Property": "Business Objective"
+            "Function": 3
           }
         },
-        "type": "Categorical"
+        "type": "Advanced"
       },
       {
-        "name": "df20d2cfd3022a4cfb8c",
+        "name": "c5feeee0ebe4d4fef510",
         "field": {
-          "Column": {
+          "Aggregation": {
             "Expression": {
-              "SourceRef": {
-                "Entity": "Portfolio"
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Portfolio"
+                  }
+                },
+                "Property": "Phase Display"
               }
             },
-            "Property": "Business Sponsor"
+            "Function": 3
           }
         },
-        "type": "Categorical"
+        "type": "Advanced"
       },
       {
-        "name": "fa823369e27bc1b53ff8",
+        "name": "180f08223726999d5f0f",
         "field": {
-          "Column": {
+          "Aggregation": {
             "Expression": {
-              "SourceRef": {
-                "Entity": "Portfolio"
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Portfolio"
+                  }
+                },
+                "Property": "Initial Delivery"
               }
             },
-            "Property": "Phase Display"
+            "Function": 3
           }
         },
-        "type": "Categorical"
+        "type": "Advanced"
       },
       {
-        "name": "5aee2a5fd2bb849aea8b",
+        "name": "a780b2f30575a4055d42",
         "field": {
-          "Column": {
+          "Aggregation": {
             "Expression": {
-              "SourceRef": {
-                "Entity": "Portfolio"
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Portfolio"
+                  }
+                },
+                "Property": "Active Tasks Display"
               }
             },
-            "Property": "Initial Delivery"
+            "Function": 3
           }
         },
-        "type": "Categorical"
+        "type": "Advanced"
       },
       {
-        "name": "2e2836349ebe61cdd68d",
+        "name": "265fabfd50d94702e35f",
         "field": {
-          "Column": {
+          "Aggregation": {
             "Expression": {
-              "SourceRef": {
-                "Entity": "Portfolio"
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Portfolio"
+                  }
+                },
+                "Property": "Priority"
               }
             },
-            "Property": "Active Tasks Display"
+            "Function": 3
           }
         },
-        "type": "Categorical"
-      },
-      {
-        "name": "18fe937d972bf8df45c4",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Portfolio"
-              }
-            },
-            "Property": "Priority"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "e33d48c1dc43ef8faffa",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Portfolio"
-              }
-            },
-            "Property": "Section"
-          }
-        },
-        "type": "Categorical"
+        "type": "Advanced"
       }
     ]
   }
