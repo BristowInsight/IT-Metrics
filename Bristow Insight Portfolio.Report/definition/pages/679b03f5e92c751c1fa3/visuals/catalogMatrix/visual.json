@@ -277,13 +277,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Portfolio"
-                        }
-                      },
-                      "Property": "_Section BG Color"
+                    "Literal": {
+                      "Value": "'#1B305A'"
                     }
                   }
                 }
@@ -294,7 +289,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#1B305A'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
