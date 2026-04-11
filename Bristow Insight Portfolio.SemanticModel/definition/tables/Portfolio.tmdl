@@ -53,7 +53,12 @@ table Portfolio
 		isHidden
 		lineageTag: 3340b24e-823c-436f-8e8c-39e202e6f857
 
-	measure '_Program Band' = IF(MOD(RANKX(ALLSELECTED('Portfolio'[Program]), 'Portfolio'[Program], , ASC, DENSE), 2) = 0, "#F5F5F5", "#FFFFFF")
+	measure '_Program Band' =
+			VAR _Current = SELECTEDVALUE('Portfolio'[Program])
+			VAR _Rank = COUNTROWS(FILTER(ALLSELECTED('Portfolio'[Program]), 'Portfolio'[Program] < _Current)) + 1
+			RETURN IF(MOD(_Rank, 2) = 0, "#F5F5F5", "#FFFFFF")
+		isHidden
+		lineageTag: c7d8e9f0-a1b2-c3d4-e5f6-789012345678
 		isHidden
 		lineageTag: c7d8e9f0-a1b2-c3d4-e5f6-789012345678
 
