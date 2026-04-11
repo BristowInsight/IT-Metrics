@@ -41,7 +41,7 @@ table Portfolio
 		isHidden
 		lineageTag: 50042ea4-7957-450f-8120-75103a4feac2
 
-	measure '_Section Header FG' = SWITCH(SELECTEDVALUE('Portfolio'[Section]), "Active Development", "#D4712A", "Pipeline", "#6B6B6B", "Production", "#3680C4", "#000000")
+	measure '_Section Header FG' = SWITCH(SELECTEDVALUE('Portfolio'[Section]), "Active Development", "#D4712A", "Pipeline", "#424242", "Production", "#3680C4", "#000000")
 		isHidden
 		lineageTag: 8aa9fceb-134a-44cd-b625-de69002beb6e
 
