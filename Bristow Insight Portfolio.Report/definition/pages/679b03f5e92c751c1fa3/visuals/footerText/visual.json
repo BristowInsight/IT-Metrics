@@ -4,10 +4,10 @@
   "position": {
     "x": 16,
     "y": 1030,
-    "z": 10,
+    "z": 10000,
     "height": 45,
     "width": 1888,
-    "tabOrder": 11
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Sections:  \u25b6 Active Development = resourced, with timelines  |  \u25cb Pipeline = accepted, awaiting resources  |  \u25cf Production = delivered, in operation       Lifecycle:  Intake [1/4] \u2192 Discovery [2/4] \u2192 Development [3/4] \u2192 UAT [4/4] \u2192 Production       Service Categories:  Process Modernization | Analytics Innovation | Data Enablement",
+                    "value": "Sections:  ▶ Active Development = resourced, with timelines  |  ○ Pipeline = accepted, awaiting resources  |  ● Production = delivered, in operation       Lifecycle:  Intake [1/4] → Discovery [2/4] → Development [3/4] → UAT [4/4] → Production       Service Categories:  Process Modernization | Analytics Innovation | Data Enablement",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "9pt",

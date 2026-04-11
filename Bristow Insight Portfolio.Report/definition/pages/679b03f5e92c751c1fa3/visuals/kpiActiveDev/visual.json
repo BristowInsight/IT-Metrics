@@ -4,10 +4,10 @@
   "position": {
     "x": 825,
     "y": 20,
-    "z": 2,
+    "z": 1000,
     "height": 90,
     "width": 160,
-    "tabOrder": 3
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "card",
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "Catalog.Active Dev Count",
-              "active": true
+              "active": true,
+              "displayName": "Active Development"
             }
           ]
         }
@@ -41,8 +42,9 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#D4712A'"
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
                     }
                   }
                 }
@@ -97,5 +99,23 @@
         }
       ]
     }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "793f4d778fb2c814e851",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Portfolio"
+              }
+            },
+            "Property": "Active Dev Count"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

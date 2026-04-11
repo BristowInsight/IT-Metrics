@@ -4,10 +4,10 @@
   "position": {
     "x": 1175,
     "y": 20,
-    "z": 2,
+    "z": 3000,
     "height": 90,
     "width": 160,
-    "tabOrder": 5
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "card",
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "Catalog.Production Count",
-              "active": true
+              "active": true,
+              "displayName": "Production"
             }
           ]
         }
@@ -41,8 +42,9 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#3680C4'"
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
                     }
                   }
                 }
@@ -97,5 +99,23 @@
         }
       ]
     }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "331f7a5a115bd47390d0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Portfolio"
+              }
+            },
+            "Property": "Production Count"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

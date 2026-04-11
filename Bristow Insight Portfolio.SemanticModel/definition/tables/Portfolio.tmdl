@@ -337,7 +337,7 @@ table Portfolio
 		isHidden
 		lineageTag: 0cd50a34-8e6e-446b-a5f2-f9b60e35e264
 
-	column 'Section Icon Label' = SWITCH('Portfolio'[Section], "Active Development", UNICHAR(9654) & "  Active Development", "Pipeline", UNICHAR(9675) & "  Pipeline", "Production", UNICHAR(9679) & "  Production")
+	column State = SWITCH('Portfolio'[Section], "Active Development", UNICHAR(9654) & "  Active Development", "Pipeline", UNICHAR(9675) & "  Pipeline", "Production", UNICHAR(9679) & "  Production")
 		dataType: string
 		lineageTag: b178a39a-38ae-4c80-ab29-64aed1e9dd23
 		sortByColumn: 'Section Sort'
