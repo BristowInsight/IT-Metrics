@@ -28,7 +28,7 @@
               },
               "queryRef": "Catalog.Product Count",
               "active": true,
-              "displayName": "Products"
+              "displayName": "Total Products"
             }
           ]
         }
@@ -99,5 +99,23 @@
         }
       ]
     }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "5c3e68f6501ae191804b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Portfolio"
+              }
+            },
+            "Property": "Product Count"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

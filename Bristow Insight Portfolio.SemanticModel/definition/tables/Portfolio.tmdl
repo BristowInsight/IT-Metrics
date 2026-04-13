@@ -1,11 +1,11 @@
 table Portfolio
 	lineageTag: 9d4c832a-ca49-488a-a371-bfa0d8852b3e
 
-	measure 'Product Count' = COUNTROWS('Portfolio')
+	measure 'Product Count' = CALCULATE(COUNTROWS('Portfolio'), ALLEXCEPT(Portfolio, Portfolio[Section]))
 		formatString: 0
 		lineageTag: 8e40fbba-af23-4b96-b026-8f24f822c2fe
 
-	measure 'Active Dev Count' = CALCULATE([Product Count], 'Portfolio'[Section] = "Active Development")
+	measure 'Development Count' = CALCULATE([Product Count], 'Portfolio'[Section] = "Development")
 		formatString: 0
 		lineageTag: fe07d428-4974-49ae-8021-e6ca7101df50
 
@@ -339,24 +339,37 @@ table Portfolio
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Section Sort' = SWITCH('Portfolio'[Section], "Active Development", 1, "Pipeline", 2, "Production", 3)
+	column 'Section Sort' = SWITCH('Portfolio'[Section], "Development", 1, "Pipeline", 2, "Production", 3)
 		dataType: int64
 		isHidden
+		formatString: 0
 		lineageTag: 0cd50a34-8e6e-446b-a5f2-f9b60e35e264
+		summarizeBy: sum
 
-	column State = SWITCH('Portfolio'[Section], "Active Development", UNICHAR(9654) & "  Active Development", "Pipeline", UNICHAR(9675) & "  Pipeline", "Production", UNICHAR(9679) & "  Production")
+		annotation SummarizationSetBy = Automatic
+
+	column State = SWITCH('Portfolio'[Section], "Development", UNICHAR(9654) & "  Development", "Pipeline", UNICHAR(9675) & "  Pipeline", "Production", UNICHAR(9679) & "  Production")
 		dataType: string
 		lineageTag: b178a39a-38ae-4c80-ab29-64aed1e9dd23
+		summarizeBy: none
 		sortByColumn: 'Section Sort'
 
-	column 'Phase Display' = IF('Portfolio'[Phase Number] < 5, 'Portfolio'[Lifecycle Phase] & " [" & FORMAT('Portfolio'[Phase Number], "0") & "/4]", "Production")
+		annotation SummarizationSetBy = Automatic
+
+	column 'Phase Display' = IF('Portfolio'[Phase Number] < 5, 'Portfolio'[Lifecycle Phase] & " [" & FORMAT('Portfolio'[Phase Number], "0") & "/4]", 'Portfolio'[Lifecycle Phase])
 		dataType: string
 		lineageTag: 937ce23a-7237-4772-8cf0-f2ba7651b7ba
+		summarizeBy: none
 		sortByColumn: 'Phase Number'
 
-	column 'Active Tasks Display' = IF(ISBLANK('Portfolio'[Active Tasks]) || 'Portfolio'[Active Tasks] = "", "No active tasks — stable operations", SUBSTITUTE('Portfolio'[Active Tasks], " | ", UNICHAR(10)))
+		annotation SummarizationSetBy = Automatic
+
+	column 'Active Tasks Display' = IF(ISBLANK('Portfolio'[Active Tasks]) || 'Portfolio'[Active Tasks] = "" && Portfolio[Lifecycle Phase] = "Production", "No active tasks — stable operations", SUBSTITUTE('Portfolio'[Active Tasks], " | ", UNICHAR(10)))
 		dataType: string
 		lineageTag: fa31c90b-42b7-4172-bd47-693de03911f7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
 
 	partition Portfolio = m
 		mode: import

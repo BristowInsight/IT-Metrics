@@ -3643,7 +3643,9 @@ cultureInfo en-US
 			      },
 			      "State": "Generated",
 			      "Terms": [
-			        {},
+			        {
+			          "": {}
+			        },
 			        {
 			          "location": {
 			            "Type": "Noun",
@@ -4038,7 +4040,7 @@ cultureInfo en-US
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Portfolio",
-			          "ConceptualProperty": "Active Dev Count"
+			          "ConceptualProperty": "Development Count"
 			        }
 			      },
 			      "State": "Generated",

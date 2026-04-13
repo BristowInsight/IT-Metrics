@@ -23,15 +23,33 @@
                       "Entity": "Portfolio"
                     }
                   },
-                  "Property": "Active Dev Count"
+                  "Property": "Development Count"
                 }
               },
-              "queryRef": "Catalog.Active Dev Count",
-              "active": true,
-              "displayName": "Active Development"
+              "queryRef": "Portfolio.Development Count",
+              "nativeQueryRef": "In Development",
+              "displayName": "In Development"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Portfolio"
+                  }
+                },
+                "Property": "Development Count"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
       }
     },
     "objects": {
@@ -99,5 +117,23 @@
         }
       ]
     }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ea0dddf49b43910976ac",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Portfolio"
+              }
+            },
+            "Property": "Development Count"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

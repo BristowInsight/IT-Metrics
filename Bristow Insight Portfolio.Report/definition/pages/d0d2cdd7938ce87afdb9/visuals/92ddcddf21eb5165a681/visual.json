@@ -28,7 +28,7 @@
               },
               "queryRef": "Catalog.Pipeline Count",
               "active": true,
-              "displayName": "Pipeline"
+              "displayName": "In Pipeline"
             }
           ]
         }
@@ -99,5 +99,23 @@
         }
       ]
     }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "48a47ab4dd76b9cb6459",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Portfolio"
+              }
+            },
+            "Property": "Pipeline Count"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

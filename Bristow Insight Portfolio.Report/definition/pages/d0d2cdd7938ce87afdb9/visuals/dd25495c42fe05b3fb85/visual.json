@@ -1,0 +1,84 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "dd25495c42fe05b3fb85",
+  "position": {
+    "x": 1356,
+    "y": 20,
+    "z": 11001,
+    "height": 90.51428571428572,
+    "width": 260,
+    "tabOrder": 11001
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Portfolio_Program"
+                    }
+                  },
+                  "Property": "Program"
+                }
+              },
+              "queryRef": "Portfolio_Program.Program",
+              "nativeQueryRef": "First Program",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "selection": [
+        {
+          "properties": {
+            "singleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "5aaad8f822f349134e0b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Portfolio_Program"
+              }
+            },
+            "Property": "Program"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

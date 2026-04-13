@@ -37,21 +37,6 @@
                       "Entity": "Portfolio"
                     }
                   },
-                  "Property": "Section"
-                }
-              },
-              "queryRef": "Portfolio.Section",
-              "nativeQueryRef": "Section",
-              "active": true
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Portfolio"
-                    }
-                  },
                   "Property": "Product"
                 }
               },
@@ -63,6 +48,26 @@
         },
         "Values": {
           "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "Section"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(Portfolio.Section)",
+              "nativeQueryRef": "Section",
+              "displayName": "Section"
+            },
             {
               "field": {
                 "Aggregation": {
@@ -230,13 +235,18 @@
         "sort": [
           {
             "field": {
-              "Column": {
+              "Aggregation": {
                 "Expression": {
-                  "SourceRef": {
-                    "Entity": "Portfolio"
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Portfolio"
+                      }
+                    },
+                    "Property": "Section"
                   }
                 },
-                "Property": "Program"
+                "Function": 3
               }
             },
             "direction": "Ascending"
@@ -253,12 +263,6 @@
           {
             "queryRefs": [
               "Portfolio.Program"
-            ],
-            "isPinned": true
-          },
-          {
-            "queryRefs": [
-              "Portfolio.Section"
             ],
             "isPinned": true
           },
@@ -368,7 +372,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "12D"
                 }
               }
             },
@@ -402,7 +406,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "11D"
                 }
               }
             },
@@ -2992,7 +2996,7 @@
                               },
                               "Right": {
                                 "Literal": {
-                                  "Value": "'Active Development'"
+                                  "Value": "'Development'"
                                 }
                               }
                             },
@@ -3126,7 +3130,7 @@
                               },
                               "Right": {
                                 "Literal": {
-                                  "Value": "'Active Development'"
+                                  "Value": "'Development'"
                                 }
                               }
                             },
@@ -3260,7 +3264,7 @@
                               },
                               "Right": {
                                 "Literal": {
-                                  "Value": "'Active Development'"
+                                  "Value": "'Development'"
                                 }
                               }
                             },
@@ -3394,7 +3398,7 @@
                               },
                               "Right": {
                                 "Literal": {
-                                  "Value": "'Active Development'"
+                                  "Value": "'Development'"
                                 }
                               }
                             },
@@ -3528,7 +3532,7 @@
                               },
                               "Right": {
                                 "Literal": {
-                                  "Value": "'Active Development'"
+                                  "Value": "'Development'"
                                 }
                               }
                             },
@@ -3662,7 +3666,7 @@
                               },
                               "Right": {
                                 "Literal": {
-                                  "Value": "'Active Development'"
+                                  "Value": "'Development'"
                                 }
                               }
                             },
@@ -3796,7 +3800,7 @@
                               },
                               "Right": {
                                 "Literal": {
-                                  "Value": "'Active Development'"
+                                  "Value": "'Development'"
                                 }
                               }
                             },
@@ -3844,6 +3848,53 @@
                           "Value": {
                             "Literal": {
                               "Value": "'#c7b8e7'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "StartsWith": {
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Portfolio"
+                                        }
+                                      },
+                                      "Property": "Active Tasks Display"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'No active tasks'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 8
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#808080'"
                             }
                           }
                         }
@@ -3930,7 +3981,7 @@
                               },
                               "Right": {
                                 "Literal": {
-                                  "Value": "'Active Development'"
+                                  "Value": "'Development'"
                                 }
                               }
                             },
@@ -3978,6 +4029,126 @@
                           "Value": {
                             "Literal": {
                               "Value": "'#c7b8e7'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Portfolio"
+                                        }
+                                      },
+                                      "Property": "Priority"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'Secondary'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 2
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#41a4ff'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Portfolio"
+                                        }
+                                      },
+                                      "Property": "Priority"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'Primary'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 2
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#0d6abf'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Portfolio"
+                                        }
+                                      },
+                                      "Property": "Priority"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'Urgent'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 2
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#D64550'"
                             }
                           }
                         }
@@ -4131,6 +4302,140 @@
               }
             ],
             "metadata": "Min(Portfolio.Product)"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Portfolio"
+                                        }
+                                      },
+                                      "Property": "Section"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'Production'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 2
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#a0d1ff'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Portfolio"
+                                        }
+                                      },
+                                      "Property": "Section"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'Development'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 2
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#f5c4af'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Portfolio"
+                                        }
+                                      },
+                                      "Property": "Section"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'Pipeline'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 2
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#c7b8e7'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Min(Portfolio.Section)"
           }
         }
       ],
@@ -4741,6 +5046,19 @@
             }
           }
         }
+      ],
+      "general": [
+        {
+          "properties": {
+            "keepLayerOrder": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
       ]
     }
   },
@@ -4927,18 +5245,23 @@
         "type": "Advanced"
       },
       {
-        "name": "203e9d782f94e7d00d9e",
+        "name": "5bdc11b6702794d4ab04",
         "field": {
-          "Column": {
+          "Aggregation": {
             "Expression": {
-              "SourceRef": {
-                "Entity": "Portfolio"
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Portfolio"
+                  }
+                },
+                "Property": "Section"
               }
             },
-            "Property": "Section"
+            "Function": 3
           }
         },
-        "type": "Categorical"
+        "type": "Advanced"
       }
     ]
   }

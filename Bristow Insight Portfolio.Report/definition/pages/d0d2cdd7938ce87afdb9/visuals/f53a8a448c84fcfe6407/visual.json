@@ -1,0 +1,89 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "f53a8a448c84fcfe6407",
+  "position": {
+    "x": 1627.8857142857144,
+    "y": 20.571428571428573,
+    "z": 11002,
+    "height": 90.51428571428572,
+    "width": 274.28571428571428,
+    "tabOrder": 11002
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Portfolio_LifecyclePhase"
+                    }
+                  },
+                  "Property": "Section"
+                }
+              },
+              "queryRef": "Portfolio_LifecyclePhase.Section",
+              "nativeQueryRef": "Section",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "selection": [
+        {
+          "properties": {
+            "singleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ad98affc5ec63dad4cba",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Portfolio_LifecyclePhase"
+              }
+            },
+            "Property": "Section"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

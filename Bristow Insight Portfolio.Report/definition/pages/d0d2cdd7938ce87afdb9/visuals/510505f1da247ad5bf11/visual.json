@@ -28,7 +28,7 @@
               },
               "queryRef": "Catalog.Production Count",
               "active": true,
-              "displayName": "Production"
+              "displayName": "In Production"
             }
           ]
         }
@@ -99,5 +99,23 @@
         }
       ]
     }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "470000b37a3423f006d8",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Portfolio"
+              }
+            },
+            "Property": "Production Count"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

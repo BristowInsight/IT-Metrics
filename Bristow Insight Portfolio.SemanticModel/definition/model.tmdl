@@ -10,7 +10,7 @@ annotation __PBI_TimeIntelligenceEnabled = 1
 
 annotation PBI_QueryOrder = ["Portfolio","Portfolio_LifecyclePhase","Portfolio_Program","Portfolio_ServiceCategory","Portfolio_StrategicPriority"]
 
-annotation PBI_ProTooling = ["MCP-PBIModeling","DevMode"]
+annotation PBI_ProTooling = ["MCP-PBIModeling","DevMode","WebModelingEdit"]
 
 ref table Portfolio
 ref table DateTableTemplate_1670ed74-39c3-41bc-8f64-27ca80a66d7b
