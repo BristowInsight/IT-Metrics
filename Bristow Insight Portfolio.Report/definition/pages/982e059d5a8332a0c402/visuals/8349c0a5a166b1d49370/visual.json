@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "1ddf990641c04bc16e55",
+  "name": "8349c0a5a166b1d49370",
   "position": {
-    "x": 18,
-    "y": 140,
-    "z": 9000,
-    "height": 880,
-    "width": 1884,
-    "tabOrder": 9000
+    "x": 18.526315789473685,
+    "y": 18.526315789473685,
+    "z": 4000,
+    "height": 1000,
+    "width": 1882.9473684210527,
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -5149,7 +5149,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "ef2c01a1b9603b07ea35",
+        "name": "92e33b1d0293335d15b2",
         "field": {
           "Column": {
             "Expression": {
@@ -5163,7 +5163,79 @@
         "type": "Categorical"
       },
       {
-        "name": "146ee5581e0374d820e6",
+        "name": "dc1326d3e9b7e1240b3b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Portfolio"
+              }
+            },
+            "Property": "Product"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c2b1f414cb0297bc5360",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Portfolio"
+                  }
+                },
+                "Property": "Section"
+              }
+            },
+            "Function": 3
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "p",
+              "Entity": "Portfolio",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 0,
+                  "Left": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "p"
+                            }
+                          },
+                          "Property": "Section"
+                        }
+                      },
+                      "Function": 3
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "'Development'"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "2a1f5b61bbb6b1800a05",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -5182,21 +5254,7 @@
         "type": "Advanced"
       },
       {
-        "name": "90364e836b65ed44f9d2",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Portfolio"
-              }
-            },
-            "Property": "Product"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "9e37c9307a16ac4d3991",
+        "name": "fae9649c80d2addbca5d",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -5215,7 +5273,7 @@
         "type": "Advanced"
       },
       {
-        "name": "d6a15bbefd667fda5059",
+        "name": "f73749617e425c7b9083",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -5234,7 +5292,7 @@
         "type": "Advanced"
       },
       {
-        "name": "6e27c73b605a88058d9e",
+        "name": "6d746b388a7e70685005",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -5253,7 +5311,7 @@
         "type": "Advanced"
       },
       {
-        "name": "c5feeee0ebe4d4fef510",
+        "name": "5a7ee74ec1e84d000b54",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -5272,7 +5330,7 @@
         "type": "Advanced"
       },
       {
-        "name": "180f08223726999d5f0f",
+        "name": "9e51d0a718739d3b06e0",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -5291,7 +5349,7 @@
         "type": "Advanced"
       },
       {
-        "name": "a780b2f30575a4055d42",
+        "name": "eb22c53a9111e471cc4e",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -5310,7 +5368,7 @@
         "type": "Advanced"
       },
       {
-        "name": "265fabfd50d94702e35f",
+        "name": "a0f5ef00058780d21703",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -5326,26 +5384,75 @@
             "Function": 3
           }
         },
-        "type": "Advanced"
-      },
-      {
-        "name": "5bdc11b6702794d4ab04",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Portfolio"
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "p",
+              "Entity": "Portfolio",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Or": {
+                  "Left": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Aggregation": {
+                          "Expression": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "p"
+                                }
+                              },
+                              "Property": "Priority"
+                            }
+                          },
+                          "Function": 3
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "'Urgent'"
+                        }
+                      }
+                    }
+                  },
+                  "Right": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Aggregation": {
+                          "Expression": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "p"
+                                }
+                              },
+                              "Property": "Priority"
+                            }
+                          },
+                          "Function": 3
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "'Primary'"
+                        }
+                      }
+                    }
                   }
-                },
-                "Property": "Section"
+                }
               }
-            },
-            "Function": 3
-          }
-        },
-        "type": "Advanced"
+            }
+          ]
+        }
       }
     ]
   }
