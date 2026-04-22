@@ -225,6 +225,23 @@
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Portfolio_LifecyclePhase"
+                  }
+                },
+                "Property": "Section"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
       }
     },
     "expansionStates": [
@@ -904,7 +921,7 @@
                 }
               }
             ],
-            "metadata": "Portfolio.Section"
+            "metadata": "Portfolio_LifecyclePhase.Section"
           }
         },
         {
@@ -2897,6 +2914,22 @@
                   }
                 }
               }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "_Active Tasks FG"
+                    }
+                  }
+                }
+              }
             }
           },
           "selector": {
@@ -2907,20 +2940,7 @@
                 }
               }
             ],
-            "metadata": "Portfolio.Priority"
-          }
-        },
-        {
-          "properties": {},
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ],
-            "metadata": "Min(Portfolio.Strategic Alignment)"
+            "metadata": "Portfolio.Updates Display"
           }
         },
         {
@@ -2942,6 +2962,224 @@
                                       "Expression": {
                                         "SourceRef": {
                                           "Entity": "Portfolio"
+                                        }
+                                      },
+                                      "Property": "Program"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'Decision Support'"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#F0F4F8'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Portfolio"
+                                        }
+                                      },
+                                      "Property": "Program"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'Flight Operations'"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#F0F4F8'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Portfolio"
+                                        }
+                                      },
+                                      "Property": "Program"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'IT'"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#F0F4F8'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Portfolio"
+                                        }
+                                      },
+                                      "Property": "Program"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'Safety'"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#F0F4F8'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Portfolio"
+                                        }
+                                      },
+                                      "Property": "Program"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'Supply Chain'"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#F0F4F8'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Portfolio"
+                                        }
+                                      },
+                                      "Property": "Program"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'UK SAR'"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#F0F4F8'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Portfolio.Priority"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -2977,7 +3215,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -3013,7 +3251,141 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
+                                        }
+                                      },
+                                      "Property": "Section"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'Pipeline'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 2
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#c7b8e7'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Min(Portfolio.Strategic Alignment)"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Portfolio_LifecyclePhase"
+                                        }
+                                      },
+                                      "Property": "Section"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'Production'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 2
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#a0d1ff'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Portfolio_LifecyclePhase"
+                                        }
+                                      },
+                                      "Property": "Section"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'Development'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 2
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#f5c4af'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -3075,7 +3447,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -3111,7 +3483,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -3147,7 +3519,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -3209,7 +3581,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -3245,7 +3617,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -3281,7 +3653,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -3343,7 +3715,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -3379,7 +3751,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -3415,7 +3787,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -3525,7 +3897,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -3561,7 +3933,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -3597,7 +3969,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -3659,7 +4031,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -3695,7 +4067,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -3731,7 +4103,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -3840,7 +4212,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -3876,7 +4248,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -3912,7 +4284,188 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
+                                          "Entity": "Portfolio_LifecyclePhase"
+                                        }
+                                      },
+                                      "Property": "Section"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'Pipeline'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 2
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#c7b8e7'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "StartsWith": {
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
                                           "Entity": "Portfolio"
+                                        }
+                                      },
+                                      "Property": "Progress Display"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'No active tasks'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 8
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#808080'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Min(Portfolio.Updates Display)"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Portfolio_LifecyclePhase"
+                                        }
+                                      },
+                                      "Property": "Section"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'Production'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 2
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#a0d1ff'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Portfolio_LifecyclePhase"
+                                        }
+                                      },
+                                      "Property": "Section"
+                                    }
+                                  },
+                                  "Function": 3
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "'Development'"
+                                }
+                              }
+                            },
+                            "Annotations": {
+                              "PowerBI.SQExprEvaluationKind": 1,
+                              "PowerBI.SQExprTextOperatorOption": 2
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#f5c4af'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -4130,7 +4683,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -4166,7 +4719,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -4202,7 +4755,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -4264,7 +4817,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -4300,7 +4853,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -4336,7 +4889,7 @@
                                     "Column": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Portfolio"
+                                          "Entity": "Portfolio_LifecyclePhase"
                                         }
                                       },
                                       "Property": "Section"
@@ -4377,7 +4930,7 @@
                 }
               }
             ],
-            "metadata": "Min(Portfolio.Section)"
+            "metadata": "Min(Portfolio_LifecyclePhase.Section)"
           }
         }
       ],
@@ -4572,7 +5125,7 @@
             }
           },
           "selector": {
-            "metadata": "Portfolio.Section"
+            "metadata": "Portfolio_LifecyclePhase.Section"
           }
         },
         {
@@ -4637,7 +5190,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Portfolio"
+                            "Entity": "Portfolio_LifecyclePhase"
                           }
                         },
                         "Property": "Section"
@@ -4674,7 +5227,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Portfolio"
+                            "Entity": "Portfolio_LifecyclePhase"
                           }
                         },
                         "Property": "Section"
@@ -4711,7 +5264,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Portfolio"
+                            "Entity": "Portfolio_LifecyclePhase"
                           }
                         },
                         "Property": "Section"
@@ -4746,7 +5299,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Portfolio"
+                          "Entity": "Portfolio_LifecyclePhase"
                         }
                       },
                       "Property": "Section"
@@ -4905,7 +5458,7 @@
             }
           },
           "selector": {
-            "metadata": "Min(Portfolio.Section)"
+            "metadata": "Min(Portfolio_LifecyclePhase.Section)"
           }
         },
         {
