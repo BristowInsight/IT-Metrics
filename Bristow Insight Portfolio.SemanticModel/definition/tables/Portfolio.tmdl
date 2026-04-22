@@ -1,19 +1,19 @@
 table Portfolio
 	lineageTag: 9d4c832a-ca49-488a-a371-bfa0d8852b3e
 
-	measure 'Product Count' = CALCULATE(COUNTROWS('Portfolio'), ALLEXCEPT(Portfolio, Portfolio[Section]))
+	measure 'Product Count' = COUNTROWS('Portfolio')
 		formatString: 0
 		lineageTag: 8e40fbba-af23-4b96-b026-8f24f822c2fe
 
-	measure 'Development Count' = CALCULATE([Product Count], 'Portfolio'[Section] = "Development")
+	measure 'Development Count' = CALCULATE([Product Count], Portfolio_LifecyclePhase[Section] = "Development")
 		formatString: 0
 		lineageTag: fe07d428-4974-49ae-8021-e6ca7101df50
 
-	measure 'Pipeline Count' = CALCULATE([Product Count], 'Portfolio'[Section] = "Pipeline")
+	measure 'Pipeline Count' = CALCULATE([Product Count], Portfolio_LifecyclePhase[Section] = "Pipeline")
 		formatString: 0
 		lineageTag: 32b80bf6-7be2-4f40-8c32-cc8a9e49b556
 
-	measure 'Production Count' = CALCULATE([Product Count], 'Portfolio'[Section] = "Production")
+	measure 'Production Count' = CALCULATE([Product Count],'Portfolio_LifecyclePhase'[Section] = "Production")
 		formatString: 0
 		lineageTag: 957726c8-79d1-4d0e-a2cf-b29bc9823c96
 
@@ -33,23 +33,29 @@ table Portfolio
 		formatString: 0
 		lineageTag: 018251ac-8ed3-4d39-94cf-21a6d6384031
 
-	measure '_Section BG Color' = SWITCH(SELECTEDVALUE('Portfolio'[Section]), "Active Development", "#FFF7F0", "Pipeline", "#F2F2F2", "Production", "#F6FAFD", "#FFFFFF")
+	measure '_Section BG Color' =
+			VAR _Section = SELECTEDVALUE('Portfolio_LifecyclePhase'[Section])
+			RETURN SWITCH(_Section, "Development", "#FFF7F0", "Pipeline", "#F2F2F2", "Production", "#F6FAFD", "#FFFFFF")
 		isHidden
 		lineageTag: 7ea3154d-0e89-47b7-a646-b16cdbfb107e
 
-	measure '_Section Header BG' = SWITCH(SELECTEDVALUE('Portfolio'[Section]), "Active Development", "#FBE5D6", "Pipeline", "#E5E5E5", "Production", "#D6E4F0", "#FFFFFF")
+	measure '_Section Header BG' =
+			VAR _Section = SELECTEDVALUE('Portfolio_LifecyclePhase'[Section])
+			RETURN SWITCH(_Section, "Development", "#FBE5D6", "Pipeline", "#E5E5E5", "Production", "#D6E4F0", "#FFFFFF")
 		isHidden
 		lineageTag: 50042ea4-7957-450f-8120-75103a4feac2
 
-	measure '_Section Header FG' = SWITCH(SELECTEDVALUE('Portfolio'[Section]), "Active Development", "#D4712A", "Pipeline", "#7B5EA7", "Production", "#3680C4", "#000000")
+	measure '_Section Header FG' =
+			VAR _Section = SELECTEDVALUE('Portfolio_LifecyclePhase'[Section])
+			RETURN SWITCH(_Section, "Development", "#D4712A", "Pipeline", "#7B5EA7", "Production", "#3680C4", "#000000")
 		isHidden
 		lineageTag: 8aa9fceb-134a-44cd-b625-de69002beb6e
 
-	measure '_Priority Color' = SWITCH(SELECTEDVALUE('Portfolio'[Priority]), "Primary", "#D4712A", "Secondary", "#6B6B6B", "#8A8A8A")
+	measure '_Priority Color' = SWITCH(SELECTEDVALUE('Portfolio'[Priority]), "Urgent", "#C42B1C", "Primary", "#D4712A", "Secondary", "#6B6B6B", "On Hold", "#8A8A8A", "#8A8A8A")
 		isHidden
 		lineageTag: 2cb87331-bad1-47ab-85f4-dc9adac92f80
 
-	measure '_Active Tasks FG' = IF(SELECTEDVALUE('Portfolio'[Active Tasks Display]) = "No active tasks — stable operations", "#8A8A8A", "#000000")
+	measure '_Active Tasks FG' = IF(ISBLANK(SELECTEDVALUE('Portfolio'[Progress])), "#8A8A8A", "#323130")
 		isHidden
 		lineageTag: 3340b24e-823c-436f-8e8c-39e202e6f857
 
@@ -60,35 +66,11 @@ table Portfolio
 		isHidden
 		lineageTag: c7d8e9f0-a1b2-c3d4-e5f6-789012345678
 
-	column Program
-		dataType: string
-		lineageTag: 6eafcf1e-74a1-4a9e-98e0-09088be8d27d
-		summarizeBy: none
-		sourceColumn: Program
-
-		annotation SummarizationSetBy = Automatic
-
 	column Product
 		dataType: string
 		lineageTag: 4c2fe019-8e63-43f7-a746-d164820314ed
 		summarizeBy: none
 		sourceColumn: Product
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Strategic Alignment'
-		dataType: string
-		lineageTag: 0698c4f2-e4b5-4f3a-9732-fe07327da424
-		summarizeBy: none
-		sourceColumn: Strategic Alignment
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Service Category'
-		dataType: string
-		lineageTag: 6a027b2b-47f7-4052-8865-8bfc23b66fe8
-		summarizeBy: none
-		sourceColumn: Service Category
 
 		annotation SummarizationSetBy = Automatic
 
@@ -108,45 +90,11 @@ table Portfolio
 
 		annotation SummarizationSetBy = Automatic
 
-	column Section
-		dataType: string
-		lineageTag: cf171164-a3da-4f7b-b119-84e8051cb611
-		summarizeBy: none
-		sourceColumn: Section
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Lifecycle Phase'
-		dataType: string
-		lineageTag: 8ae14fce-f206-4cfc-99c6-921ae5682187
-		summarizeBy: none
-		sourceColumn: Lifecycle Phase
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Phase Number'
-		dataType: double
-		lineageTag: 99104d81-26e7-415b-a0b3-f69058cd1956
-		summarizeBy: sum
-		sourceColumn: Phase Number
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column 'Initial Delivery'
 		dataType: string
 		lineageTag: 564d700f-8b30-4c8f-a1de-ac9f589441f9
 		summarizeBy: none
 		sourceColumn: Initial Delivery
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Active Tasks'
-		dataType: string
-		lineageTag: aafe90a9-ded0-4454-ac69-8f95f5dc05cc
-		summarizeBy: none
-		sourceColumn: Active Tasks
 
 		annotation SummarizationSetBy = Automatic
 
@@ -339,7 +287,9 @@ table Portfolio
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Section Sort' = SWITCH('Portfolio'[Section], "Development", 1, "Pipeline", 2, "Production", 3)
+	column 'Section Sort' =
+			VAR _Section = RELATED('Portfolio_LifecyclePhase'[Section])
+			RETURN SWITCH(_Section, "Development", 1, "Pipeline", 2, "Production", 3, 4)
 		dataType: int64
 		isHidden
 		formatString: 0
@@ -348,7 +298,9 @@ table Portfolio
 
 		annotation SummarizationSetBy = Automatic
 
-	column State = SWITCH('Portfolio'[Section], "Development", UNICHAR(9654) & "  Development", "Pipeline", UNICHAR(9675) & "  Pipeline", "Production", UNICHAR(9679) & "  Production")
+	column State =
+			VAR _Section = RELATED('Portfolio_LifecyclePhase'[Section])
+			RETURN SWITCH(_Section, "Development", UNICHAR(9654) & "  Development", "Pipeline", UNICHAR(9675) & "  Pipeline", "Production", UNICHAR(9679) & "  Production", _Section)
 		dataType: string
 		lineageTag: b178a39a-38ae-4c80-ab29-64aed1e9dd23
 		summarizeBy: none
@@ -356,29 +308,110 @@ table Portfolio
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Phase Display' = IF('Portfolio'[Phase Number] < 5, 'Portfolio'[Lifecycle Phase] & " [" & FORMAT('Portfolio'[Phase Number], "0") & "/4]", 'Portfolio'[Lifecycle Phase])
+	column 'Phase Display' =
+			VAR _PhaseNum = RELATED('Portfolio_LifecyclePhase'[Phase Number])
+			VAR _Phase = 'Portfolio'[Lifecycle Phase]
+			RETURN IF(_PhaseNum < 5 && NOT(ISBLANK(_PhaseNum)), _Phase & " [" & FORMAT(_PhaseNum, "0") & "/4]", _Phase)
 		dataType: string
 		lineageTag: 937ce23a-7237-4772-8cf0-f2ba7651b7ba
 		summarizeBy: none
-		sortByColumn: 'Phase Number'
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Active Tasks Display' = IF(ISBLANK('Portfolio'[Active Tasks]) || 'Portfolio'[Active Tasks] = "" && Portfolio[Lifecycle Phase] = "Production", "No active tasks — stable operations", SUBSTITUTE('Portfolio'[Active Tasks], " | ", UNICHAR(10)))
+	column 'Progress Display' = IF(ISBLANK('Portfolio'[Progress]) || 'Portfolio'[Progress] = "", "", SUBSTITUTE('Portfolio'[Progress], " | ", UNICHAR(10)))
 		dataType: string
 		lineageTag: fa31c90b-42b7-4172-bd47-693de03911f7
 		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
 
+	column Progress
+		dataType: string
+		lineageTag: b8e5255f-df1c-4aa1-8799-d70484e0925d
+		summarizeBy: none
+		sourceColumn: Progress
+
+		annotation SummarizationSetBy = Automatic
+
+	column Updates
+		dataType: string
+		lineageTag: 97288ed2-2112-4142-838d-a059fe192f2b
+		summarizeBy: none
+		sourceColumn: Updates
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title
+		dataType: string
+		lineageTag: 647497a8-54b2-4bd7-8e8b-b077b9b43f12
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Strategic Alignment Old'
+		dataType: string
+		lineageTag: 179a5eea-5a45-4ae6-9593-5d2903560e37
+		summarizeBy: none
+		sourceColumn: Strategic Alignment Old
+
+		annotation SummarizationSetBy = Automatic
+
+	column Program
+		dataType: string
+		lineageTag: 845be723-68c5-4a0b-ac11-b0def95bbdcf
+		summarizeBy: none
+		sourceColumn: Program
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Strategic Alignment'
+		dataType: string
+		lineageTag: 35415feb-b3bd-4d85-94ef-a47b97dc0eb6
+		summarizeBy: none
+		sourceColumn: Strategic Alignment
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Service Category'
+		dataType: string
+		lineageTag: 0dc2ad82-dc19-4710-aab6-7d01418ab442
+		summarizeBy: none
+		sourceColumn: Service Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lifecycle Phase'
+		dataType: string
+		lineageTag: 699cb323-8fde-4087-81b0-ca112cafff21
+		summarizeBy: none
+		sourceColumn: Lifecycle Phase
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Updates Display' = IF(ISBLANK('Portfolio'[Updates]) || 'Portfolio'[Updates] = "", "", SUBSTITUTE('Portfolio'[Updates], " | ", UNICHAR(10)))
+		dataType: string
+		lineageTag: 463eb9a8-c62d-4a1a-ae50-129354e6110a
+
 	partition Portfolio = m
 		mode: import
 		source =
 				let
 				    Source = SharePoint.Tables("https://bristowgroupinc.sharepoint.com/sites/BristowInsight/", [Implementation="2.0", ViewMode="All"]),
-				    #"7b1163b9-b16c-46a1-9259-547f61b4f701" = Source{[Id="7b1163b9-b16c-46a1-9259-547f61b4f701"]}[Items]
+				    #"7b1163b9-b16c-46a1-9259-547f61b4f701" = Source{[Id="7b1163b9-b16c-46a1-9259-547f61b4f701"]}[Items],
+				    #"Expanded Program" = Table.ExpandListColumn(#"7b1163b9-b16c-46a1-9259-547f61b4f701", "Program"),
+				    #"Expanded Program1" = Table.ExpandRecordColumn(#"Expanded Program", "Program", {"lookupValue"}, {"Program"}),
+				    #"Expanded SA" = Table.ExpandListColumn(#"Expanded Program1", "Strategic Alignment"),
+				    #"Expanded SA1" = Table.ExpandRecordColumn(#"Expanded SA", "Strategic Alignment", {"lookupValue"}, {"Strategic Alignment"}),
+				    #"Expanded SC" = Table.ExpandListColumn(#"Expanded SA1", "Service Category"),
+				    #"Expanded SC1" = Table.ExpandRecordColumn(#"Expanded SC", "Service Category", {"lookupValue"}, {"Service Category"}),
+				    #"Expanded LP" = Table.ExpandListColumn(#"Expanded SC1", "Lifecycle Phase"),
+				    #"Expanded LP1" = Table.ExpandRecordColumn(#"Expanded LP", "Lifecycle Phase", {"lookupValue"}, {"Lifecycle Phase"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded LP1", {{"Program", type text}, {"Strategic Alignment", type text}, {"Service Category", type text}, {"Lifecycle Phase", type text}})
 				in
-				    #"7b1163b9-b16c-46a1-9259-547f61b4f701"
+				    #"Changed Type"
 
 	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
 

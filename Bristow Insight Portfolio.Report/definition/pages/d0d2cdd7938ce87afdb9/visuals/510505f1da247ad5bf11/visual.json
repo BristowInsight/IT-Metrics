@@ -23,15 +23,32 @@
                       "Entity": "Portfolio"
                     }
                   },
-                  "Property": "Production Count"
+                  "Property": "Pipeline Count"
                 }
               },
-              "queryRef": "Catalog.Production Count",
-              "active": true,
-              "displayName": "In Production"
+              "queryRef": "Portfolio.Pipeline Count",
+              "nativeQueryRef": "Pipeline Count"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Portfolio"
+                  }
+                },
+                "Property": "Pipeline Count"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
       }
     },
     "objects": {
@@ -103,7 +120,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "470000b37a3423f006d8",
+        "name": "16e8758e10019019c7b1",
         "field": {
           "Measure": {
             "Expression": {
@@ -111,7 +128,7 @@
                 "Entity": "Portfolio"
               }
             },
-            "Property": "Production Count"
+            "Property": "Pipeline Count"
           }
         },
         "type": "Advanced"

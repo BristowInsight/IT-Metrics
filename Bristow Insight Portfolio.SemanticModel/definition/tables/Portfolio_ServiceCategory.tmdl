@@ -209,3 +209,5 @@ table Portfolio_ServiceCategory
 
 	annotation PBI_ResultType = Table
 
+	annotation PBI_NavigationStepName = Navigation
+

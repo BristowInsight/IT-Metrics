@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(claude-md-management:revise-claude-md)",
+      "Skill(claude-md-management:revise-claude-md:*)",
+      "Read(//c/Users/jhwa/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin/d01776d8-c787-4e7f-a32d-717c5499aeef/b08e3e06-31a9-454f-9759-3e477f0cfca4/skills/xlsx/**)",
+      "Bash(python -c ':*)",
+      "Bash(python -u -c ':*)",
+      "WebFetch(domain:developer.microsoft.com)",
+      "Bash(python -c \"import json; json.load\\(open\\('Bristow Insight Portfolio.Report/definition/pages/679b03f5e92c751c1fa3/visuals/catalogMatrix/visual.json'\\)\\); print\\('Valid JSON'\\)\")",
+      "Bash(python -c \"import json; json.load\\(open\\('Bristow Insight Portfolio.Report/definition/pages/679b03f5e92c751c1fa3/visuals/footerText/visual.json'\\)\\); print\\('Valid JSON'\\)\")",
+      "Bash(python -c \"import json; json.load\\(open\\('Bristow Insight Portfolio.Report/definition/pages/679b03f5e92c751c1fa3/page.json'\\)\\); print\\('Valid JSON'\\)\")",
+      "mcp__powerbi-modeling-mcp__connection_operations",
+      "mcp__fabmcp__core",
+      "mcp__fabmcp__docs",
+      "mcp__powerbi-modeling-mcp__dax_query_operations",
+      "mcp__powerbi-modeling-mcp__measure_operations",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:community.fabric.microsoft.com)",
+      "WebFetch(domain:lukasreese.com)",
+      "WebFetch(domain:data-goblins.com)",
+      "WebFetch(domain:stackoverflow.com)",
+      "WebFetch(domain:www.pencilandpaper.io)",
+      "WebFetch(domain:www.halo-lab.com)",
+      "WebFetch(domain:stephaniewalter.design)",
+      "Bash(python3 -u -c ':*)",
+      "Bash(python3 \"C:/Users/jhwa/AppData/Local/Temp/build_matrix.py\")",
+      "Bash(python3 -c ':*)",
+      "mcp__Claude_in_Chrome__computer",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "mcp__Claude_in_Chrome__navigate"
+    ]
+  }
+}

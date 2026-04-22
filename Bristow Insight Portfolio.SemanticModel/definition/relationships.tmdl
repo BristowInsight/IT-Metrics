@@ -48,19 +48,19 @@ relationship 41fc1615-757a-4062-ac97-ead26ae0f395
 	fromColumn: Portfolio_StrategicPriority.Created
 	toColumn: LocalDateTable_cd1c5aff-f3ac-4cb6-93e8-6343f53792bc.Date
 
-relationship AutoDetected_3f4fc588-f678-4417-a25c-759f05661249
+relationship AutoDetected_1e7c113c-fcd0-425f-91e7-4b7be6f603fa
 	fromColumn: Portfolio.Program
 	toColumn: Portfolio_Program.Program
 
-relationship AutoDetected_2d99df3c-c009-439a-a9ba-5407a3dadded
+relationship 'Portfolio_Lifecycle Phase_Portfolio_LifecyclePhase_Lifecycle Phase'
+	fromColumn: Portfolio.'Lifecycle Phase'
+	toColumn: Portfolio_LifecyclePhase.'Lifecycle Phase'
+
+relationship 'Portfolio_Strategic Alignment_Portfolio_StrategicPriority_Strategic Alignment'
 	fromColumn: Portfolio.'Strategic Alignment'
 	toColumn: Portfolio_StrategicPriority.'Strategic Alignment'
 
-relationship AutoDetected_2f125001-4945-4a55-876b-59d9e16f7e77
+relationship 'Portfolio_Service Category_Portfolio_ServiceCategory_Service Category'
 	fromColumn: Portfolio.'Service Category'
 	toColumn: Portfolio_ServiceCategory.'Service Category'
-
-relationship AutoDetected_8a3319b4-06fc-4164-816f-e2ca73640086
-	fromColumn: Portfolio.'Lifecycle Phase'
-	toColumn: Portfolio_LifecyclePhase.'Lifecycle Phase'
 

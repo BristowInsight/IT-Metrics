@@ -23,12 +23,11 @@
                       "Entity": "Portfolio"
                     }
                   },
-                  "Property": "Development Count"
+                  "Property": "Production Count"
                 }
               },
-              "queryRef": "Portfolio.Development Count",
-              "nativeQueryRef": "In Development",
-              "displayName": "In Development"
+              "queryRef": "Portfolio.Production Count",
+              "nativeQueryRef": "Production Count"
             }
           ]
         }
@@ -43,7 +42,7 @@
                     "Entity": "Portfolio"
                   }
                 },
-                "Property": "Development Count"
+                "Property": "Production Count"
               }
             },
             "direction": "Descending"
@@ -121,7 +120,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "ea0dddf49b43910976ac",
+        "name": "89d9cb3ee94e2973c039",
         "field": {
           "Measure": {
             "Expression": {
@@ -129,7 +128,7 @@
                 "Entity": "Portfolio"
               }
             },
-            "Property": "Development Count"
+            "Property": "Production Count"
           }
         },
         "type": "Advanced"
