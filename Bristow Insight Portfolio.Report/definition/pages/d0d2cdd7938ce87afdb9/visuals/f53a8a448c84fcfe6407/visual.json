@@ -4,10 +4,10 @@
   "position": {
     "x": 1627.8857142857144,
     "y": 20.571428571428573,
-    "z": 11002,
+    "z": 8000,
     "height": 90.51428571428572,
     "width": 274.28571428571428,
-    "tabOrder": 11002
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "slicer",
@@ -67,23 +67,5 @@
         }
       ]
     }
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "ad98affc5ec63dad4cba",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Portfolio_LifecyclePhase"
-              }
-            },
-            "Property": "Section"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

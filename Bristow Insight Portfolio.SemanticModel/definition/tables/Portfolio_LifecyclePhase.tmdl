@@ -6,6 +6,9 @@ table Portfolio_LifecyclePhase
 		lineageTag: bf55c56d-fe2b-4059-ba6b-27fbbc3af8f7
 		summarizeBy: none
 		sourceColumn: Lifecycle Phase
+		sortByColumn: ID
+
+		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 

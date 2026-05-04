@@ -1,6 +1,6 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "86883a80623d0ae44073",
+  "name": "80c20ca0693ad9eb8608",
   "position": {
     "x": 18.526315789473685,
     "y": 18.526315789473685,
@@ -27,23 +27,9 @@
                 }
               },
               "queryRef": "Portfolio.Program",
-              "nativeQueryRef": "Program1",
-              "active": true
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Portfolio_LifecyclePhase"
-                    }
-                  },
-                  "Property": "Section"
-                }
-              },
-              "queryRef": "Portfolio_LifecyclePhase.Section",
-              "nativeQueryRef": "Section",
-              "active": true
+              "nativeQueryRef": "Program",
+              "active": true,
+              "displayName": "Program"
             },
             {
               "field": {
@@ -174,26 +160,6 @@
                           "Entity": "Portfolio"
                         }
                       },
-                      "Property": "Initial Delivery"
-                    }
-                  },
-                  "Function": 3
-                }
-              },
-              "queryRef": "Min(Portfolio.Initial Delivery)",
-              "nativeQueryRef": "Initial Delivery",
-              "displayName": "Initial Delivery"
-            },
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Portfolio"
-                        }
-                      },
                       "Property": "Stage"
                     }
                   },
@@ -243,46 +209,9 @@
               "queryRef": "Min(Portfolio.Updates Display)",
               "nativeQueryRef": "Updates",
               "displayName": "Updates"
-            },
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Portfolio"
-                        }
-                      },
-                      "Property": "Priority"
-                    }
-                  },
-                  "Function": 3
-                }
-              },
-              "queryRef": "Min(Portfolio.Priority)",
-              "nativeQueryRef": "Priority",
-              "displayName": "Priority"
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Portfolio_LifecyclePhase"
-                  }
-                },
-                "Property": "Section"
-              }
-            },
-            "direction": "Ascending"
-          }
-        ]
       }
     },
     "expansionStates": [
@@ -294,12 +223,6 @@
           {
             "queryRefs": [
               "Portfolio.Program"
-            ],
-            "isPinned": true
-          },
-          {
-            "queryRefs": [
-              "Portfolio_LifecyclePhase.Section"
             ],
             "isPinned": true
           },
@@ -472,6 +395,61 @@
                 }
               }
             }
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "_Section BG Color"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1B305A'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI Semibold'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Portfolio.Program"
           }
         },
         {
@@ -948,66 +926,6 @@
                 }
               }
             ],
-            "metadata": "Portfolio.Program"
-          }
-        },
-        {
-          "properties": {
-            "backColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Portfolio"
-                        }
-                      },
-                      "Property": "_Section BG Color"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ],
-            "metadata": "Portfolio_LifecyclePhase.Section"
-          }
-        },
-        {
-          "properties": {
-            "backColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Portfolio"
-                        }
-                      },
-                      "Property": "_Section BG Color"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ],
             "metadata": "Min(Portfolio.Service Category)"
           }
         },
@@ -1166,222 +1084,6 @@
                   }
                 }
               }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ],
-            "metadata": "Min(Portfolio.Initial Delivery)"
-          }
-        },
-        {
-          "properties": {
-            "backColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Portfolio"
-                        }
-                      },
-                      "Property": "_Section BG Color"
-                    }
-                  }
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Conditional": {
-                      "Cases": [
-                        {
-                          "Condition": {
-                            "Comparison": {
-                              "ComparisonKind": 0,
-                              "Left": {
-                                "Aggregation": {
-                                  "Expression": {
-                                    "Column": {
-                                      "Expression": {
-                                        "SourceRef": {
-                                          "Entity": "Portfolio"
-                                        }
-                                      },
-                                      "Property": "Priority"
-                                    }
-                                  },
-                                  "Function": 3
-                                }
-                              },
-                              "Right": {
-                                "Literal": {
-                                  "Value": "'On Hold'"
-                                }
-                              }
-                            },
-                            "Annotations": {
-                              "PowerBI.SQExprEvaluationKind": 1,
-                              "PowerBI.SQExprTextOperatorOption": 2
-                            }
-                          },
-                          "Value": {
-                            "Literal": {
-                              "Value": "'#a8337d'"
-                            }
-                          }
-                        },
-                        {
-                          "Condition": {
-                            "Comparison": {
-                              "ComparisonKind": 0,
-                              "Left": {
-                                "Aggregation": {
-                                  "Expression": {
-                                    "Column": {
-                                      "Expression": {
-                                        "SourceRef": {
-                                          "Entity": "Portfolio"
-                                        }
-                                      },
-                                      "Property": "Priority"
-                                    }
-                                  },
-                                  "Function": 3
-                                }
-                              },
-                              "Right": {
-                                "Literal": {
-                                  "Value": "'Secondary'"
-                                }
-                              }
-                            },
-                            "Annotations": {
-                              "PowerBI.SQExprEvaluationKind": 1,
-                              "PowerBI.SQExprTextOperatorOption": 2
-                            }
-                          },
-                          "Value": {
-                            "Literal": {
-                              "Value": "'#41a4ff'"
-                            }
-                          }
-                        },
-                        {
-                          "Condition": {
-                            "Comparison": {
-                              "ComparisonKind": 0,
-                              "Left": {
-                                "Aggregation": {
-                                  "Expression": {
-                                    "Column": {
-                                      "Expression": {
-                                        "SourceRef": {
-                                          "Entity": "Portfolio"
-                                        }
-                                      },
-                                      "Property": "Priority"
-                                    }
-                                  },
-                                  "Function": 3
-                                }
-                              },
-                              "Right": {
-                                "Literal": {
-                                  "Value": "'Primary'"
-                                }
-                              }
-                            },
-                            "Annotations": {
-                              "PowerBI.SQExprEvaluationKind": 1,
-                              "PowerBI.SQExprTextOperatorOption": 2
-                            }
-                          },
-                          "Value": {
-                            "Literal": {
-                              "Value": "'#0d6abf'"
-                            }
-                          }
-                        },
-                        {
-                          "Condition": {
-                            "Comparison": {
-                              "ComparisonKind": 0,
-                              "Left": {
-                                "Aggregation": {
-                                  "Expression": {
-                                    "Column": {
-                                      "Expression": {
-                                        "SourceRef": {
-                                          "Entity": "Portfolio"
-                                        }
-                                      },
-                                      "Property": "Priority"
-                                    }
-                                  },
-                                  "Function": 3
-                                }
-                              },
-                              "Right": {
-                                "Literal": {
-                                  "Value": "'Urgent'"
-                                }
-                              }
-                            },
-                            "Annotations": {
-                              "PowerBI.SQExprEvaluationKind": 1,
-                              "PowerBI.SQExprTextOperatorOption": 2
-                            }
-                          },
-                          "Value": {
-                            "Literal": {
-                              "Value": "'#D64550'"
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ],
-            "metadata": "Min(Portfolio.Priority)"
-          }
-        },
-        {
-          "properties": {
-            "backColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Portfolio"
-                        }
-                      },
-                      "Property": "_Section BG Color"
-                    }
-                  }
-                }
-              }
             },
             "fontColor": {
               "solid": {
@@ -1501,6 +1203,36 @@
             ],
             "metadata": "Min(Portfolio.Product)"
           }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "_Section BG Color"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Min(Portfolio_LifecyclePhase.Section)"
+          }
         }
       ],
       "total": [
@@ -1527,7 +1259,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "177.6765589490994D"
+                  "Value": "186.52682243895111D"
                 }
               }
             }
@@ -1548,6 +1280,27 @@
           },
           "selector": {
             "metadata": "Portfolio.Business Objective"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "191D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Portfolio.Program"
           }
         },
         {
@@ -1660,6 +1413,20 @@
               }
             ],
             "metadata": "Portfolio.Priority"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "123.61142927326753D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Portfolio.Program"
           }
         },
         {
@@ -1877,7 +1644,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "220.85946249246226D"
+                  "Value": "247.35970740418767D"
                 }
               }
             }
@@ -1919,34 +1686,6 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "73.86206896551724D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Min(Portfolio.Initial Delivery)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "92D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Min(Portfolio.Priority)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
                   "Value": "1038D"
                 }
               }
@@ -1958,7 +1697,21 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "221.98963239087132D"
+                  "Value": "130D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(Portfolio_LifecyclePhase.Section)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "260.7588260872178D"
                 }
               }
             }
@@ -1972,7 +1725,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "209.67328318525804D"
+                  "Value": "263.09373330038164D"
                 }
               }
             }
@@ -2138,44 +1891,6 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "116D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Portfolio_LifecyclePhase"
-                          }
-                        },
-                        "Property": "Section"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Development'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "Min(Portfolio.Initial Delivery)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
                   "Value": "410D"
                 }
               }
@@ -2245,44 +1960,6 @@
               }
             ],
             "metadata": "Min(Portfolio.Updates Display)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "78D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Portfolio_LifecyclePhase"
-                          }
-                        },
-                        "Property": "Section"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Development'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "Min(Portfolio.Priority)"
           }
         },
         {
@@ -2442,44 +2119,6 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "116D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Portfolio_LifecyclePhase"
-                          }
-                        },
-                        "Property": "Section"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Pipeline'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "Min(Portfolio.Initial Delivery)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
                   "Value": "216D"
                 }
               }
@@ -2549,44 +2188,6 @@
               }
             ],
             "metadata": "Min(Portfolio.Updates Display)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "78D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Portfolio_LifecyclePhase"
-                          }
-                        },
-                        "Property": "Section"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Pipeline'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "Min(Portfolio.Priority)"
           }
         },
         {
@@ -2746,44 +2347,6 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "116D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Portfolio_LifecyclePhase"
-                          }
-                        },
-                        "Property": "Section"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Production'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "Min(Portfolio.Initial Delivery)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
                   "Value": "653D"
                 }
               }
@@ -2860,45 +2423,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "78D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Portfolio_LifecyclePhase"
-                          }
-                        },
-                        "Property": "Section"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Production'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "Min(Portfolio.Priority)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "100.22275399589374D"
+                  "Value": "175.75862068965517D"
                 }
               }
             }
@@ -2921,60 +2446,6 @@
           }
         },
         {
-          "properties": {},
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ],
-            "metadata": "Portfolio.Program"
-          }
-        },
-        {
-          "properties": {},
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ],
-            "metadata": "Portfolio_LifecyclePhase.Section"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "121.65517241379311D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Portfolio.Program"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "109D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Portfolio_LifecyclePhase.Section"
-          }
-        },
-        {
           "properties": {
             "value": {
               "expr": {
@@ -2994,15 +2465,15 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Portfolio"
+                            "Entity": "Portfolio_LifecyclePhase"
                           }
                         },
-                        "Property": "State"
+                        "Property": "Lifecycle Phase"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'▶  Development'"
+                        "Value": "'Ready for Intake'"
                       }
                     }
                   }
@@ -3017,7 +2488,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "158D"
+                  "Value": "141D"
                 }
               }
             }
@@ -3032,15 +2503,15 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Portfolio"
+                            "Entity": "Portfolio_LifecyclePhase"
                           }
                         },
-                        "Property": "State"
+                        "Property": "Lifecycle Phase"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'▶  Development'"
+                        "Value": "'Ready for Intake'"
                       }
                     }
                   }
@@ -3055,7 +2526,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "1071D"
+                  "Value": "890D"
                 }
               }
             }
@@ -3070,15 +2541,15 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Portfolio"
+                            "Entity": "Portfolio_LifecyclePhase"
                           }
                         },
-                        "Property": "State"
+                        "Property": "Lifecycle Phase"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'▶  Development'"
+                        "Value": "'Ready for Intake'"
                       }
                     }
                   }
@@ -3108,15 +2579,15 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Portfolio"
+                            "Entity": "Portfolio_LifecyclePhase"
                           }
                         },
-                        "Property": "State"
+                        "Property": "Lifecycle Phase"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'▶  Development'"
+                        "Value": "'Ready for Intake'"
                       }
                     }
                   }
@@ -3131,7 +2602,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "235D"
+                  "Value": "120D"
                 }
               }
             }
@@ -3146,15 +2617,15 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Portfolio"
+                            "Entity": "Portfolio_LifecyclePhase"
                           }
                         },
-                        "Property": "State"
+                        "Property": "Lifecycle Phase"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'▶  Development'"
+                        "Value": "'Ready for Intake'"
                       }
                     }
                   }
@@ -3182,7 +2653,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "116D"
+                  "Value": "73D"
                 }
               }
             }
@@ -3197,53 +2668,15 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Portfolio"
+                            "Entity": "Portfolio_LifecyclePhase"
                           }
                         },
-                        "Property": "State"
+                        "Property": "Lifecycle Phase"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'▶  Development'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "Min(Portfolio.Initial Delivery)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "579D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Portfolio"
-                          }
-                        },
-                        "Property": "State"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'▶  Development'"
+                        "Value": "'Ready for Intake'"
                       }
                     }
                   }
@@ -3258,7 +2691,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "371D"
+                  "Value": "71D"
                 }
               }
             }
@@ -3273,15 +2706,15 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Portfolio"
+                            "Entity": "Portfolio_LifecyclePhase"
                           }
                         },
-                        "Property": "State"
+                        "Property": "Lifecycle Phase"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'▶  Development'"
+                        "Value": "'Ready for Intake'"
                       }
                     }
                   }
@@ -3296,406 +2729,27 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "78D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Portfolio"
-                          }
-                        },
-                        "Property": "State"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'▶  Development'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "Min(Portfolio.Priority)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "258D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Portfolio"
-                          }
-                        },
-                        "Property": "State"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'●  Production'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "Min(Portfolio.Strategic Alignment)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "158D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Portfolio"
-                          }
-                        },
-                        "Property": "State"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'●  Production'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "Min(Portfolio.Service Category)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "1549D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Portfolio"
-                          }
-                        },
-                        "Property": "State"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'●  Production'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "Min(Portfolio.Business Objective)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "172D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Portfolio"
-                          }
-                        },
-                        "Property": "State"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'●  Production'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "Min(Portfolio.Business Sponsor)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "230D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Portfolio"
-                          }
-                        },
-                        "Property": "State"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'●  Production'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "Min(Portfolio.Product Owner)"
-          }
-        },
-        {
-          "properties": {},
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ],
-            "metadata": "Min(Portfolio.Stage)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "116D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Portfolio"
-                          }
-                        },
-                        "Property": "State"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'●  Production'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "Min(Portfolio.Initial Delivery)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "653D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Portfolio"
-                          }
-                        },
-                        "Property": "State"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'●  Production'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "Min(Portfolio.Progress Display)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "516D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Portfolio"
-                          }
-                        },
-                        "Property": "State"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'●  Production'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "Min(Portfolio.Updates Display)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "78D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Portfolio"
-                          }
-                        },
-                        "Property": "State"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'●  Production'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "Min(Portfolio.Priority)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "98.4D"
+                  "Value": "99.40000114154894D"
                 }
               }
             }
           },
           "selector": {
             "metadata": "Min(Portfolio.Stage)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "109D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(Portfolio.Program)"
           }
         }
       ],
@@ -3798,7 +2852,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Managed Tasks'"
+                  "Value": "'New Requests'"
                 }
               }
             }
@@ -3811,20 +2865,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Low-priority product development and existing product continuous improvement | On Hold - tasks with blockers, awaiting info, or pending re-prioritization'"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "divider": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
+                  "Value": "'New Request [1/6] - Request Received | Ready for Intake [2/6] - Reviewed and Approved by Business Sponsor'"
                 }
               }
             }
@@ -3836,7 +2877,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "2bc47e36d0c84006c7d4",
+        "name": "b1c9e96e0e5c62d60032",
         "field": {
           "Column": {
             "Expression": {
@@ -3850,21 +2891,7 @@
         "type": "Categorical"
       },
       {
-        "name": "d726ee48a02e020c988d",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Portfolio_LifecyclePhase"
-              }
-            },
-            "Property": "Section"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "168cb765579056db64cc",
+        "name": "66b16470754d0c79123b",
         "field": {
           "Column": {
             "Expression": {
@@ -3878,7 +2905,7 @@
         "type": "Categorical"
       },
       {
-        "name": "9263978a15500dbd0d4b",
+        "name": "f9da9785599181de30e6",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -3897,7 +2924,7 @@
         "type": "Advanced"
       },
       {
-        "name": "8a555b8f1418497d112c",
+        "name": "ba0b6e4e20b0371e8d05",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -3916,7 +2943,7 @@
         "type": "Advanced"
       },
       {
-        "name": "d7cccd62a498a662209c",
+        "name": "b11ff1a62d76695c8ae4",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -3935,7 +2962,7 @@
         "type": "Advanced"
       },
       {
-        "name": "202dabc3000390289602",
+        "name": "d45072a2804450d6010c",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -3954,7 +2981,7 @@
         "type": "Advanced"
       },
       {
-        "name": "feb6f35b55e7889d8e01",
+        "name": "968b352be97aad094b68",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -3973,26 +3000,7 @@
         "type": "Advanced"
       },
       {
-        "name": "0da88087399ba615d602",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Portfolio"
-                  }
-                },
-                "Property": "Initial Delivery"
-              }
-            },
-            "Function": 3
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "892ede54821271585e19",
+        "name": "3bc49bd06a1890ce08c2",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -4011,7 +3019,7 @@
         "type": "Advanced"
       },
       {
-        "name": "c0ae19352ce034e3127d",
+        "name": "7083926007037c44ddd2",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -4030,7 +3038,7 @@
         "type": "Advanced"
       },
       {
-        "name": "dc78b125ea0060b5b015",
+        "name": "377563f0320553410800",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -4041,25 +3049,6 @@
                   }
                 },
                 "Property": "Updates Display"
-              }
-            },
-            "Function": 3
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "4c7ffcd4c0a3e37ee045",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Portfolio"
-                  }
-                },
-                "Property": "Priority"
               }
             },
             "Function": 3

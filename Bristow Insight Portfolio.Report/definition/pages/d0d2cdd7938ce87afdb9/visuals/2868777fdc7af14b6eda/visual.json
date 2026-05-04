@@ -4,10 +4,10 @@
   "position": {
     "x": 650,
     "y": 20,
-    "z": 4000,
+    "z": 3000,
     "height": 90,
     "width": 160,
-    "tabOrder": 1000
+    "tabOrder": 0
   },
   "visual": {
     "visualType": "card",
@@ -99,23 +99,5 @@
         }
       ]
     }
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "5c3e68f6501ae191804b",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Portfolio"
-              }
-            },
-            "Property": "Product Count"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

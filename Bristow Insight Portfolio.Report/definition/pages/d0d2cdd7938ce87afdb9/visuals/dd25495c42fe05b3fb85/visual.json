@@ -4,10 +4,10 @@
   "position": {
     "x": 1356,
     "y": 20,
-    "z": 11001,
+    "z": 7000,
     "height": 90.51428571428572,
     "width": 260,
-    "tabOrder": 11001
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "slicer",
@@ -62,23 +62,5 @@
         }
       ]
     }
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "5aaad8f822f349134e0b",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Portfolio_Program"
-              }
-            },
-            "Property": "Program"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

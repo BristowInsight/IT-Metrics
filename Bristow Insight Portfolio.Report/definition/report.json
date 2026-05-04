@@ -2,22 +2,13 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.2.0/schema.json",
   "themeCollection": {
     "baseTheme": {
-      "name": "Fluent2-CY26SU03",
+      "name": "Fluent2-CY26SU04",
       "reportVersionAtImport": {
-        "visual": "2.7.0",
+        "visual": "2.8.0",
         "report": "3.2.0",
         "page": "2.3.1"
       },
       "type": "SharedResources"
-    },
-    "customTheme": {
-      "name": "Bristow Insight",
-      "reportVersionAtImport": {
-        "visual": "2.7.0",
-        "report": "3.2.0",
-        "page": "2.3.1"
-      },
-      "type": "RegisteredResources"
     }
   },
   "objects": {
@@ -41,8 +32,8 @@
       "type": "SharedResources",
       "items": [
         {
-          "name": "Fluent2-CY26SU03",
-          "path": "BaseThemes/Fluent2-CY26SU03.json",
+          "name": "Fluent2-CY26SU04",
+          "path": "BaseThemes/Fluent2-CY26SU04.json",
           "type": "BaseTheme"
         }
       ]

@@ -34,8 +34,13 @@ table Portfolio
 		lineageTag: 018251ac-8ed3-4d39-94cf-21a6d6384031
 
 	measure '_Section BG Color' =
+			VAR _Phase = SELECTEDVALUE('Portfolio'[Lifecycle Phase])
 			VAR _Section = SELECTEDVALUE('Portfolio_LifecyclePhase'[Section])
-			RETURN SWITCH(_Section, "Development", "#FFF7F0", "Pipeline", "#F2F2F2", "Production", "#F6FAFD", "#FFFFFF")
+			RETURN
+				IF(_Phase = "On Hold",
+					"#EBB0B0",
+					SWITCH(_Section, "Development", "#B8DCA6", "Pipeline", "#F5E19B", "Production", "#B0CDE8", "Request", BLANK(), BLANK())
+				)
 		isHidden
 		lineageTag: 7ea3154d-0e89-47b7-a646-b16cdbfb107e
 
@@ -289,32 +294,12 @@ table Portfolio
 
 	column 'Section Sort' =
 			VAR _Section = RELATED('Portfolio_LifecyclePhase'[Section])
-			RETURN SWITCH(_Section, "Development", 1, "Pipeline", 2, "Production", 3, 4)
+			RETURN SWITCH(_Section, "Request", 0, "Development", 1, "Pipeline", 2, "Production", 3, 4)
 		dataType: int64
 		isHidden
 		formatString: 0
 		lineageTag: 0cd50a34-8e6e-446b-a5f2-f9b60e35e264
 		summarizeBy: sum
-
-		annotation SummarizationSetBy = Automatic
-
-	column State =
-			VAR _Section = RELATED('Portfolio_LifecyclePhase'[Section])
-			RETURN SWITCH(_Section, "Development", UNICHAR(9654) & "  Development", "Pipeline", UNICHAR(9675) & "  Pipeline", "Production", UNICHAR(9679) & "  Production", _Section)
-		dataType: string
-		lineageTag: b178a39a-38ae-4c80-ab29-64aed1e9dd23
-		summarizeBy: none
-		sortByColumn: 'Section Sort'
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Phase Display' =
-			VAR _PhaseNum = RELATED('Portfolio_LifecyclePhase'[Phase Number])
-			VAR _Phase = 'Portfolio'[Lifecycle Phase]
-			RETURN IF(_PhaseNum < 5 && NOT(ISBLANK(_PhaseNum)), _Phase & " [" & FORMAT(_PhaseNum, "0") & "/4]", _Phase)
-		dataType: string
-		lineageTag: 937ce23a-7237-4772-8cf0-f2ba7651b7ba
-		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
 
@@ -346,14 +331,6 @@ table Portfolio
 		lineageTag: 647497a8-54b2-4bd7-8e8b-b077b9b43f12
 		summarizeBy: none
 		sourceColumn: Title
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Strategic Alignment Old'
-		dataType: string
-		lineageTag: 179a5eea-5a45-4ae6-9593-5d2903560e37
-		summarizeBy: none
-		sourceColumn: Strategic Alignment Old
 
 		annotation SummarizationSetBy = Automatic
 
@@ -393,6 +370,49 @@ table Portfolio
 		dataType: string
 		lineageTag: 463eb9a8-c62d-4a1a-ae50-129354e6110a
 
+	column 'Product Owner'
+		dataType: string
+		lineageTag: b7f2a91c-4d8e-4e52-9c3b-8a1f5e6d2c4a
+		summarizeBy: none
+		sourceColumn: Product Owner
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Intake Ranking'
+		dataType: double
+		lineageTag: 1d5b98f6-9bc5-49e7-b7bf-193c79c333b0
+		summarizeBy: sum
+		sourceColumn: Intake Ranking
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Phase Sort' =
+			VAR _PhaseNum = RELATED('Portfolio_LifecyclePhase'[Phase Number])
+			RETURN IF(ISBLANK(_PhaseNum), 99, _PhaseNum)
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e5f8b1c2-7d34-4a89-b6e1-9c0f3a8d4b25
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stage =
+			VAR _Phase = 'Portfolio'[Lifecycle Phase]
+			VAR _PhaseNum = RELATED('Portfolio_LifecyclePhase'[Phase Number])
+			RETURN
+				IF(NOT(ISBLANK(_PhaseNum)) && _PhaseNum >= 1 && _PhaseNum <= 6,
+					_Phase & " [" & FORMAT(_PhaseNum, "0") & "/6]",
+					_Phase)
+		dataType: string
+		lineageTag: a3d7c4e8-9f12-4b56-8e9a-2c1d7f8b6e34
+		summarizeBy: none
+		sortByColumn: 'Phase Sort'
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Portfolio = m
 		mode: import
 		source =
@@ -407,11 +427,14 @@ table Portfolio
 				    #"Expanded SC1" = Table.ExpandRecordColumn(#"Expanded SC", "Service Category", {"lookupValue"}, {"Service Category"}),
 				    #"Expanded LP" = Table.ExpandListColumn(#"Expanded SC1", "Lifecycle Phase"),
 				    #"Expanded LP1" = Table.ExpandRecordColumn(#"Expanded LP", "Lifecycle Phase", {"lookupValue"}, {"Lifecycle Phase"}),
-				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded LP1", {{"Program", type text}, {"Strategic Alignment", type text}, {"Service Category", type text}, {"Lifecycle Phase", type text}})
+				    #"Combined Sponsor" = Table.TransformColumns(#"Expanded LP1", {{"Business Sponsor", each if _ = null then "" else Text.Combine(Table.Column(_, "value"), ", "), type text}}),
+				    #"Combined Owner" = Table.TransformColumns(#"Combined Sponsor", {{"Product Owner", each if _ = null then "" else Text.Combine(Table.Column(_, "value"), ", "), type text}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Combined Owner", {{"Program", type text}, {"Strategic Alignment", type text}, {"Service Category", type text}, {"Lifecycle Phase", type text}, {"Business Sponsor", type text}, {"Product Owner", type text}}),
+				    #"Replaced Nulls" = Table.ReplaceValue(#"Changed Type", null, "", Replacer.ReplaceValue, {"Initial Delivery", "Progress", "Updates", "Priority", "Business Objective"})
 				in
-				    #"Changed Type"
+				    #"Replaced Nulls"
 
-	annotation PBI_ResultType = Table
+	annotation PBI_ResultType = Exception
 
 	annotation PBI_NavigationStepName = Navigation
 
