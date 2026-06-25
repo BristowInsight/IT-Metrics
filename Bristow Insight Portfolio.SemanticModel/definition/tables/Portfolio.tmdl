@@ -56,7 +56,7 @@ table Portfolio
 		isHidden
 		lineageTag: 8aa9fceb-134a-44cd-b625-de69002beb6e
 
-	measure '_Priority Color' = SWITCH(SELECTEDVALUE('Portfolio'[Priority]), "Urgent", "#C42B1C", "Primary", "#D4712A", "Secondary", "#6B6B6B", "On Hold", "#8A8A8A", "#8A8A8A")
+	measure '_Priority Color' = SWITCH(SELECTEDVALUE('Portfolio'[Priority]), "VIP", "#C42B1C", "Primary", "#D4712A", "Secondary", "#6B6B6B", "On Hold", "#8A8A8A", "#8A8A8A")
 		isHidden
 		lineageTag: 2cb87331-bad1-47ab-85f4-dc9adac92f80
 
