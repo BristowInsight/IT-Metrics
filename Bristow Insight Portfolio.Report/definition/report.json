@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.2.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
   "themeCollection": {
     "baseTheme": {
       "name": "Fluent2-CY26SU04",
@@ -24,8 +24,25 @@
           }
         }
       }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
+              }
+            }
+          }
+        }
+      }
     ]
   },
+  "publicCustomVisuals": [
+    "powerKPI462CE5C2666F4EC8A8BDD7E5587320A3",
+    "Gantt1448688115699"
+  ],
   "resourcePackages": [
     {
       "name": "SharedResources",
@@ -42,6 +59,11 @@
       "name": "RegisteredResources",
       "type": "RegisteredResources",
       "items": [
+        {
+          "name": "bi_lifecycle_committee_inserti47181834333872563.svg",
+          "path": "bi_lifecycle_committee_inserti47181834333872563.svg",
+          "type": "Image"
+        },
         {
           "name": "Bristow_20Clear_20Background2523253324391554497.png",
           "path": "Bristow_20Clear_20Background2523253324391554497.png",

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "765dc2f95c61d96c00c3",
   "position": {
     "x": 18.97674418604651,
@@ -213,50 +213,12 @@
               "queryRef": "Min(Portfolio.Updates Display)",
               "nativeQueryRef": "Updates",
               "displayName": "Updates"
-            },
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Portfolio"
-                        }
-                      },
-                      "Property": "Intake Ranking"
-                    }
-                  },
-                  "Function": 0
-                }
-              },
-              "queryRef": "Sum(Portfolio.Intake Ranking)",
-              "nativeQueryRef": "Rank",
-              "displayName": "Rank"
             }
           ]
         }
       },
       "sortDefinition": {
         "sort": [
-          {
-            "field": {
-              "Aggregation": {
-                "Expression": {
-                  "Column": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "Portfolio"
-                      }
-                    },
-                    "Property": "Intake Ranking"
-                  }
-                },
-                "Function": 0
-              }
-            },
-            "direction": "Ascending"
-          },
           {
             "field": {
               "Aggregation": {
@@ -387,7 +349,7 @@
             "autoSizeColumnWidth": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
@@ -982,36 +944,6 @@
               }
             ],
             "metadata": "Min(Portfolio.Program)"
-          }
-        },
-        {
-          "properties": {
-            "backColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Portfolio"
-                        }
-                      },
-                      "Property": "_Section BG Color"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ],
-            "metadata": "Sum(Portfolio.Intake Ranking)"
           }
         },
         {
@@ -2587,19 +2519,6 @@
           }
         },
         {
-          "properties": {},
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ],
-            "metadata": "Sum(Portfolio.Intake Ranking)"
-          }
-        },
-        {
           "properties": {
             "value": {
               "expr": {
@@ -2829,19 +2748,6 @@
           }
         },
         {
-          "properties": {},
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ],
-            "metadata": "Sum(Portfolio.Intake Ranking)"
-          }
-        },
-        {
           "properties": {
             "value": {
               "expr": {
@@ -2915,20 +2821,6 @@
               }
             ],
             "metadata": "Min(Portfolio.Updates Display)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "64.79789386743754D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Sum(Portfolio.Intake Ranking)"
           }
         },
         {
@@ -3072,7 +2964,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Intake [3/6] - In Review by D&A Committee | Scoping [4/6] - Approved by D&A Committee, Begin Scoping, Awaiting Development'"
+                  "Value": "'Intake [3/6] - Reviewed and Ranked by BI Team | Scoping [4/6] - Gather Requirements, Awaiting Development'"
                 }
               }
             }
@@ -3264,25 +3156,6 @@
               }
             },
             "Function": 3
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "4a98d443070424a097c3",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Portfolio"
-                  }
-                },
-                "Property": "Intake Ranking"
-              }
-            },
-            "Function": 0
           }
         },
         "type": "Advanced"

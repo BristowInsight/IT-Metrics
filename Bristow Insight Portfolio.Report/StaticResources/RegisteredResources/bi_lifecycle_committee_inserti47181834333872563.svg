@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="220" viewBox="0 0 1500 220" role="img" font-family="'Segoe UI', Arial, sans-serif">
+  <title>BI lifecycle (current process) with D&amp;A committee insertion indicators</title>
+  <desc>Current BI project lifecycle showing six phases (New Request, Ready for Intake, Intake, Scoping, Development, Production) and two uniform decision diamonds. Two indicator stars mark where a D&amp;A committee could insert into the current process.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#5F5E5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- ===== Phase boxes and decision diamonds (centerline y=155) ===== -->
+
+  <!-- New Request -->
+  <rect x="20" y="120" width="135" height="70" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+  <text x="87" y="150" text-anchor="middle" font-size="13" font-weight="600" fill="#0C447C">New Request</text>
+  <text x="87" y="173" text-anchor="middle" font-size="10" fill="#185FA5">Awaiting sponsor review</text>
+
+  <!-- Arrow -->
+  <line x1="155" y1="155" x2="195" y2="155" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Diamond: Sponsor approval? -->
+  <polygon points="240,115 285,155 240,195 195,155" fill="#FFF7DD" stroke="#A87A12"/>
+  <text x="240" y="151" text-anchor="middle" font-size="10" font-weight="500" fill="#6B4A0A">Sponsor</text>
+  <text x="240" y="164" text-anchor="middle" font-size="10" font-weight="500" fill="#6B4A0A">approval?</text>
+
+  <!-- Arrow -->
+  <line x1="285" y1="155" x2="325" y2="155" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Ready for Intake -->
+  <rect x="325" y="120" width="155" height="70" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+  <text x="402" y="150" text-anchor="middle" font-size="13" font-weight="600" fill="#0C447C">Ready for Intake</text>
+  <text x="402" y="173" text-anchor="middle" font-size="10" fill="#185FA5">Queued</text>
+
+  <!-- Arrow -->
+  <line x1="480" y1="155" x2="540" y2="155" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Intake (with star above for committee insertion option) -->
+  <rect x="540" y="120" width="155" height="70" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+  <text x="617" y="150" text-anchor="middle" font-size="13" font-weight="600" fill="#0C447C">Intake</text>
+  <text x="617" y="173" text-anchor="middle" font-size="10" fill="#185FA5">Ranked</text>
+  <polygon points="617,95 622,105 633,105 624,112 628,123 617,116 606,123 610,112 601,105 612,105"
+           fill="#0F6E56" stroke="#0F6E56" stroke-width="0.5"/>
+
+  <!-- Arrow -->
+  <line x1="695" y1="155" x2="755" y2="155" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Scoping -->
+  <rect x="755" y="120" width="155" height="70" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+  <text x="832" y="150" text-anchor="middle" font-size="13" font-weight="600" fill="#0C447C">Scoping</text>
+  <text x="832" y="173" text-anchor="middle" font-size="10" fill="#185FA5">Gathering requirements</text>
+
+  <!-- Arrow -->
+  <line x1="910" y1="155" x2="950" y2="155" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Diamond: BI approval? + star -->
+  <polygon points="995,115 1040,155 995,195 950,155" fill="#FFF7DD" stroke="#A87A12"/>
+  <text x="995" y="151" text-anchor="middle" font-size="10" font-weight="500" fill="#6B4A0A">BI</text>
+  <text x="995" y="164" text-anchor="middle" font-size="10" font-weight="500" fill="#6B4A0A">go/no-go?</text>
+  <polygon points="995,95 1000,105 1011,105 1002,112 1006,123 995,116 984,123 988,112 979,105 990,105"
+           fill="#0F6E56" stroke="#0F6E56" stroke-width="0.5"/>
+
+  <!-- Arrow -->
+  <line x1="1040" y1="155" x2="1080" y2="155" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Development -->
+  <rect x="1080" y="120" width="145" height="70" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+  <text x="1152" y="150" text-anchor="middle" font-size="13" font-weight="600" fill="#0C447C">Development</text>
+  <text x="1152" y="173" text-anchor="middle" font-size="10" fill="#185FA5">Build &amp; UAT in progress</text>
+
+  <!-- Arrow -->
+  <line x1="1225" y1="155" x2="1265" y2="155" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Production -->
+  <rect x="1265" y="120" width="135" height="70" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+  <text x="1332" y="150" text-anchor="middle" font-size="13" font-weight="600" fill="#0C447C">Production</text>
+  <text x="1332" y="173" text-anchor="middle" font-size="10" fill="#185FA5">Live, in stewardship</text>
+</svg>

@@ -2902,102 +2902,22 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "portfolio.active_tasks_display": {
+			    "portfolio.progress_display": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Portfolio",
-			          "ConceptualProperty": "Active Tasks Display"
+			          "ConceptualProperty": "Progress Display"
 			        }
 			      },
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "active tasks display": {
+			          "progress display": {
 			            "State": "Generated"
 			          }
 			        },
 			        {
-			          "active task display": {
-			            "Type": "Noun",
-			            "State": "Generated",
-			            "Weight": 0.78
-			          }
-			        },
-			        {
-			          "tasks display": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "task display": {
-			            "Type": "Noun",
-			            "State": "Generated",
-			            "Weight": 0.7566
-			          }
-			        },
-			        {
-			          "active task exhibition": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.508
-			          }
-			        },
-			        {
-			          "active task presentation": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.508
-			          }
-			        },
-			        {
-			          "active task demonstration": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.508
-			          }
-			        },
-			        {
-			          "active task spectacle": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.508
-			          }
-			        },
-			        {
-			          "active task ceremony": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.508
-			          }
-			        },
-			        {
-			          "active task pageant": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.508
-			          }
-			        },
-			        {
-			          "task exhibition": {
+			          "progress exhibition": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
@@ -3007,7 +2927,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "task presentation": {
+			          "progress presentation": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
@@ -3017,7 +2937,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "task demonstration": {
+			          "progress demonstration": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
@@ -3027,13 +2947,53 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "task spectacle": {
+			          "progress spectacle": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
 			              "Agent": "Thesaurus"
 			            },
 			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "progress ceremony": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "progress pageant": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "progress show": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "progress parade": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
 			          }
 			        }
 			      ]
@@ -3103,6 +3063,16 @@ cultureInfo en-US
 			          }
 			        },
 			        {
+			          "Active Products": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
 			          "Total Products": {
 			            "State": "Suggested",
 			            "Source": {
@@ -3114,7 +3084,7 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "portfolio.active_dev_count": {
+			    "portfolio.development_count": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Portfolio",
@@ -3124,18 +3094,28 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "active dev count": {
+			          "development count": {
 			            "State": "Generated"
 			          }
 			        },
 			        {
-			          "active dev amount": {
+			          "development amount": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
 			              "Agent": "Thesaurus"
 			            },
-			            "Weight": 0.739
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "In Development": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -3163,6 +3143,16 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.727
 			          }
+			        },
+			        {
+			          "In Pipeline": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -3188,6 +3178,16 @@ cultureInfo en-US
 			              "Agent": "Thesaurus"
 			            },
 			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "In Production": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -3592,6 +3592,12 @@ cultureInfo en-US
 			          }
 			        },
 			        {
+			          "phase": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
 			          "portfolio lifecycle stage": {
 			            "Type": "Noun",
 			            "State": "Suggested",
@@ -3670,6 +3676,26 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.492
 			          }
+			        },
+			        {
+			          "point": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "chapter": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
 			        }
 			      ]
 			    },
@@ -3685,6 +3711,12 @@ cultureInfo en-US
 			        {
 			          "lifecycle phase": {
 			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "phase": {
+			            "State": "Generated",
+			            "Weight": 0.97
 			          }
 			        },
 			        {
@@ -3766,6 +3798,26 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.485
 			          }
+			        },
+			        {
+			          "point": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "chapter": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
 			        }
 			      ]
 			    },
@@ -3793,7 +3845,8 @@ cultureInfo en-US
 			            "Weight": 0.727
 			          }
 			        }
-			      ]
+			      ],
+			      "NameType": "Identifier"
 			    },
 			    "portfolio_lifecycle_phase.section": {
 			      "Definition": {
@@ -13797,87 +13850,1343 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
-			          "Program": {
+			          "program": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "database": {
+			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
+			              "Agent": "Thesaurus"
 			            },
-			            "Weight": 0.9
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "sequencer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "driver": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "platform": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "suite": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "package": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "plug-in": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "agenda": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "curriculum": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "syllabus": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        }
+			      ]
+			    },
+			    "portfolio.progress": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Portfolio",
+			          "ConceptualProperty": "Progress"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "progress": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "development": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "growth": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "advancement": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "improvement": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "evolution": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "headway": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "movement": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "evolvement": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        }
+			      ]
+			    },
+			    "portfolio.update": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Portfolio",
+			          "ConceptualProperty": "Updates"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "update": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "portfolio.title": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Portfolio",
+			          "ConceptualProperty": "Title"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "title": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "designation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "award": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "call": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "heading": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ]
+			    },
+			    "portfolio.strategic_alignment": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Portfolio",
+			          "ConceptualProperty": "Strategic Alignment"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "strategic alignment": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "alignment": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "strategic arrangement": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "strategic placement": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "strategic configuration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "strategic orientation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "arrangement": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "placement": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "configuration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "orientation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "strategic position": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "position": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "portfolio.service_category": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Portfolio",
+			          "ConceptualProperty": "Service Category"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "service category": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "category": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "service classification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "classification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "service class": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "service group": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "service type": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "service grouping": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "service kind": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "class": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "grouping": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "kind": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ]
+			    },
+			    "portfolio.lifecycle_phase": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Portfolio",
+			          "ConceptualProperty": "Lifecycle Phase"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "lifecycle phase": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "phase": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "lifecycle stage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "lifecycle point": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "lifecycle chapter": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "lifecycle segment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "lifecycle part": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "lifecycle period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "lifecycle level": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "lifecycle rung": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "point": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "chapter": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "portfolio.updates_display": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Portfolio",
+			          "ConceptualProperty": "Updates Display"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "updates display": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "update display": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "update exhibition": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "update presentation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "update demonstration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "update spectacle": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "update ceremony": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "update pageant": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "update show": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "update parade": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "portfolio.product_owner": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Portfolio",
+			          "ConceptualProperty": "Product Owner"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "product owner": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "owner": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "product ownership": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "product holder": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "product landlord": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "product possessor": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "product proprietor": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "product shareholder": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "product titleholder": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "ownership": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "holder": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "landlord": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        }
+			      ]
+			    },
+			    "portfolio.intake_ranking": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Portfolio",
+			          "ConceptualProperty": "Intake Ranking"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "intake ranking": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "ranking": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "intake status": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "intake classification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "status": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "classification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "intake position": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "intake place": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "intake grade": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "intake standing": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "intake level": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "intake rank": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "portfolio.phase_sort": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Portfolio",
+			          "ConceptualProperty": "Phase Sort"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "phase sort": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "phase category": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "phase genus": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "phase species": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "phase variety": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "phase nature": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "phase kind": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "phase class": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "phase type": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "phase ilk": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "phase order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "portfolio.stage": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Portfolio",
+			          "ConceptualProperty": "Stage"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "stage": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "juncture": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "step": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "point": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "leg": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "platform": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "podium": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "dais": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "stand": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        },
+			        {
+			          "scaffold": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        }
+			      ]
+			    },
+			    "portfolio.entity__program_band": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Portfolio",
+			          "ConceptualProperty": "_Program Band"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "_program band": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "_program posse": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "_program group": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "_program gang": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "_program crew": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "_program crowd": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "_program mob": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "_program orchestra": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "_program ensemble": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.468
 			          }
 			        }
 			      ]
 			    }
 			  },
 			  "Relationships": {
-			    "portfolio_program_created_date_hierarchy_has_portfolio_program_created_day": {
-			      "Binding": {
-			        "ConceptualEntity": "Portfolio_Program"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "portfolio_program.created.date_hierarchy": {
-			          "Target": {
-			            "Entity": "portfolio_program.created.date_hierarchy"
-			          }
-			        },
-			        "portfolio_program.created.day": {
-			          "Target": {
-			            "Entity": "portfolio_program.created.day"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "portfolio_program.created.date_hierarchy"
-			            },
-			            "Object": {
-			              "Role": "portfolio_program.created.day"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "created_date_hierarchies_have_created_days"
-			        }
-			      ]
-			    },
-			    "portfolio_program_created_date_hierarchy_has_portfolio_program_created_month": {
-			      "Binding": {
-			        "ConceptualEntity": "Portfolio_Program"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "portfolio_program.created.date_hierarchy": {
-			          "Target": {
-			            "Entity": "portfolio_program.created.date_hierarchy"
-			          }
-			        },
-			        "portfolio_program.created.month": {
-			          "Target": {
-			            "Entity": "portfolio_program.created.month"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "portfolio_program.created.date_hierarchy"
-			            },
-			            "Object": {
-			              "Role": "portfolio_program.created.month"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "created_date_hierarchies_have_created_months"
-			        }
-			      ]
-			    },
 			    "portfolio_program_created_date_hierarchy_has_portfolio_program_created_quarter": {
 			      "Binding": {
 			        "ConceptualEntity": "Portfolio_Program"
@@ -14171,7 +15480,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "created_date_hierarchies_have_created_days1"
+			          "ID": "created_date_hierarchies_have_created_days"
 			        }
 			      ]
 			    },
@@ -14204,7 +15513,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "created_date_hierarchies_have_created_months1"
+			          "ID": "created_date_hierarchies_have_created_months"
 			        }
 			      ]
 			    },
@@ -14501,7 +15810,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "created_date_hierarchies_have_created_days2"
+			          "ID": "created_date_hierarchies_have_created_days1"
 			        }
 			      ]
 			    },
@@ -14534,7 +15843,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "created_date_hierarchies_have_created_months2"
+			          "ID": "created_date_hierarchies_have_created_months1"
 			        }
 			      ]
 			    },
@@ -14802,52 +16111,6 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "portfolio_has_portfolio_lifecycle_phase": {
-			      "Binding": {
-			        "ConceptualEntity": "Portfolio"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "portfolio": {
-			          "Target": {
-			            "Entity": "portfolio"
-			          }
-			        },
-			        "portfolio_lifecycle_phase": {
-			          "Target": {
-			            "Entity": "portfolio_lifecycle_phase"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "portfolio"
-			            },
-			            "Object": {
-			              "Role": "portfolio_lifecycle_phase"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "portfolios_have_portfolio_lifecycle_phases"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "portfolio_lifecycle_phase"
-			            },
-			            "Object": {
-			              "Role": "portfolio"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "portfolio_lifecycle_phases_have_portfolios"
-			        }
-			      ]
-			    },
 			    "portfolio_has_portfolio_service_category": {
 			      "Binding": {
 			        "ConceptualEntity": "Portfolio"
@@ -14959,6 +16222,52 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
+			    "portfolio_has_portfolio_lifecycle_phase": {
+			      "Binding": {
+			        "ConceptualEntity": "Portfolio"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "portfolio": {
+			          "Target": {
+			            "Entity": "portfolio"
+			          }
+			        },
+			        "portfolio_lifecycle_phase": {
+			          "Target": {
+			            "Entity": "portfolio_lifecycle_phase"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "portfolio"
+			            },
+			            "Object": {
+			              "Role": "portfolio_lifecycle_phase"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "portfolios_have_portfolio_lifecycle_phases"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "portfolio_lifecycle_phase"
+			            },
+			            "Object": {
+			              "Role": "portfolio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "portfolio_lifecycle_phases_have_portfolios"
+			        }
+			      ]
+			    },
 			    "portfolio_has_portfolio_program": {
 			      "Binding": {
 			        "ConceptualEntity": "Portfolio"
@@ -15002,6 +16311,270 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "portfolio_programs_have_portfolios"
+			        }
+			      ]
+			    },
+			    "portfolio_has_stage": {
+			      "Binding": {
+			        "ConceptualEntity": "Portfolio"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "portfolio": {
+			          "Target": {
+			            "Entity": "portfolio"
+			          }
+			        },
+			        "portfolio.stage": {
+			          "Target": {
+			            "Entity": "portfolio.stage"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "portfolio"
+			            },
+			            "Object": {
+			              "Role": "portfolio.stage"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "portfolios_have_stages"
+			        }
+			      ]
+			    },
+			    "portfolio_has_intake_ranking": {
+			      "Binding": {
+			        "ConceptualEntity": "Portfolio"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "portfolio": {
+			          "Target": {
+			            "Entity": "portfolio"
+			          }
+			        },
+			        "portfolio.intake_ranking": {
+			          "Target": {
+			            "Entity": "portfolio.intake_ranking"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "portfolio"
+			            },
+			            "Object": {
+			              "Role": "portfolio.intake_ranking"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "portfolios_have_intake_ranking"
+			        }
+			      ]
+			    },
+			    "portfolio_has_product_owner": {
+			      "Binding": {
+			        "ConceptualEntity": "Portfolio"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "portfolio": {
+			          "Target": {
+			            "Entity": "portfolio"
+			          }
+			        },
+			        "portfolio.product_owner": {
+			          "Target": {
+			            "Entity": "portfolio.product_owner"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "portfolio"
+			            },
+			            "Object": {
+			              "Role": "portfolio.product_owner"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "portfolios_have_product_owners"
+			        },
+			        {
+			          "Verb": {
+			            "Subject": {
+			              "Role": "portfolio.product_owner"
+			            },
+			            "Verbs": [
+			              {
+			                "own": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "portfolio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.75,
+			          "ID": "product_owners_own_portfolios"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "portfolio.product_owner"
+			            },
+			            "Object": {
+			              "Role": "portfolio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "product_owners_have_portfolios"
+			        }
+			      ]
+			    },
+			    "portfolio_has_updates_display": {
+			      "Binding": {
+			        "ConceptualEntity": "Portfolio"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "portfolio": {
+			          "Target": {
+			            "Entity": "portfolio"
+			          }
+			        },
+			        "portfolio.updates_display": {
+			          "Target": {
+			            "Entity": "portfolio.updates_display"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "portfolio"
+			            },
+			            "Object": {
+			              "Role": "portfolio.updates_display"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "portfolios_have_updates_displays"
+			        }
+			      ]
+			    },
+			    "portfolio_has_title": {
+			      "Binding": {
+			        "ConceptualEntity": "Portfolio"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "portfolio": {
+			          "Target": {
+			            "Entity": "portfolio"
+			          }
+			        },
+			        "portfolio.title": {
+			          "Target": {
+			            "Entity": "portfolio.title"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "portfolio"
+			            },
+			            "Object": {
+			              "Role": "portfolio.title"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "portfolios_have_titles"
+			        }
+			      ]
+			    },
+			    "portfolio_has_update": {
+			      "Binding": {
+			        "ConceptualEntity": "Portfolio"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "portfolio": {
+			          "Target": {
+			            "Entity": "portfolio"
+			          }
+			        },
+			        "portfolio.update": {
+			          "Target": {
+			            "Entity": "portfolio.update"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "portfolio"
+			            },
+			            "Object": {
+			              "Role": "portfolio.update"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "portfolios_have_updates"
+			        }
+			      ]
+			    },
+			    "portfolio_has_progress": {
+			      "Binding": {
+			        "ConceptualEntity": "Portfolio"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "portfolio": {
+			          "Target": {
+			            "Entity": "portfolio"
+			          }
+			        },
+			        "portfolio.progress": {
+			          "Target": {
+			            "Entity": "portfolio.progress"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "portfolio"
+			            },
+			            "Object": {
+			              "Role": "portfolio.progress"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "portfolios_have_progresses"
 			        }
 			      ]
 			    },
@@ -18487,6 +20060,19 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "portfolio_lifecycle_phases_have_phase_numbers"
+			        },
+			        {
+			          "Name": {
+			            "Subject": {
+			              "Role": "portfolio_lifecycle_phase"
+			            },
+			            "Name": {
+			              "Role": "portfolio_lifecycle_phase.phase_number"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "phase_numbers_are_names_IDs_of_portfolio_lifecycle_phases"
 			        }
 			      ]
 			    },
@@ -18721,7 +20307,7 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "portfolio_has_active_dev_count": {
+			    "portfolio_has_development_count": {
 			      "Binding": {
 			        "ConceptualEntity": "Portfolio"
 			      },
@@ -18732,9 +20318,9 @@ cultureInfo en-US
 			            "Entity": "portfolio"
 			          }
 			        },
-			        "portfolio.active_dev_count": {
+			        "portfolio.development_count": {
 			          "Target": {
-			            "Entity": "portfolio.active_dev_count"
+			            "Entity": "portfolio.development_count"
 			          }
 			        }
 			      },
@@ -18745,12 +20331,12 @@ cultureInfo en-US
 			              "Role": "portfolio"
 			            },
 			            "Object": {
-			              "Role": "portfolio.active_dev_count"
+			              "Role": "portfolio.development_count"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "portfolios_have_active_dev_count"
+			          "ID": "portfolios_have_development_count"
 			        }
 			      ]
 			    },
@@ -18787,7 +20373,7 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "portfolio_has_active_tasks_display": {
+			    "portfolio_has_progress_display": {
 			      "Binding": {
 			        "ConceptualEntity": "Portfolio"
 			      },
@@ -18798,9 +20384,9 @@ cultureInfo en-US
 			            "Entity": "portfolio"
 			          }
 			        },
-			        "portfolio.active_tasks_display": {
+			        "portfolio.progress_display": {
 			          "Target": {
-			            "Entity": "portfolio.active_tasks_display"
+			            "Entity": "portfolio.progress_display"
 			          }
 			        }
 			      },
@@ -18811,78 +20397,12 @@ cultureInfo en-US
 			              "Role": "portfolio"
 			            },
 			            "Object": {
-			              "Role": "portfolio.active_tasks_display"
+			              "Role": "portfolio.progress_display"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "portfolios_have_active_tasks_displays"
-			        }
-			      ]
-			    },
-			    "portfolio_has_phase_display": {
-			      "Binding": {
-			        "ConceptualEntity": "Portfolio"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "portfolio": {
-			          "Target": {
-			            "Entity": "portfolio"
-			          }
-			        },
-			        "portfolio.phase_display": {
-			          "Target": {
-			            "Entity": "portfolio.phase_display"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "portfolio"
-			            },
-			            "Object": {
-			              "Role": "portfolio.phase_display"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "portfolios_have_phase_displays"
-			        }
-			      ]
-			    },
-			    "portfolio_has_state": {
-			      "Binding": {
-			        "ConceptualEntity": "Portfolio"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "portfolio": {
-			          "Target": {
-			            "Entity": "portfolio"
-			          }
-			        },
-			        "portfolio.state": {
-			          "Target": {
-			            "Entity": "portfolio.state"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "portfolio"
-			            },
-			            "Object": {
-			              "Role": "portfolio.state"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "portfolios_have_states"
+			          "ID": "portfolios_have_progress_displays"
 			        }
 			      ]
 			    },
@@ -19716,39 +21236,6 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "portfolio_has_active_task": {
-			      "Binding": {
-			        "ConceptualEntity": "Portfolio"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "portfolio": {
-			          "Target": {
-			            "Entity": "portfolio"
-			          }
-			        },
-			        "portfolio.active_task": {
-			          "Target": {
-			            "Entity": "portfolio.active_task"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "portfolio"
-			            },
-			            "Object": {
-			              "Role": "portfolio.active_task"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "portfolios_have_active_tasks"
-			        }
-			      ]
-			    },
 			    "portfolio_has_initial_delivery": {
 			      "Binding": {
 			        "ConceptualEntity": "Portfolio"
@@ -19779,72 +21266,6 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "portfolios_have_initial_deliveries"
-			        }
-			      ]
-			    },
-			    "portfolio_has_phase_number": {
-			      "Binding": {
-			        "ConceptualEntity": "Portfolio"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "portfolio": {
-			          "Target": {
-			            "Entity": "portfolio"
-			          }
-			        },
-			        "portfolio.phase_number": {
-			          "Target": {
-			            "Entity": "portfolio.phase_number"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "portfolio"
-			            },
-			            "Object": {
-			              "Role": "portfolio.phase_number"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "portfolios_have_phase_numbers"
-			        }
-			      ]
-			    },
-			    "portfolio_has_section": {
-			      "Binding": {
-			        "ConceptualEntity": "Portfolio"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "portfolio": {
-			          "Target": {
-			            "Entity": "portfolio"
-			          }
-			        },
-			        "portfolio.section": {
-			          "Target": {
-			            "Entity": "portfolio.section"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "portfolio"
-			            },
-			            "Object": {
-			              "Role": "portfolio.section"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "portfolios_have_sections"
 			        }
 			      ]
 			    },
@@ -19944,51 +21365,6 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "portfolios_have_products"
-			        }
-			      ]
-			    },
-			    "portfolio_in_state": {
-			      "Binding": {
-			        "ConceptualEntity": "Portfolio"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "portfolio": {
-			          "Target": {
-			            "Entity": "portfolio"
-			          }
-			        },
-			        "portfolio.state": {
-			          "Target": {
-			            "Entity": "portfolio.state"
-			          }
-			        }
-			      },
-			      "SemanticSlots": {
-			        "Where": {
-			          "Role": "portfolio.state"
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Preposition": {
-			            "Subject": {
-			              "Role": "portfolio"
-			            },
-			            "Prepositions": [
-			              {
-			                "in": {
-			                  "State": "Generated"
-			                }
-			              }
-			            ],
-			            "Object": {
-			              "Role": "portfolio.state"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "portfolios_are_in_states"
 			        }
 			      ]
 			    },
@@ -20409,6 +21785,72 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.9,
 			          "ID": "portfolios_are_modified_on_modified"
+			        }
+			      ]
+			    },
+			    "portfolio_program_created_date_hierarchy_has_portfolio_program_created_month": {
+			      "Binding": {
+			        "ConceptualEntity": "Portfolio_Program"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "portfolio_program.created.date_hierarchy": {
+			          "Target": {
+			            "Entity": "portfolio_program.created.date_hierarchy"
+			          }
+			        },
+			        "portfolio_program.created.month": {
+			          "Target": {
+			            "Entity": "portfolio_program.created.month"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "portfolio_program.created.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "portfolio_program.created.month"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "created_date_hierarchies_have_created_months2"
+			        }
+			      ]
+			    },
+			    "portfolio_program_created_date_hierarchy_has_portfolio_program_created_day": {
+			      "Binding": {
+			        "ConceptualEntity": "Portfolio_Program"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "portfolio_program.created.date_hierarchy": {
+			          "Target": {
+			            "Entity": "portfolio_program.created.date_hierarchy"
+			          }
+			        },
+			        "portfolio_program.created.day": {
+			          "Target": {
+			            "Entity": "portfolio_program.created.day"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "portfolio_program.created.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "portfolio_program.created.day"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "created_date_hierarchies_have_created_days2"
 			        }
 			      ]
 			    },

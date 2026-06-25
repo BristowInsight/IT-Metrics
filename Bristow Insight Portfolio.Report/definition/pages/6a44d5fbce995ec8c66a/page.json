@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
   "name": "6a44d5fbce995ec8c66a",
-  "displayName": "Upcoming",
+  "displayName": "Intake",
   "displayOption": "FitToPage",
   "height": 1080,
   "width": 1920,
@@ -50,6 +50,60 @@
                       {
                         "Literal": {
                           "Value": "'Pipeline'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "be93c6c69add902e4669",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Portfolio_LifecyclePhase"
+              }
+            },
+            "Property": "Lifecycle Phase"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "p",
+              "Entity": "Portfolio_LifecyclePhase",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "p"
+                          }
+                        },
+                        "Property": "Lifecycle Phase"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Intake'"
                         }
                       }
                     ]

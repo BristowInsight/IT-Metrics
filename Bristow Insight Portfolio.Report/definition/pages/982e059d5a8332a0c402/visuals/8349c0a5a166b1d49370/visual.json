@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "8349c0a5a166b1d49370",
   "position": {
     "x": 18.526315789473685,
@@ -147,26 +147,6 @@
               "queryRef": "Min(Portfolio.Product Owner)",
               "nativeQueryRef": "Product Owner",
               "displayName": "Product Owner"
-            },
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Portfolio"
-                        }
-                      },
-                      "Property": "Initial Delivery"
-                    }
-                  },
-                  "Function": 3
-                }
-              },
-              "queryRef": "Min(Portfolio.Initial Delivery)",
-              "nativeQueryRef": "Initial Delivery",
-              "displayName": "Initial Delivery"
             },
             {
               "field": {
@@ -384,7 +364,7 @@
             "autoSizeColumnWidth": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
@@ -1103,36 +1083,6 @@
               }
             ],
             "metadata": "Min(Portfolio.Phase Display)"
-          }
-        },
-        {
-          "properties": {
-            "backColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Portfolio"
-                        }
-                      },
-                      "Property": "_Section BG Color"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ],
-            "metadata": "Min(Portfolio.Initial Delivery)"
           }
         },
         {
@@ -1987,20 +1937,6 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "73.86206896551724D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Min(Portfolio.Initial Delivery)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
                   "Value": "286.0939635019144D"
                 }
               }
@@ -2054,7 +1990,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "241.6283971586302D"
+                  "Value": "299.0507113507323D"
                 }
               }
             }
@@ -2204,7 +2140,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Active Development'"
+                  "Value": "'Priority Development'"
                 }
               }
             }
@@ -2344,25 +2280,6 @@
                   }
                 },
                 "Property": "Product Owner"
-              }
-            },
-            "Function": 3
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "ec81b068d47253bb1a7b",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Portfolio"
-                  }
-                },
-                "Property": "Initial Delivery"
               }
             },
             "Function": 3

@@ -1,12 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "80c20ca0693ad9eb8608",
+  "name": "a8e3f97893150bea9d34",
   "position": {
-    "x": 18.526315789473685,
-    "y": 18.526315789473685,
+    "x": 18.97674418604651,
+    "y": 18.97674418604651,
     "z": 4000,
     "height": 1044,
-    "width": 1882.9473684210527,
+    "width": 1882.046511627907,
     "tabOrder": 4000
   },
   "visual": {
@@ -15,22 +15,6 @@
       "queryState": {
         "Rows": {
           "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Portfolio"
-                    }
-                  },
-                  "Property": "Program"
-                }
-              },
-              "queryRef": "Portfolio.Program",
-              "nativeQueryRef": "Program",
-              "active": true,
-              "displayName": "Program"
-            },
             {
               "field": {
                 "Column": {
@@ -50,6 +34,26 @@
         },
         "Values": {
           "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "Program"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(Portfolio.Program)",
+              "nativeQueryRef": "Program",
+              "displayName": "Program"
+            },
             {
               "field": {
                 "Aggregation": {
@@ -212,31 +216,30 @@
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Portfolio"
+                      }
+                    },
+                    "Property": "Stage"
+                  }
+                },
+                "Function": 3
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
       }
     },
-    "expansionStates": [
-      {
-        "roles": [
-          "Rows"
-        ],
-        "levels": [
-          {
-            "queryRefs": [
-              "Portfolio.Program"
-            ],
-            "isPinned": true
-          },
-          {
-            "queryRefs": [
-              "Portfolio.Product"
-            ],
-            "isCollapsed": true,
-            "isPinned": true
-          }
-        ],
-        "root": {}
-      }
-    ],
     "objects": {
       "grid": [
         {
@@ -454,22 +457,6 @@
         },
         {
           "properties": {
-            "backColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Portfolio"
-                        }
-                      },
-                      "Property": "_Section BG Color"
-                    }
-                  }
-                }
-              }
-            },
             "fontColor": {
               "solid": {
                 "color": {
@@ -926,6 +913,66 @@
                 }
               }
             ],
+            "metadata": "Portfolio.Product"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "_Section BG Color"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Min(Portfolio.Program)"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Portfolio"
+                        }
+                      },
+                      "Property": "_Section BG Color"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
             "metadata": "Min(Portfolio.Service Category)"
           }
         },
@@ -1259,7 +1306,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "186.52682243895111D"
+                  "Value": "252.69637093561704D"
                 }
               }
             }
@@ -1644,7 +1691,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "247.35970740418767D"
+                  "Value": "220.85946249246226D"
                 }
               }
             }
@@ -1711,7 +1758,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "260.7588260872178D"
+                  "Value": "248.62618614502696D"
                 }
               }
             }
@@ -1725,7 +1772,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "263.09373330038164D"
+                  "Value": "232.97825827521515D"
                 }
               }
             }
@@ -2446,6 +2493,32 @@
           }
         },
         {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Portfolio.Product"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Min(Portfolio.Program)"
+          }
+        },
+        {
           "properties": {
             "value": {
               "expr": {
@@ -2649,6 +2722,32 @@
           }
         },
         {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Portfolio.Product"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Min(Portfolio.Program)"
+          }
+        },
+        {
           "properties": {
             "value": {
               "expr": {
@@ -2729,13 +2828,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "99.40000114154894D"
+                  "Value": "125.13793103448276D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Min(Portfolio.Stage)"
+            "metadata": "Min(Portfolio.Program)"
           }
         },
         {
@@ -2743,13 +2842,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "109D"
+                  "Value": "98D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Min(Portfolio.Program)"
+            "metadata": "Min(Portfolio.Stage)"
           }
         }
       ],
@@ -2852,7 +2951,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'New Requests'"
+                  "Value": "'Upcoming'"
                 }
               }
             }
@@ -2865,7 +2964,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'New Request [1/6] - Request Received | Ready for Intake [2/6] - Reviewed and Approved by Business Sponsor'"
+                  "Value": "'Intake [3/6] - Reviewed and Ranked by BI Team | Scoping [4/6] - Gather Requirements, Awaiting Development'"
                 }
               }
             }
@@ -2873,189 +2972,5 @@
         }
       ]
     }
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "b1c9e96e0e5c62d60032",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Portfolio"
-              }
-            },
-            "Property": "Program"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "66b16470754d0c79123b",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Portfolio"
-              }
-            },
-            "Property": "Product"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "f9da9785599181de30e6",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Portfolio"
-                  }
-                },
-                "Property": "Strategic Alignment"
-              }
-            },
-            "Function": 3
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "ba0b6e4e20b0371e8d05",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Portfolio"
-                  }
-                },
-                "Property": "Service Category"
-              }
-            },
-            "Function": 3
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "b11ff1a62d76695c8ae4",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Portfolio"
-                  }
-                },
-                "Property": "Business Objective"
-              }
-            },
-            "Function": 3
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "d45072a2804450d6010c",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Portfolio"
-                  }
-                },
-                "Property": "Business Sponsor"
-              }
-            },
-            "Function": 3
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "968b352be97aad094b68",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Portfolio"
-                  }
-                },
-                "Property": "Product Owner"
-              }
-            },
-            "Function": 3
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "3bc49bd06a1890ce08c2",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Portfolio"
-                  }
-                },
-                "Property": "Stage"
-              }
-            },
-            "Function": 3
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "7083926007037c44ddd2",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Portfolio"
-                  }
-                },
-                "Property": "Progress Display"
-              }
-            },
-            "Function": 3
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "377563f0320553410800",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Portfolio"
-                  }
-                },
-                "Property": "Updates Display"
-              }
-            },
-            "Function": 3
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

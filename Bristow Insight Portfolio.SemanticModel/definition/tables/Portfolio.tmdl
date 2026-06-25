@@ -9,7 +9,7 @@ table Portfolio
 		formatString: 0
 		lineageTag: fe07d428-4974-49ae-8021-e6ca7101df50
 
-	measure 'Pipeline Count' = CALCULATE([Product Count], Portfolio_LifecyclePhase[Section] = "Pipeline")
+	measure 'Pipeline Count' = CALCULATE([Product Count], Portfolio_LifecyclePhase[Section] = "Pipeline" || Portfolio_LifecyclePhase[Section] = "Request")
 		formatString: 0
 		lineageTag: 32b80bf6-7be2-4f40-8c32-cc8a9e49b556
 
