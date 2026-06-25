@@ -35,7 +35,7 @@ table Portfolio
 
 	measure '_Section BG Color' =
 			VAR _Phase = SELECTEDVALUE('Portfolio'[Lifecycle Phase])
-			VAR _Section = SELECTEDVALUE('Portfolio_LifecyclePhase'[Section])
+			VAR _Section = SELECTEDVALUE('Portfolio'[Section])
 			RETURN
 				IF(_Phase = "On Hold",
 					"#EBB0B0",
@@ -300,6 +300,14 @@ table Portfolio
 		formatString: 0
 		lineageTag: 0cd50a34-8e6e-446b-a5f2-f9b60e35e264
 		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Section = RELATED('Portfolio_LifecyclePhase'[Section])
+		dataType: string
+		isHidden
+		lineageTag: 5e1c2a90-7b3d-4f86-9a2c-1f0e6d4b8c70
+		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
 
