@@ -1,0 +1,195 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "aaa9b88350214d3c0061",
+  "position": {
+    "x": 360.14336917562724,
+    "y": 112.40143369175628,
+    "z": 0,
+    "height": 284.44444444444446,
+    "width": 860.21505376344089,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Phishing_Simulation_Schedule"
+                    }
+                  },
+                  "Property": "Campaign Date"
+                }
+              },
+              "queryRef": "Phishing_Simulation_Schedule.Campaign Date",
+              "nativeQueryRef": "Campaign Date1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Phishing_Simulation_Schedule"
+                    }
+                  },
+                  "Property": "Title"
+                }
+              },
+              "queryRef": "Phishing_Simulation_Schedule.Title",
+              "nativeQueryRef": "Title"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Phishing_Simulation_Schedule"
+                    }
+                  },
+                  "Property": "Target Audience"
+                }
+              },
+              "queryRef": "Phishing_Simulation_Schedule.Target Audience",
+              "nativeQueryRef": "Target Audience1"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Phishing_Simulation_Schedule"
+                        }
+                      },
+                      "Property": "Emails Sent"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Phishing_Simulation_Schedule.Emails Sent)",
+              "nativeQueryRef": "Sum of Emails Sent"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Phishing_Simulation_Schedule"
+                        }
+                      },
+                      "Property": "Clicks"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Phishing_Simulation_Schedule.Clicks)",
+              "nativeQueryRef": "Clicks",
+              "displayName": "Clicks"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Schema": "extension",
+                      "Entity": "Phishing_Simulation_Schedule"
+                    }
+                  },
+                  "Property": "Click %"
+                }
+              },
+              "queryRef": "Phishing_Simulation_Schedule.Click %",
+              "nativeQueryRef": "Click %"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "82.45706712127294D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Phishing_Simulation_Schedule.Click %"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "92.4678690690582D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Phishing_Simulation_Schedule.Clicks)"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Phishing_Simulation_Schedule.Click %"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Phishing_Simulation_Schedule.Clicks)"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

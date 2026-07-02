@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmarksMetadata/1.0.0/schema.json",
+  "items": [
+    {
+      "name": "451b91c242d992d220b6",
+      "displayName": "Risk Register Grid",
+      "children": [
+        "8ba652da6921b6bad708",
+        "103c9882e07cb012d5e8",
+        "79e4def5aee55bb05208",
+        "c005f591e114c96c9ec4",
+        "ad7e912dea809dce4d3a",
+        "6c58ef19c4e1a60052e1",
+        "919495d92269a0b91574",
+        "32e7ab4a681dd72c4290",
+        "4eedc78b19b9b67e2d56",
+        "73cef5ef59dedb77c053",
+        "c7ea552ea92104cc33d3",
+        "42dc6e1e8568d9c0e800",
+        "941c5e1b1d3033eb1c73",
+        "e9870c9f0564c2a770b0",
+        "2ff1b80a4815c0465e9a",
+        "03627b3a76c2b8884ceb",
+        "11a08504062a796003b9",
+        "72e88db1d75d064e6936",
+        "2b0cb07b81ab00e85175",
+        "e2e356f0005b567690ca",
+        "4ddfe709993687dbcb6b",
+        "c62b8302b9b40ec6ca04",
+        "16a01685db806057a3d8",
+        "0b87995209157a0b3905",
+        "227d4a947b0b0a506999"
+      ]
+    },
+    {
+      "name": "6f5fe535c69c761780a0"
+    }
+  ]
+}

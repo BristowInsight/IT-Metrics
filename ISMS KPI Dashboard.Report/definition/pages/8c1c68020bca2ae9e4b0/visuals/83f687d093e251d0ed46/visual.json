@@ -1,0 +1,168 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "83f687d093e251d0ed46",
+  "position": {
+    "x": 17.441332323996974,
+    "y": 412.778198334595,
+    "z": 6000,
+    "height": 298.440575321726,
+    "width": 1242.21044663134,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "eLearning_ISMS"
+                    }
+                  },
+                  "Property": "Region"
+                }
+              },
+              "queryRef": "eLearning_ISMS.Region",
+              "nativeQueryRef": "Region"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "eLearning_ISMS"
+                    }
+                  },
+                  "Property": "Division"
+                }
+              },
+              "queryRef": "eLearning_ISMS.Division",
+              "nativeQueryRef": "Division"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "eLearning_ISMS"
+                    }
+                  },
+                  "Property": "Email ID"
+                }
+              },
+              "queryRef": "eLearning_ISMS.Email ID",
+              "nativeQueryRef": "Email ID1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "eLearning_ISMS"
+                    }
+                  },
+                  "Property": "Course Name"
+                }
+              },
+              "queryRef": "eLearning_ISMS.Course Name",
+              "nativeQueryRef": "Course Name1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "eLearning_ISMS"
+                    }
+                  },
+                  "Property": "Learner Course Status"
+                }
+              },
+              "queryRef": "eLearning_ISMS.Learner Course Status",
+              "nativeQueryRef": "Learner Course Status1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "eLearning_ISMS"
+                    }
+                  },
+                  "Property": "Due Date"
+                }
+              },
+              "queryRef": "eLearning_ISMS.Due Date",
+              "nativeQueryRef": "Due Date1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "eLearning_ISMS"
+                    }
+                  },
+                  "Property": "Overdue"
+                }
+              },
+              "queryRef": "eLearning_ISMS.Overdue",
+              "nativeQueryRef": "Overdue"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "eLearning_ISMS"
+                    }
+                  },
+                  "Property": "Status+Overdue"
+                }
+              },
+              "queryRef": "eLearning_ISMS.Status+Overdue",
+              "nativeQueryRef": "Status+Overdue"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "64.74900684574058D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "eLearning_ISMS.Region"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "144.5654825337097D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "eLearning_ISMS.Division"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

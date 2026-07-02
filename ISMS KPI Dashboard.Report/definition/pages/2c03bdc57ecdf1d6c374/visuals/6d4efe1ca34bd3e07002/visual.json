@@ -1,0 +1,257 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "6d4efe1ca34bd3e07002",
+  "position": {
+    "x": 15.033557046979865,
+    "y": 372.6174496644295,
+    "z": 1000,
+    "height": 335.03355704697987,
+    "width": 1087.7852348993288,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tickets"
+                    }
+                  },
+                  "Property": "Number"
+                }
+              },
+              "queryRef": "Tickets.Number",
+              "nativeQueryRef": "Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tickets"
+                    }
+                  },
+                  "Property": "Short_Description"
+                }
+              },
+              "queryRef": "Tickets.Short_Description",
+              "nativeQueryRef": "Short_Description"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tickets"
+                    }
+                  },
+                  "Property": "Opened_At"
+                }
+              },
+              "queryRef": "Tickets.Opened_At",
+              "nativeQueryRef": "Opened",
+              "displayName": "Opened"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tickets"
+                    }
+                  },
+                  "Property": "Resolved_At"
+                }
+              },
+              "queryRef": "Tickets.Resolved_At",
+              "nativeQueryRef": "Resolved",
+              "displayName": "Resolved"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tickets"
+                    }
+                  },
+                  "Property": "Priority"
+                }
+              },
+              "queryRef": "Tickets.Priority",
+              "nativeQueryRef": "Priority"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendar"
+                    }
+                  },
+                  "Property": "Incidents Security and Compliance MTTR by Resolved At"
+                }
+              },
+              "queryRef": "Calendar.Incidents Security and Compliance MTTR by Resolved At",
+              "nativeQueryRef": "MTTR (Hours)",
+              "displayName": "MTTR (Hours)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Tickets"
+                  }
+                },
+                "Property": "Opened_At"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "517.8062325408267D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tickets.Short_Description"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "119.39985476565187D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tickets.Number"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "109.97290693090889D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tickets.Opened_At"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "107.0402454461132D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tickets.Resolved_At"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "103.4022368767647D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tickets.Priority"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "102.52631284908398D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Calendar.Incidents Security and Compliance MTTR by Resolved At"
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

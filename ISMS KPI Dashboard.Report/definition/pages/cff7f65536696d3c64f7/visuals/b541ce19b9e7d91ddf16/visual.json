@@ -1,0 +1,267 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "b541ce19b9e7d91ddf16",
+  "position": {
+    "x": 14.908485856905157,
+    "y": 389.7504159733777,
+    "z": 1000,
+    "height": 318.40266222961731,
+    "width": 1140.4991680532446,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Enhancements"
+                    }
+                  },
+                  "Property": "Ticket Number"
+                }
+              },
+              "queryRef": "Enhancements.Ticket Number",
+              "nativeQueryRef": "Ticket Number1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Enhancements"
+                    }
+                  },
+                  "Property": "Assigned To"
+                }
+              },
+              "queryRef": "Enhancements.Assigned To",
+              "nativeQueryRef": "Assigned To1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Enhancements"
+                    }
+                  },
+                  "Property": "Opened Date"
+                }
+              },
+              "queryRef": "Enhancements.Opened Date",
+              "nativeQueryRef": "Opened Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Enhancements"
+                    }
+                  },
+                  "Property": "Planned End Date"
+                }
+              },
+              "queryRef": "Enhancements.Planned End Date",
+              "nativeQueryRef": "Planned End Date1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Enhancements"
+                    }
+                  },
+                  "Property": "Release"
+                }
+              },
+              "queryRef": "Enhancements.Release",
+              "nativeQueryRef": "Release"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Enhancements"
+                    }
+                  },
+                  "Property": "Themes"
+                }
+              },
+              "queryRef": "Enhancements.Themes",
+              "nativeQueryRef": "Themes"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Enhancements"
+                    }
+                  },
+                  "Property": "Priority"
+                }
+              },
+              "queryRef": "Enhancements.Priority",
+              "nativeQueryRef": "Priority"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Enhancements"
+                    }
+                  },
+                  "Property": "Enhancement State"
+                }
+              },
+              "queryRef": "Enhancements.Enhancement State",
+              "nativeQueryRef": "Enhancement State1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Enhancements"
+                    }
+                  },
+                  "Property": "Short Description"
+                }
+              },
+              "queryRef": "Enhancements.Short Description",
+              "nativeQueryRef": "Short Description1"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Enhancements"
+                  }
+                },
+                "Property": "Opened Date"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "117.519136807332D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Enhancements.Themes"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "163.2458767048829D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Enhancements.Release"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Custom'"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "85D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

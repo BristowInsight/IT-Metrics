@@ -1,0 +1,587 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "16beba00702b6f07bea7",
+  "position": {
+    "x": 14.691535150645624,
+    "y": 380.14347202295551,
+    "z": 1000,
+    "height": 335.15064562410328,
+    "width": 1250.6169296987086,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Risk"
+                    }
+                  },
+                  "Property": "Number"
+                }
+              },
+              "queryRef": "Risk.Number",
+              "nativeQueryRef": "Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Risk"
+                    }
+                  },
+                  "Property": "Short_Description"
+                }
+              },
+              "queryRef": "Risk.Short_Description",
+              "nativeQueryRef": "Description",
+              "displayName": "Description"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Risk"
+                    }
+                  },
+                  "Property": "Treatment_Decision"
+                }
+              },
+              "queryRef": "Risk.Treatment_Decision",
+              "nativeQueryRef": "Decision",
+              "displayName": "Decision"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Risk"
+                    }
+                  },
+                  "Property": "Date_Of_Risk_Owners_Acceptance_Treatment_Approval"
+                }
+              },
+              "queryRef": "Risk.Date_Of_Risk_Owners_Acceptance_Treatment_Approval",
+              "nativeQueryRef": "Approved",
+              "displayName": "Approved"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Risk"
+                    }
+                  },
+                  "Property": "Treatment_Implemented"
+                }
+              },
+              "queryRef": "Risk.Treatment_Implemented",
+              "nativeQueryRef": "Implemented",
+              "displayName": "Implemented"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Risk"
+                    }
+                  },
+                  "Property": "Treatment_Due"
+                }
+              },
+              "queryRef": "Risk.Treatment_Due",
+              "nativeQueryRef": "Due",
+              "displayName": "Due"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Risk"
+                    }
+                  },
+                  "Property": "Risk_Rank"
+                }
+              },
+              "queryRef": "Sum(Risk.Risk_Rank)",
+              "nativeQueryRef": "Risk Rank",
+              "displayName": "Risk Rank"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Risk"
+                    }
+                  },
+                  "Property": "Probability"
+                }
+              },
+              "queryRef": "Risk.Probability",
+              "nativeQueryRef": "Probability"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Risk"
+                    }
+                  },
+                  "Property": "Impact"
+                }
+              },
+              "queryRef": "Risk.Impact",
+              "nativeQueryRef": "Impact"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Risk"
+                    }
+                  },
+                  "Property": "Risk_Value"
+                }
+              },
+              "queryRef": "Risk.Risk_Value",
+              "nativeQueryRef": "Risk Classification",
+              "displayName": "Risk Classification"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Risk"
+                    }
+                  },
+                  "Property": "Last_Review"
+                }
+              },
+              "queryRef": "Risk.Last_Review",
+              "nativeQueryRef": "Last Review",
+              "displayName": "Last Review"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Risk"
+                    }
+                  },
+                  "Property": "Next_Review"
+                }
+              },
+              "queryRef": "Risk.Next_Review",
+              "nativeQueryRef": "Next Review",
+              "displayName": "Next Review"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Risk"
+                    }
+                  },
+                  "Property": "Category"
+                }
+              },
+              "queryRef": "Risk.Category",
+              "nativeQueryRef": "Category"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Risk"
+                  }
+                },
+                "Property": "Risk_Rank"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "216.58661706559786D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Risk.Short_Description"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "157.60814162567797D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Risk.Category"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "116.14765150060424D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Risk.Risk_Value"
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "c26fc3346c5d039032cb",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Risk"
+              }
+            },
+            "Property": "Date_Of_Risk_Owners_Acceptance_Treatment_Approval"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7b7fade86b2e9c4ce6a0",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Risk"
+              }
+            },
+            "Property": "Category"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a1cf26feea8a3243a360",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Risk"
+              }
+            },
+            "Property": "Treatment_Decision"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "1e08dda740355a29c146",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Risk"
+              }
+            },
+            "Property": "Short_Description"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c8d1b521a5cdcc4e9d7e",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Risk"
+              }
+            },
+            "Property": "Treatment_Due"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "55c97b904ec413554425",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Risk"
+              }
+            },
+            "Property": "Probability"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "r",
+              "Entity": "Risk",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Contains": {
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "r"
+                        }
+                      },
+                      "Property": "Probability"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "'3'"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "fa220fd5b09090693571",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Risk"
+              }
+            },
+            "Property": "Impact"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "r",
+              "Entity": "Risk",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Contains": {
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "r"
+                        }
+                      },
+                      "Property": "Impact"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "'3'"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "80cf301b1ce8ecb5241e",
+        "ordinal": 7,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Risk"
+              }
+            },
+            "Property": "Treatment_Implemented"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "78fb90411c147124d800",
+        "ordinal": 8,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Risk"
+              }
+            },
+            "Property": "Last_Review"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f5da55ee0e8c60c800ab",
+        "ordinal": 9,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Risk"
+              }
+            },
+            "Property": "Next_Review"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b11b28b8cc0da62a0013",
+        "ordinal": 10,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Risk"
+              }
+            },
+            "Property": "Number"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "16038a7b20e577a22a63",
+        "ordinal": 11,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Risk"
+              }
+            },
+            "Property": "Risk_Value"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a701d9cd665e3c3e8780",
+        "ordinal": 12,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Risk"
+              }
+            },
+            "Property": "Risk_Rank"
+          }
+        },
+        "type": "Advanced"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

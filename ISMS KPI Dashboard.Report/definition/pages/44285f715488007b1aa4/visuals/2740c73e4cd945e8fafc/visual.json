@@ -1,0 +1,238 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "2740c73e4cd945e8fafc",
+  "position": {
+    "x": 0,
+    "y": 56,
+    "z": 0,
+    "height": 664,
+    "width": 687,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "eLearning_ISMS_Snapshots"
+                    }
+                  },
+                  "Property": "Course Name"
+                }
+              },
+              "queryRef": "eLearning_ISMS_Snapshots.Course Name",
+              "nativeQueryRef": "Course Name",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "eLearning_ISMS_Snapshots"
+                    }
+                  },
+                  "Property": "Learner Course Status"
+                }
+              },
+              "queryRef": "eLearning_ISMS_Snapshots.Learner Course Status",
+              "nativeQueryRef": "Learner Course Status",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Schema": "extension",
+                      "Entity": "eLearning_ISMS_Snapshots"
+                    }
+                  },
+                  "Property": "Count Learners"
+                }
+              },
+              "queryRef": "eLearning_ISMS_Snapshots.Count Learners",
+              "nativeQueryRef": "Count Learners"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Schema": "extension",
+                      "Entity": "eLearning_ISMS_Snapshots"
+                    }
+                  },
+                  "Property": "Count Learners Enrolled"
+                }
+              },
+              "queryRef": "eLearning_ISMS_Snapshots.Count Learners Enrolled",
+              "nativeQueryRef": "Count Learners Enrolled"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Schema": "extension",
+                      "Entity": "eLearning_ISMS_Snapshots"
+                    }
+                  },
+                  "Property": "% Trainings 2_SS"
+                }
+              },
+              "queryRef": "eLearning_ISMS_Snapshots.% Trainings 2_SS",
+              "nativeQueryRef": "%",
+              "displayName": "%"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "eLearning_ISMS_Snapshots"
+                  }
+                },
+                "Property": "Course Name"
+              }
+            },
+            "direction": "Ascending"
+          },
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "eLearning_ISMS_Snapshots"
+                  }
+                },
+                "Property": "Learner Course Status"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "eLearning_ISMS_Snapshots.Course Name"
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "eLearning_ISMS_Snapshots.Learner Course Status"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "81.10765694289427D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "eLearning_ISMS_Snapshots.Learner Course Status"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "74.36903348582045D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "eLearning_ISMS_Snapshots.Count Learners"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "105.86769428322471D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "eLearning_ISMS_Snapshots.Count Learners Enrolled"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "267.752463999645D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "eLearning_ISMS_Snapshots.Course Name"
+          }
+        }
+      ],
+      "subTotals": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 8,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "Row"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

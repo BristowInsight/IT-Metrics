@@ -1,0 +1,346 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/reportExtension/1.0.0/schema.json",
+  "name": "extension",
+  "entities": [
+    {
+      "name": "Risk",
+      "measures": [
+        {
+          "name": "Count Risk ID",
+          "dataType": "Double",
+          "expression": "DISTINCTCOUNT(Risk[Number])",
+          "formatString": "General Number"
+        },
+        {
+          "name": "Count Risk ID V2",
+          "dataType": "Double",
+          "expression": "IF(DISTINCTCOUNT(Risk[Number])=0,\"--\",DISTINCTCOUNT(Risk[Number]))",
+          "formatString": "General Number"
+        }
+      ]
+    },
+    {
+      "name": "Tickets",
+      "measures": [
+        {
+          "name": "Time_To_Resolution_Hours_Frmt",
+          "dataType": "Double",
+          "expression": "ROUND(sum(Tickets[Time_Open_Hours_L])+0,1)",
+          "formatString": "0.0"
+        },
+        {
+          "name": "Sum Hours to Resolve Target",
+          "dataType": "Double",
+          "expression": "15*24 ",
+          "formatString": "General Number"
+        },
+        {
+          "name": "Average Time to Resolve",
+          "dataType": "Double",
+          "expression": "divide([Time_To_Resolution_Hours_Frmt],DISTINCTCOUNTNOBLANK(Tickets[Number]))",
+          "formatString": "0.0",
+          "references": {
+            "measures": [
+              {
+                "schema": "extension",
+                "entity": "Tickets",
+                "name": "Time_To_Resolution_Hours_Frmt"
+              }
+            ]
+          }
+        },
+        {
+          "name": "CF",
+          "dataType": "Double",
+          "expression": "SWITCH(LEFT(max(Tickets[Priority]),2),\n\"P1\",0\n,\"P2\",0\n,\"P3\",IF([Average Time to Resolve]>360,2,1)\n,\"P4\",IF([Average Time to Resolve]>360,2,1)\n,0)",
+          "formatString": "General Number",
+          "references": {
+            "measures": [
+              {
+                "schema": "extension",
+                "entity": "Tickets",
+                "name": "Average Time to Resolve"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Phishing_Simulation_Schedule",
+      "measures": [
+        {
+          "name": "Click %",
+          "dataType": "Double",
+          "expression": "sum(Phishing_Simulation_Schedule[Clicks])/sum(Phishing_Simulation_Schedule[Emails Sent])",
+          "formatString": "0.0\\ %;-0.0\\ %;0.0\\ %"
+        },
+        {
+          "name": "Click % Current Yr",
+          "dataType": "Double",
+          "expression": "CALCULATE([Click %],year('Calendar'[Date])=year(TODAY()))",
+          "formatString": "0.0\\ %;-0.0\\ %;0.0\\ %",
+          "references": {
+            "measures": [
+              {
+                "schema": "extension",
+                "entity": "Phishing_Simulation_Schedule",
+                "name": "Click %"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Click % Prev. Yr",
+          "dataType": "Double",
+          "expression": "CALCULATE([Click %],year('Calendar'[Date])=year(today())-1)",
+          "formatString": "0.0\\ %;-0.0\\ %;0.0\\ %",
+          "references": {
+            "measures": [
+              {
+                "schema": "extension",
+                "entity": "Phishing_Simulation_Schedule",
+                "name": "Click %"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Count Campaigns",
+          "dataType": "Double",
+          "expression": "count(Phishing_Simulation_Schedule[Campaign Date])+0",
+          "formatString": "General Number"
+        },
+        {
+          "name": "Max Phishing Update",
+          "dataType": "Double",
+          "expression": "max(Phishing_Simulation_Schedule[Modified])",
+          "formatString": "General Number"
+        },
+        {
+          "name": "Phishing Target",
+          "dataType": "Double",
+          "expression": ".05",
+          "formatString": "General Number"
+        }
+      ]
+    },
+    {
+      "name": "eLearning_ISMS",
+      "measures": [
+        {
+          "name": "Count Incomplete Trainings",
+          "dataType": "Double",
+          "expression": "CALCULATE(Count(eLearning_ISMS[Email ID]),eLearning_ISMS[Learner Course Status]<>\"Pass\")",
+          "formatString": "General Number"
+        },
+        {
+          "name": "Count Complete Trainings",
+          "dataType": "Double",
+          "expression": "CALCULATE(Count(eLearning_ISMS[Email ID]),eLearning_ISMS[Learner Course Status]=\"Pass\")",
+          "formatString": "General Number"
+        },
+        {
+          "name": "% Trainings Complete",
+          "dataType": "Double",
+          "expression": "([Count Complete Trainings]/COUNTROWS(eLearning_ISMS))+0",
+          "formatString": "0.0\\ %;-0.0\\ %;0.0\\ %",
+          "references": {
+            "measures": [
+              {
+                "schema": "extension",
+                "entity": "eLearning_ISMS",
+                "name": "Count Complete Trainings"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Count EmailID per Course Ttl",
+          "dataType": "Double",
+          "expression": "CALCULATE(COUNT(eLearning_ISMS[Email ID]),ALL(eLearning_ISMS[Learner Course Status]))",
+          "formatString": "General Number"
+        },
+        {
+          "name": "Count Enrolled Overdue",
+          "dataType": "Double",
+          "expression": "CALCULATE(Count(eLearning_ISMS[Email ID]),eLearning_ISMS[Employer]<>1,eLearning_ISMS[Overdue]=\"True\")",
+          "formatString": "General Number"
+        },
+        {
+          "name": "Count Enrolled Overdue + Passed",
+          "dataType": "Double",
+          "expression": "CALCULATE(Count(eLearning_ISMS[Email ID]),eLearning_ISMS[Employer]<>1,eLearning_ISMS[Overdue]=\"True\",eLearning_ISMS[Learner Course Status]<>\"Waived\",eLearning_ISMS[Learner Course Status]<>\"Pass\")+[Count Complete Trainings]",
+          "formatString": "General Number",
+          "references": {
+            "measures": [
+              {
+                "schema": "extension",
+                "entity": "eLearning_ISMS",
+                "name": "Count Complete Trainings"
+              }
+            ]
+          }
+        },
+        {
+          "name": "% Complete of Due Trainings",
+          "dataType": "Double",
+          "expression": "DIVIDE([Count Complete Trainings],[Count Enrolled Overdue + Passed],0)",
+          "formatString": "0.0\\ %;-0.0\\ %;0.0\\ %",
+          "references": {
+            "measures": [
+              {
+                "schema": "extension",
+                "entity": "eLearning_ISMS",
+                "name": "Count Complete Trainings"
+              },
+              {
+                "schema": "extension",
+                "entity": "eLearning_ISMS",
+                "name": "Count Enrolled Overdue + Passed"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Enhancements",
+      "measures": [
+        {
+          "name": "Count Enhancement Tickets",
+          "dataType": "Double",
+          "expression": "if( DISTINCTCOUNT(Enhancements[Ticket_Number]) = 0,0,DISTINCTCOUNT(Enhancements[Ticket_Number]))",
+          "formatString": "General Number"
+        },
+        {
+          "name": "Enhancements Last Update",
+          "dataType": "Double",
+          "expression": "max(Enhancements[sys_updated_on])",
+          "formatString": "General Number"
+        },
+        {
+          "name": "Count Opened Tickets",
+          "dataType": "Double",
+          "expression": "CALCULATE(DISTINCTCOUNT(Enhancements[Ticket Number]),USERELATIONSHIP('Calendar'[Date],Enhancements[Opened Date]))",
+          "formatString": "General Number"
+        },
+        {
+          "name": "Count Tickets By Closed Date",
+          "dataType": "Double",
+          "expression": "CALCULATE(DISTINCTCOUNT(Enhancements[Ticket Number]),USERELATIONSHIP('Calendar'[Date],Enhancements[Closed Date]))",
+          "formatString": "General Number"
+        }
+      ]
+    },
+    {
+      "name": "eLearning_ISMS_Snapshots",
+      "measures": [
+        {
+          "name": "Count Incomplete Trainings_SS",
+          "dataType": "Double",
+          "expression": "CALCULATE(Count(eLearning_ISMS_Snapshots[Email ID]),eLearning_ISMS_Snapshots[Learner Course Status]<>\"Pass\")",
+          "formatString": "General Number"
+        },
+        {
+          "name": "Count Enrolled Overdue + Passed_SS",
+          "dataType": "Double",
+          "expression": "CALCULATE(Count(eLearning_ISMS_Snapshots[Email ID]),eLearning_ISMS_Snapshots[Employer]<>1,eLearning_ISMS_Snapshots[Overdue]=\"True\",eLearning_ISMS_Snapshots[Learner Course Status]<>\"Waived\",eLearning_ISMS_Snapshots[Learner Course Status]<>\"Pass\")+[Count Complete Trainings_SS]",
+          "formatString": "General Number",
+          "references": {
+            "measures": [
+              {
+                "schema": "extension",
+                "entity": "eLearning_ISMS_Snapshots",
+                "name": "Count Complete Trainings_SS"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Count Enrolled Overdue_SS",
+          "dataType": "Double",
+          "expression": "CALCULATE(Count(eLearning_ISMS_Snapshots[Email ID]),eLearning_ISMS_Snapshots[Employer]<>1,eLearning_ISMS_Snapshots[Overdue]=\"True\")",
+          "formatString": "General Number"
+        },
+        {
+          "name": "Count EmailID per Course Ttl_SS",
+          "dataType": "Double",
+          "expression": "CALCULATE(COUNT(eLearning_ISMS_Snapshots[Email ID]),ALL(eLearning_ISMS_Snapshots[Learner Course Status]))",
+          "formatString": "General Number"
+        },
+        {
+          "name": "Count Complete Trainings_SS",
+          "dataType": "Double",
+          "expression": "CALCULATE(Count(eLearning_ISMS_Snapshots[Email ID]),eLearning_ISMS_Snapshots[Learner Course Status]=\"Pass\")",
+          "formatString": "General Number"
+        },
+        {
+          "name": "% Trainings Complete_SS",
+          "dataType": "Double",
+          "expression": "([Count Complete Trainings_SS]/COUNTROWS(eLearning_ISMS_Snapshots))+0",
+          "formatString": "0.00\\ %;-0.00\\ %;0.00\\ %",
+          "references": {
+            "measures": [
+              {
+                "schema": "extension",
+                "entity": "eLearning_ISMS_Snapshots",
+                "name": "Count Complete Trainings_SS"
+              }
+            ]
+          }
+        },
+        {
+          "name": "% Complete of Due Trainings_SS",
+          "dataType": "Double",
+          "expression": "DIVIDE([Count Complete Trainings_SS],[Count Enrolled Overdue + Passed_SS],0)",
+          "formatString": "General Number",
+          "references": {
+            "measures": [
+              {
+                "schema": "extension",
+                "entity": "eLearning_ISMS_Snapshots",
+                "name": "Count Complete Trainings_SS"
+              },
+              {
+                "schema": "extension",
+                "entity": "eLearning_ISMS_Snapshots",
+                "name": "Count Enrolled Overdue + Passed_SS"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Count Failed Trainings_SS",
+          "dataType": "Double",
+          "expression": "CALCULATE(Count(eLearning_ISMS_Snapshots[Email ID]),eLearning_ISMS_Snapshots[Learner Course Status]=\"Fail\")",
+          "formatString": "General Number"
+        },
+        {
+          "name": "% Trainings _SS",
+          "dataType": "Double",
+          "expression": "DIVIDE(\n    calculate(COUNTROWS(eLearning_ISMS_Snapshots),ALLEXCEPT(eLearning_ISMS_Snapshots,eLearning_ISMS_Snapshots[Learner Course Status],eLearning_ISMS_Snapshots[Date],eLearning_ISMS_Snapshots[Course Name],eLearning_ISMS_Snapshots[Country],eLearning_ISMS_Snapshots[Course Overdue])),\n    CALCULATE(COUNTROWS(eLearning_ISMS_Snapshots),ALLEXCEPT(eLearning_ISMS_Snapshots,eLearning_ISMS_Snapshots[Date],eLearning_ISMS_Snapshots[Course Name],eLearning_ISMS_Snapshots[Country],eLearning_ISMS_Snapshots[Course Overdue]))+0\n    ,0)",
+          "formatString": "0.00\\ %;-0.00\\ %;0.00\\ %"
+        },
+        {
+          "name": "Count Learners",
+          "dataType": "Double",
+          "expression": "calculate(COUNTROWS(eLearning_ISMS_Snapshots),eLearning_ISMS_Snapshots[Employer]=0)",
+          "formatString": "General Number"
+        },
+        {
+          "name": "Count Learners Enrolled",
+          "dataType": "Double",
+          "expression": "\n    CALCULATE(COUNTROWS(eLearning_ISMS_Snapshots),REMOVEFILTERS(eLearning_ISMS_Snapshots[Learner Course Status]),eLearning_ISMS_Snapshots[Employer]=0)+0",
+          "formatString": "General Number"
+        },
+        {
+          "name": "% Trainings 2_SS",
+          "dataType": "Double",
+          "expression": "DIVIDE(\n    calculate(COUNTROWS(eLearning_ISMS_Snapshots)),\n    CALCULATE(COUNTROWS(eLearning_ISMS_Snapshots),REMOVEFILTERS(eLearning_ISMS_Snapshots[Learner Course Status]))+0\n    ,0)",
+          "formatString": "0.00\\ %;-0.00\\ %;0.00\\ %"
+        }
+      ]
+    }
+  ]
+}

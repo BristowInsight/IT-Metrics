@@ -1,0 +1,136 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "65843d06014157275ed1",
+  "position": {
+    "x": 17.441332323996974,
+    "y": 412.778198334595,
+    "z": 6000,
+    "height": 298.440575321726,
+    "width": 1242.21044663134,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "eLearning_ISMS_Snapshots"
+                    }
+                  },
+                  "Property": "Region"
+                }
+              },
+              "queryRef": "eLearning_ISMS_Snapshots.Region",
+              "nativeQueryRef": "Region1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "eLearning_ISMS_Snapshots"
+                    }
+                  },
+                  "Property": "Division"
+                }
+              },
+              "queryRef": "eLearning_ISMS_Snapshots.Division",
+              "nativeQueryRef": "Division1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "eLearning_ISMS_Snapshots"
+                    }
+                  },
+                  "Property": "Email ID"
+                }
+              },
+              "queryRef": "eLearning_ISMS_Snapshots.Email ID",
+              "nativeQueryRef": "Email ID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "eLearning_ISMS_Snapshots"
+                    }
+                  },
+                  "Property": "Course Name"
+                }
+              },
+              "queryRef": "eLearning_ISMS_Snapshots.Course Name",
+              "nativeQueryRef": "Course Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "eLearning_ISMS_Snapshots"
+                    }
+                  },
+                  "Property": "Learner Course Status"
+                }
+              },
+              "queryRef": "eLearning_ISMS_Snapshots.Learner Course Status",
+              "nativeQueryRef": "Learner Course Status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "eLearning_ISMS_Snapshots"
+                    }
+                  },
+                  "Property": "Due Date"
+                }
+              },
+              "queryRef": "eLearning_ISMS_Snapshots.Due Date",
+              "nativeQueryRef": "Due Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "eLearning_ISMS_Snapshots"
+                    }
+                  },
+                  "Property": "Overdue"
+                }
+              },
+              "queryRef": "eLearning_ISMS_Snapshots.Overdue",
+              "nativeQueryRef": "Overdue1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "eLearning_ISMS_Snapshots"
+                    }
+                  },
+                  "Property": "Status+Overdue"
+                }
+              },
+              "queryRef": "eLearning_ISMS_Snapshots.Status+Overdue",
+              "nativeQueryRef": "Status+Overdue1"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
