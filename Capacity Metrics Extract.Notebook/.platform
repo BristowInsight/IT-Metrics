@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "Capacity Metrics Extract",
+    "description": "Daily extraction of Fabric Capacity Metrics into the IT_Metrics Lakehouse"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "94b315a9-ab5b-4e49-9821-8755a66e99d2"
+  }
+}
