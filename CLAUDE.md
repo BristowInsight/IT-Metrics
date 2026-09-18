@@ -4,7 +4,7 @@
 - Git remote: github.com/BristowInsight/IT-Metrics
 - Contains multiple Power BI projects (PBIP format) + 1 Lakehouse
 - `Archive/` — retired projects (LN-OIJ Flight Following)
-- No .gitignore — all PBIR/TMDL files are tracked
+- `.gitignore` exists and ignores exactly `**/.pbi/localSettings.json` and `**/.pbi/cache.abf`; all other PBIR/TMDL files are tracked
 
 ## Active Projects
 - **Bristow Insight Portfolio** — Product catalog dashboard (SharePoint Lists source)
