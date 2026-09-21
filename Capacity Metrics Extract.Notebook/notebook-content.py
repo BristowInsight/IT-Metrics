@@ -24,12 +24,11 @@
 
 # Parameters for the Capacity Metrics Extract notebook.
 #
-# This is the first code cell so a pipeline or a person can override these values.
-# It is a plain code cell, not a toggled Fabric parameter cell, because the exact
-# marker for a parameter cell in the Git .py source format is not documented by
-# Microsoft and this lane does not guess file formats. To turn it into a real
-# parameter cell, open the notebook in the workspace after the first Git sync,
-# open the cell menu, and choose "Toggle parameter cell". See README.md.
+# This is a real Fabric parameter cell. The workspace toggled it on 2026-09-21 and
+# Fabric wrote the "# PARAMETERS CELL" marker above, so a pipeline or a schedule can
+# override any value below with base parameters. Leave that marker alone: Fabric owns
+# it, and editing it by hand turns this back into an ordinary code cell.
+# See Capacity-Metrics-Extract.md at the repository root.
 
 # How many whole days to load, counting back from yesterday in model time.
 days_in_scope = 3
@@ -55,9 +54,12 @@ write_mode = "replace_days"
 # CELL ********************
 
 import re
+import time
+import traceback
 import uuid
 from datetime import datetime, timedelta, timezone, date
 
+import pandas as pd
 import sempy.fabric as fabric
 from pyspark.sql.types import (
     StructType,
@@ -86,6 +88,29 @@ SKU_CU = {
     "F128": 128, "F256": 256, "F512": 512, "F1024": 1024, "F2048": 2048,
 }
 
+# Transient source failures. On 2026-09-21 every query against the source model's
+# two DirectQuery fact tables answered "Internal Error: Error obtaining data
+# location" for about fifteen minutes and then recovered with no change to the
+# query, while the model's Import tables answered normally throughout. It was seen
+# that day through both Semantic Link and the Power BI REST endpoint, so the source
+# is what fails, not the transport, and a bounded retry is the answer available here.
+QUERY_ATTEMPTS = 3
+QUERY_BACKOFF_S = (20, 60)
+RETRY_ON_TEXT = (
+    "error obtaining data location",
+    "connection",
+    "timed out",
+    "timeout",
+    "429",
+    "too many requests",
+    "500",
+    "502",
+    "503",
+    "504",
+    "internal server error",
+    "service unavailable",
+)
+
 TBL_OPS = "capmetrics_item_operation_day"
 TBL_CUD = "capmetrics_cu_window_30s"
 TBL_ITEMS = "capmetrics_items"
@@ -105,15 +130,42 @@ TBL_LOG = "capmetrics_run_log"
 # than handed straight from pandas, so a day that comes back empty or with a null
 # column cannot change a Delta column's type between runs.
 
-def _s(v):
+def _isnull(v):
+    """True for None and for every missing value pandas uses.
+
+    Semantic Link types its result columns with pandas nullable dtypes: 'string'
+    for text, 'Int64' for whole numbers, 'Float64' for decimals. Their missing
+    value is pd.NA, and any comparison against pd.NA returns pd.NA rather than a
+    boolean, so a plain `if v == ""` on a missing measure raises
+    "TypeError: boolean value of NA is ambiguous". Measured 2026-09-21 against the
+    real column types, which is also why str(pd.NA) must never reach a Delta
+    column: it would land the literal text "<NA>".
+    """
     if v is None:
+        return True
+    try:
+        missing = pd.isna(v)
+    except (TypeError, ValueError):
+        return False
+    if isinstance(missing, bool):
+        return missing
+    try:
+        return bool(missing)
+    except (TypeError, ValueError):
+        return False
+
+
+def _s(v):
+    if _isnull(v):
         return None
     t = str(v).strip()
     return t if t else None
 
 
 def _f(v):
-    if v is None or v == "":
+    if _isnull(v):
+        return None
+    if isinstance(v, str) and not v.strip():
         return None
     try:
         f = float(v)
@@ -128,21 +180,23 @@ def _i(v):
 
 
 def _d(v):
-    if v is None or v == "":
+    if _isnull(v):
         return None
     if isinstance(v, datetime):
         return v.date()
     if isinstance(v, date):
         return v
-    return datetime.fromisoformat(str(v)[:19]).date()
+    text = str(v).strip()
+    return datetime.fromisoformat(text[:19]).date() if text else None
 
 
 def _ts(v):
-    if v is None or v == "":
+    if _isnull(v):
         return None
     if isinstance(v, datetime):
         return v
-    return datetime.fromisoformat(str(v)[:19])
+    text = str(v).strip()
+    return datetime.fromisoformat(text[:19]) if text else None
 
 
 def model_today():
@@ -160,11 +214,32 @@ def dates_in_scope(n_days):
     return [end - timedelta(days=i) for i in range(n_days - 1, -1, -1)]
 
 
+def _is_retryable(ex):
+    """Whether this failure is worth another attempt rather than a recorded error."""
+    text = f"{type(ex).__name__}: {ex}".lower()
+    return any(marker in text for marker in RETRY_ON_TEXT)
+
+
 def run_dax(dax_string):
-    """Run one DAX query against the Capacity Metrics model."""
-    return fabric.evaluate_dax(
-        workspace=metric_workspace, dataset=metric_dataset, dax_string=dax_string
-    )
+    """Run one DAX query against the Capacity Metrics model.
+
+    Retries a transient source failure up to QUERY_ATTEMPTS times, because the
+    source model's DirectQuery tables go unavailable for minutes at a time (see
+    RETRY_ON_TEXT above). Anything not on that list is raised at once, since a
+    wrong query or a missing permission does not improve with waiting.
+    """
+    for attempt in range(1, QUERY_ATTEMPTS + 1):
+        try:
+            return fabric.evaluate_dax(
+                workspace=metric_workspace, dataset=metric_dataset, dax_string=dax_string
+            )
+        except Exception as ex:
+            if attempt == QUERY_ATTEMPTS or not _is_retryable(ex):
+                raise
+            wait = QUERY_BACKOFF_S[attempt - 1]
+            print(f"query attempt {attempt} of {QUERY_ATTEMPTS} failed "
+                  f"({type(ex).__name__}: {ex}); retrying in {wait} s")
+            time.sleep(wait)
 
 # METADATA ********************
 
@@ -571,8 +646,11 @@ for day in target_dates:
                 TBL_CUD, cud_rows, SCHEMA_CUD, "window_date", day, capacity_id)
             print(f"written to {TBL_OPS} and {TBL_CUD}")
 
-    except Exception as ex:
-        message = f"{day.isoformat()}: {type(ex).__name__}: {ex}"
+    except Exception:
+        # The whole traceback, not just the type and the message. A run that fails
+        # inside a library is unreadable without it, and the run log is the only
+        # record left once the Spark session is gone.
+        message = f"{day.isoformat()}: {traceback.format_exc()}"
         errors.append(message)
         print(f"ERROR {message}")
 
@@ -608,8 +686,8 @@ try:
         counts[TBL_CAPS] = replace_all(TBL_CAPS, caps_rows, SCHEMA_CAPS)
         print(f"written to {TBL_ITEMS} and {TBL_CAPS}")
 
-except Exception as ex:
-    message = f"snapshots: {type(ex).__name__}: {ex}"
+except Exception:
+    message = f"snapshots: {traceback.format_exc()}"
     errors.append(message)
     print(f"ERROR {message}")
 
@@ -666,6 +744,15 @@ if write_mode == "dry_run":
 else:
     write_rows(TBL_LOG, [log_row], SCHEMA_LOG, mode="append")
     print(f"{TBL_LOG:<32}: 1 row appended")
+
+# Fail the Fabric job when the run was not clean. notebookutils.notebook.exit()
+# leaves the job status Completed whatever value it is handed, so a partial or a
+# failed run used to look like a success to the scheduler and in job history.
+# The run log row is written above first, so the record survives either way.
+if status != "success":
+    raise RuntimeError(
+        f"Capacity Metrics Extract finished with status {status!r}. {error_text}"
+    )
 
 notebookutils.notebook.exit(status)
 
