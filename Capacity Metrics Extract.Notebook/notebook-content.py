@@ -129,6 +129,16 @@ TBL_LOG = "capmetrics_run_log"
 # Value converters. Every DataFrame is built from explicit Python tuples rather
 # than handed straight from pandas, so a day that comes back empty or with a null
 # column cannot change a Delta column's type between runs.
+#
+# None of these may be named for an IPython output variable. The notebook kernel is
+# IPython, and after every cell it rebinds `_i`, `_ii` and `_iii` to the source text
+# of the last three cells, and `_`, `__` and `___` to their results. A helper defined
+# here under one of those names is a string by the time a later cell calls it. This
+# cost a run: on 2026-09-21 the integer converter was called `_i`, and every one of
+# the 13 daily dates failed with "TypeError: 'str' object is not callable" while the
+# snapshot path, which never calls it, succeeded (Fabric job 34b674cb). It is `_int`
+# now. The reserved names to avoid are `_`, `__`, `___`, `_i`, `_ii`, `_iii`, `_ih`,
+# `_oh`, `_dh`, `In`, `Out`, `exit`, `quit` and `get_ipython`.
 
 def _isnull(v):
     """True for None and for every missing value pandas uses.
@@ -174,7 +184,7 @@ def _f(v):
     return None if f != f else f
 
 
-def _i(v):
+def _int(v):
     f = _f(v)
     return None if f is None else int(f)
 
@@ -473,8 +483,8 @@ def rows_item_operation_day(df, loaded_at, run_id):
             _s(r[5]),                       # operation_name
             _d(r[2]),                       # date
             _f(r[6]), _f(r[7]), _f(r[8]),   # duration_s, cu_s, throttling_min
-            _i(r[9]), _i(r[10]), _i(r[11]),  # users, operations, successful
-            _i(r[12]), _i(r[13]), _i(r[14]), _i(r[15]),  # rejected, invalid, failed, cancelled
+            _int(r[9]), _int(r[10]), _int(r[11]),  # users, operations, successful
+            _int(r[12]), _int(r[13]), _int(r[14]), _int(r[15]),  # rejected, invalid, failed, cancelled
             loaded_at,
             run_id,
         ))
@@ -489,7 +499,7 @@ def rows_cu_window_30s(df, cap_id, loaded_at, run_id):
             continue
         cu_s = _f(r[1])
         sku = _s(r[10])
-        sku_cu = _i(r[11])
+        sku_cu = _int(r[11])
         if sku_cu is None and sku is not None:
             sku_cu = SKU_CU.get(sku)
         budget = float(sku_cu * WINDOW_SECONDS) if sku_cu else None
