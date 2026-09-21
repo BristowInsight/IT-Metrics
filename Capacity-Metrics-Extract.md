@@ -84,7 +84,16 @@ when this was built, so it is safe as a key.
 
 One appended row per run: run_id, started_at_utc, finished_at_utc, days_in_scope,
 write_mode, dates_processed, a row count per table, status and error_text. Status is
-success, partial or failed.
+success, partial or failed. `error_text` carries the full Python traceback of every
+failure, oldest first, truncated at 4000 characters, because a failure inside a
+library cannot be diagnosed from an exception type and message alone and the Spark
+session that held the log output is gone by the time anyone looks.
+
+A run whose status is not success writes its run log row and then raises, so the
+Fabric job ends Failed. This matters: `notebookutils.notebook.exit()` leaves the job
+status Completed whatever value it is handed, so before this the scheduler and the
+job history showed a green run for an extraction that had written nothing. Read the
+outcome from `capmetrics_run_log`, not from job history.
 
 ## Parameters
 
@@ -96,12 +105,12 @@ success, partial or failed.
 | metric_dataset | e510b503-48b3-4414-ad4c-1e40f2be1d28 | Fabric Capacity Metrics model |
 | write_mode | replace_days | Or dry_run, which queries and prints but writes nothing |
 
-The parameters live in the first code cell. It is a plain code cell, not a toggled
-Fabric parameter cell, because the marker for a parameter cell in the Git `.py` source
-format is not documented by Microsoft and this was not worth guessing. If the notebook
-ever needs to be driven from a pipeline with base parameters, open it in the workspace
-after a Git sync, open the menu on that first cell, and choose "Toggle parameter cell".
-Fabric will then manage the marker itself.
+The parameters live in the first cell, which is a real Fabric parameter cell. The
+workspace toggled it on 2026-09-21 and Fabric wrote the marker
+`# PARAMETERS CELL ********************` into `notebook-content.py` itself, so a
+pipeline or a schedule can override any of the five values with base parameters.
+Fabric owns that marker line. Editing it by hand turns the cell back into an
+ordinary code cell and the overrides stop being applied.
 
 ## How to run it
 
@@ -161,6 +170,31 @@ directions. On 2026-09-10 the item operation total was 4,378,598 against 4,508,6
 the 30 second windows. On 2026-09-15 it was 3,857,739 against 2,951,293. Use the 30
 second windows for capacity utilization and the item operation table for attribution.
 
+## Measured 2026-09-21
+
+**The source model's fact tables go away for minutes at a time.** Between about
+16:45 and 17:00 UTC every query against `CU Detail` and
+`Metrics By Item Operation And Day` answered `Internal Error: Error obtaining data
+location. . The exception was raised by the IDbCommand interface.`
+(AnalysisServicesErrorCode 3239182364), and then the identical queries succeeded
+again with nothing changed. It was reproduced in that window through Semantic Link
+inside Fabric and through the Power BI REST executeQueries endpoint from outside, so
+the source is what fails rather than the way it is queried. Throughout the outage the
+model's Import tables (Items, Capacities, Timepoints, Dates) answered normally, and
+its scheduled refresh had completed that morning at 05:05 UTC, so neither staleness
+nor permissions explain it. The notebook now retries a failing query three times, 20
+seconds then 60 seconds apart, and prints each retry. An outage longer than that
+still fails the run, which is the honest outcome.
+
+**Semantic Link returns pandas nullable columns, and a blank measure is `pd.NA`.**
+Its result columns are typed `string`, `Int64` and `Float64`, whose missing value is
+`pd.NA`. Comparing `pd.NA` with anything returns `pd.NA` rather than a boolean, so a
+test like `if v == ""` on a blank measure raises
+`TypeError: boolean value of NA is ambiguous`, and `str(pd.NA)` produces the literal
+text `<NA>`. The value converters check for missing values with `pandas.isna` before
+anything else, so a blank measure lands as a real null instead of raising or landing
+as text.
+
 ## Known limits
 
 Zero CU rows are dropped from the item operation table. This follows the pattern in
@@ -172,5 +206,9 @@ rows. If those matter later, widen the filter from `cu_s > 0` to also keep rows 
 Only one capacity is loaded per run. Storage metrics, autoscale, System Events and
 Item History are not extracted.
 
-The notebook reads the source model through Semantic Link, so whoever or whatever runs
-it needs Build permission on the Fabric Capacity Metrics semantic model.
+The notebook reads the source model through Semantic Link
+(`sempy.fabric.evaluate_dax`), which reaches the model over XMLA under the identity
+that runs the notebook. That identity needs Build permission on the Fabric Capacity
+Metrics semantic model. A scheduled run uses the identity of whoever owns the
+schedule, so handing the notebook to someone else means checking that permission
+again.
