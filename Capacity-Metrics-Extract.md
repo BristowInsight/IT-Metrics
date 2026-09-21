@@ -195,6 +195,17 @@ text `<NA>`. The value converters check for missing values with `pandas.isna` be
 anything else, so a blank measure lands as a real null instead of raising or landing
 as text.
 
+**A helper named for an IPython output variable is a string by the time a later
+cell calls it.** The notebook kernel is IPython, which rebinds `_i`, `_ii` and
+`_iii` to the source text of the last three cells after every cell, and `_`, `__`
+and `___` to their results. The integer converter was called `_i`, so by the time
+the daily loop ran it was the text of a previous cell: every one of the 13 daily
+dates failed with `TypeError: 'str' object is not callable` while the snapshot
+path, which never calls that converter, succeeded in the same run (Fabric job
+34b674cb). It is `_int` now. Nothing defined in this notebook may take one of the
+names `_`, `__`, `___`, `_i`, `_ii`, `_iii`, `_ih`, `_oh`, `_dh`, `In`, `Out`,
+`exit`, `quit` or `get_ipython`, and the lane harness fails the build if one does.
+
 ## Known limits
 
 Zero CU rows are dropped from the item operation table. This follows the pattern in
