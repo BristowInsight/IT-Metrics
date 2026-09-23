@@ -83,7 +83,7 @@ from pyspark.sql.types import (
 )
 
 # Written into every evidence file, so a reader knows which notebook produced it.
-NOTEBOOK_VERSION = "3.0.0"
+NOTEBOOK_VERSION = "3.1.0"
 
 # The Capacity Metrics model stores its timepoints at a fixed offset from UTC.
 # Measured 2026-09-18: UTC 19:50:43 against a latest window start of 13:46:30,
@@ -492,6 +492,9 @@ SCHEMA_CUD = StructType([
     StructField("run_id", StringType(), True),
 ])
 
+# item_label is what the semantic model and the report show for an item. Item
+# names are not unique across workspaces, so the label adds the kind and the
+# workspace, and is unique within each snapshot (see rows_items).
 SCHEMA_ITEMS = StructType([
     StructField("item_id", StringType(), True),
     StructField("workspace_id", StringType(), True),
@@ -500,6 +503,7 @@ SCHEMA_ITEMS = StructType([
     StructField("item_kind", StringType(), True),
     StructField("billable_type", StringType(), True),
     StructField("capacity_id", StringType(), True),
+    StructField("item_label", StringType(), True),
     StructField("snapshot_date", DateType(), True),
     StructField("loaded_at_utc", TimestampType(), True),
     StructField("run_id", StringType(), True),
@@ -603,11 +607,50 @@ def rows_cu_window_30s(df, cap_id, loaded_at, run_id):
     return out
 
 
+def item_label(item_id, item_name, item_kind, workspace_name):
+    """An item's readable label, before any collision suffix.
+
+    The item name, or the item id when the name is missing, then the item kind and
+    the workspace name in parentheses, a missing part left out and no parentheses
+    when both are missing: "RAMCO Ingest CICD (DataflowFabric, DF RAMCO)". The kind
+    is the model's own value. Names alone are not unique: on the 522 items captured
+    2026-09-21, 66 names were shared by 209 items, while name, kind and workspace
+    together were unique.
+    """
+    head = item_name or item_id
+    tail = ", ".join(part for part in (item_kind, workspace_name) if part)
+    if head and tail:
+        return f"{head} ({tail})"
+    if head:
+        return head
+    return f"({tail})" if tail else None
+
+
 def rows_items(df, snapshot_day, loaded_at, run_id):
-    return [(
-        _s(r[0]), _s(r[1]), _s(r[2]), _s(r[3]), _s(r[4]), _s(r[5]), _s(r[6]),
-        snapshot_day, loaded_at, run_id,
-    ) for r in df.itertuples(index=False, name=None)]
+    """Items snapshot rows, with item_label unique within the snapshot.
+
+    When two or more rows share a label, compared without regard to case because
+    the semantic model compares text that way, each of those rows gets a space and
+    the first 8 characters of its item_id in square brackets. A row whose label is
+    already unique is left as it is, so the rule changes nothing until a collision
+    appears, and it gives the same labels for the same snapshot every time.
+    """
+    labelled = []
+    for r in df.itertuples(index=False, name=None):
+        # item_id, workspace_id, workspace_name, item_name, item_kind,
+        # billable_type, capacity_id
+        values = tuple(_s(v) for v in r[:7])
+        labelled.append((values, item_label(values[0], values[3], values[4], values[2])))
+    uses = {}
+    for values, label in labelled:
+        if label is not None:
+            uses[label.casefold()] = uses.get(label.casefold(), 0) + 1
+    out = []
+    for values, label in labelled:
+        if label is not None and values[0] and uses[label.casefold()] > 1:
+            label = f"{label} [{values[0][:8]}]"
+        out.append(values + (label, snapshot_day, loaded_at, run_id))
+    return out
 
 
 def rows_capacities(df, snapshot_day, loaded_at, run_id):
@@ -1109,7 +1152,9 @@ try:
     snap_caps["rows"] = len(caps_rows)
 
     distinct_items = len({r[0] for r in items_rows})
-    print(f"items      : {len(items_rows)} rows, {distinct_items} distinct item_id")
+    distinct_labels = len({r[7].casefold() for r in items_rows if r[7] is not None})
+    print(f"items      : {len(items_rows)} rows, {distinct_items} distinct item_id, "
+          f"{distinct_labels} distinct item_label")
     if distinct_items != len(items_rows):
         print("NOTE: item_id is not unique in this snapshot, which was not true on 2026-09-18.")
     print(f"capacities : {len(caps_rows)} rows")

@@ -4,7 +4,7 @@ A Fabric notebook that copies Microsoft Fabric Capacity Metrics into the IT_Metr
 Lakehouse one day at a time, so capacity history survives the short retention window
 of the source model. Two Data Pipelines run it: Capacity Metrics Daily on a schedule,
 and Capacity Metrics Smoke to check a change without touching the real history. This
-page describes notebook version 3.0.0.
+page describes notebook version 3.1.0.
 
 ## Why this exists
 
@@ -89,9 +89,26 @@ follow the model's fixed UTC minus 6 hours, not US Central wall clock time.
 
 Snapshots of the two Import tables in the source model, replaced whole on every run
 and stamped with `snapshot_date`. Items carries item_id, workspace_id, workspace_name,
-item_name, item_kind, billable_type and capacity_id. Capacities carries capacity_id,
-capacity_name, sku, state, region and owners. Item_id was unique across all 520 rows
-when this was built, so it is safe as a key.
+item_name, item_kind, billable_type, capacity_id and item_label. Capacities carries
+capacity_id, capacity_name, sku, state, region and owners. Item_id was unique across
+all 520 rows when this was built, so it is safe as a key.
+
+| Column | Type | Notes |
+| --- | --- | --- |
+| item_label | string | Built by the notebook, after capacity_id and before snapshot_date. The item name, or the item_id when the name is null or blank, then a space and, in parentheses, item_kind and workspace_name separated by a comma and a space, a missing part left out and no parentheses when both are missing. For example `RAMCO Ingest CICD (DataflowFabric, DF RAMCO)`. item_kind is the model's own value |
+
+`item_label` is the column the semantic model and the report show for an item,
+because item names are not unique: in the 522 items captured on 2026-09-21, 66
+names were shared by 209 items, and DataflowsStagingLakehouse alone was 42 items in
+29 workspaces, while the label was unique for all 522. The label is kept unique
+within each snapshot: when two or more rows would share a label, compared without
+regard to case as the semantic model compares text, each of those rows gets a space
+and the first 8 characters of its item_id in square brackets, so two items that
+would both be `Sales (Dataset, My workspace)` become, for example,
+`Sales (Dataset, My workspace) [1A2B3C4D]` and `Sales (Dataset, My workspace) [5E6F7A8B]`.
+Rows whose label is already unique are left as they are, so on the 2026-09-21 data
+no label carries a suffix. The rule can trigger where two workspaces share a name,
+as personal workspaces all called "My workspace" do.
 
 ### capmetrics_run_log
 
@@ -129,7 +146,7 @@ write itself fails, which fails the job.
 
 | Key | Holds |
 | --- | --- |
-| notebook_version | "3.0.0" |
+| notebook_version | "3.1.0" |
 | run_id | Also the file name, and the run_id on every row the run wrote |
 | started_at_utc, finished_at_utc | ISO text, UTC |
 | parameters | days_in_scope, capacity_id, metric_workspace, metric_dataset, write_mode, table_prefix, as the run used them |
@@ -278,7 +295,7 @@ consecutive failures (typically 10).
 3. Check that it belongs to this run: `started_at_utc` is after the pipeline was
    started. A stale file means the run failed before it could write one; then
    `Files/<prefix>/runs/` and the run log are the next places to look.
-4. Check `notebook_version` is `3.0.0`, `parameters.write_mode` is
+4. Check `notebook_version` is `3.1.0`, `parameters.write_mode` is
    `replace_days` (a dry run writes to the same `latest.json`), `status` is
    `success`, `run_log_row_written` is true, the probe `outcome` is `ok`, and every
    date and table entry is `written` or `kept_existing` with `verification.passed`
@@ -287,13 +304,13 @@ consecutive failures (typically 10).
 
 ## What has been run and what has not
 
-Version 3.0.0 has been run only locally, offline, by the lane that built it: every
+Version 3.1.0 has been run only locally, offline, by the lane that built it: every
 cell executed in order in a harness that replays query results captured live from
 the source model on 2026-09-21, with Spark and notebookutils replaced by in-memory
 stand-ins and PySpark's own row type verifier applied to every row. That covered the
 probe, the trim guard, the read-back verification, the evidence file, dry runs, the
-retry timings and both table prefixes. No Fabric run of version 3.0.0, and no run of
-either pipeline, had been made when this page was written. The first Fabric run
+retry timings, both table prefixes and the item label. The lane made no Fabric
+run of any version 3 notebook and ran neither pipeline. The first Fabric run
 proves what the harness cannot: the Delta DELETE and read-back SQL, the OneLake
 evidence write, and that Fabric accepts the two pipeline definitions and the
 schedule.
@@ -349,7 +366,7 @@ the source is what fails rather than the way it is queried. Throughout the outag
 model's Import tables (Items, Capacities, Timepoints, Dates) answered normally, and
 its scheduled refresh had completed that morning at 05:05 UTC, so neither staleness
 nor permissions explain it. The notebook's answer to this has changed twice: a short
-per-query retry after this date, a longer one on 2026-09-23, and in version 3.0.0 a
+per-query retry after this date, a longer one on 2026-09-23, and since version 3 a
 probe at the start of the run with the retry left to the pipeline (see "How a run
 works").
 
@@ -383,7 +400,7 @@ reference figures exactly. So the transport is sound and the outage is on the so
 side. The retry of the time waited 80 seconds in all, far short of seven minutes, and
 was lengthened that day to five attempts over 7.5 minutes per query. Two Fabric runs
 of the notebook still ended without the window table and with a partial item
-operation table, which is why version 3.0.0 stops waiting inside a query: it probes
+operation table, which is why version 3 stops waiting inside a query: it probes
 first, fails fast when the source is down, and lets the Daily pipeline try again 30
 minutes later.
 
@@ -391,7 +408,7 @@ minutes later.
 dataset id `e510b503-48b3-4414-ad4c-1e40f2be1d28` contains `503`, so a retry list
 holding a bare `"503"` retried `Dataset ... not found` for this very dataset, and a
 bare `"connection"` retried a permission error that mentions a connection. The list
-in version 3.0.0 holds phrases only (`service unavailable`, `status code 503`,
+since version 3 holds phrases only (`service unavailable`, `status code 503`,
 `connection reset` and so on); Semantic Link words an HTTP failure
 `<status> <reason> for url: ...`, so the reason phrases are what match it.
 
@@ -416,8 +433,8 @@ a value bound for a Spark field must be exactly `str`, `float`, `int`,
 merely behaves like one. The notebook of the time deleted a date before it built
 the DataFrame, so the same failure against a table that already held the date would
 have deleted the stored rows and written nothing. It did not happen that day only
-because the window table did not exist yet. Version 3.0.0 builds the DataFrame
-before it deletes anything.
+because the window table did not exist yet. Since version 3 the DataFrame is built
+before anything is deleted.
 
 ## Known limits
 
