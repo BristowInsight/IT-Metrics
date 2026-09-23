@@ -1,0 +1,60 @@
+{
+  "properties": {
+    "description": "Runs Capacity Metrics Extract for yesterday only, into the capmetrics_smoke_ tables. No retry, 30 minute timeout. Evidence: Files/capmetrics_smoke/runs/latest.json.",
+    "activities": [
+      {
+        "name": "Capacity Metrics Extract",
+        "type": "TridentNotebook",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.00:30:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "notebookId": "94b315a9-ab5b-4e49-9821-8755a66e99d2",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "days_in_scope": {
+              "value": {
+                "value": "@pipeline().parameters.days_in_scope",
+                "type": "Expression"
+              },
+              "type": "int"
+            },
+            "write_mode": {
+              "value": {
+                "value": "@pipeline().parameters.write_mode",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "table_prefix": {
+              "value": {
+                "value": "@pipeline().parameters.table_prefix",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "days_in_scope": {
+        "type": "int",
+        "defaultValue": 1
+      },
+      "write_mode": {
+        "type": "string",
+        "defaultValue": "replace_days"
+      },
+      "table_prefix": {
+        "type": "string",
+        "defaultValue": "capmetrics_smoke_"
+      }
+    }
+  }
+}

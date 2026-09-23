@@ -2,7 +2,9 @@
 
 A Fabric notebook that copies Microsoft Fabric Capacity Metrics into the IT_Metrics
 Lakehouse one day at a time, so capacity history survives the short retention window
-of the source model.
+of the source model. Two Data Pipelines run it: Capacity Metrics Daily on a schedule,
+and Capacity Metrics Smoke to check a change without touching the real history. This
+page describes notebook version 3.0.0.
 
 ## Why this exists
 
@@ -14,7 +16,11 @@ in Delta tables that keep growing.
 ## What it writes
 
 Five Delta tables in the IT_Metrics Lakehouse. The Lakehouse has no schemas enabled,
-so the names carry a `capmetrics_` prefix to stay clear of the existing tables.
+so the names carry a prefix to stay clear of the existing tables. The prefix is the
+`table_prefix` parameter: `capmetrics_` for the real history, which is what the
+Daily pipeline uses, and `capmetrics_smoke_` for the Smoke pipeline, which writes the
+same five tables under that prefix. The table descriptions below use `capmetrics_`.
+Each run also writes an evidence file, described under "The evidence file".
 
 ### capmetrics_item_operation_day
 
@@ -69,8 +75,15 @@ One row per 30 second window. A complete day is 2880 rows.
 | sku_cu | long | Capacity units, read from the source, 64 for P1 |
 | budget_cu_s | double | sku_cu times 30, so 1920 for P1 |
 | utilization_pct | double | cu_s divided by budget_cu_s, 1.0 means at the limit |
+| window_hour | long | Hour of window_start in model local time, 0 to 23 |
+| hour_start | timestamp | window_start floored to the hour, model local |
 | loaded_at_utc | timestamp | |
 | run_id | string | |
+
+`window_hour` and `hour_start` exist for hour-of-day analysis in the semantic model.
+Direct Lake has no calculated columns, so anything a report groups or filters by has
+to be a real column in the table. Both are model local, like `window_start`: they
+follow the model's fixed UTC minus 6 hours, not US Central wall clock time.
 
 ### capmetrics_items and capmetrics_capacities
 
@@ -83,54 +96,207 @@ when this was built, so it is safe as a key.
 ### capmetrics_run_log
 
 One appended row per run: run_id, started_at_utc, finished_at_utc, days_in_scope,
-write_mode, dates_processed, a row count per table, status and error_text. Status is
-success, partial or failed. `error_text` carries the full Python traceback of every
-failure, oldest first, truncated at 4000 characters, because a failure inside a
-library cannot be diagnosed from an exception type and message alone and the Spark
-session that held the log output is gone by the time anyone looks.
+write_mode, dates_processed, a count of rows written per table, status and
+error_text. Status is one of:
 
-A run whose status is not success writes its run log row and then raises, so the
-Fabric job ends Failed. This matters: `notebookutils.notebook.exit()` leaves the job
-status Completed whatever value it is handed, so before this the scheduler and the
-job history showed a green run for an extraction that had written nothing. Read the
-outcome from `capmetrics_run_log`, not from job history.
+| Status | Meaning |
+| --- | --- |
+| success | Every date and table loaded or kept, every read-back verified, snapshots written |
+| partial | Something failed or did not verify, and something else succeeded |
+| failed | Every date and table failed and so did the snapshots, or the probe failed on an error that waiting does not fix (a permission, a wrong id) |
+| source_unavailable | The probe found the source not answering; nothing was loaded |
+
+`dates_processed` lists every date in the window, whatever happened to it. The rows
+counts are rows written by this run, so a date kept by the trim guard adds nothing.
+`error_text` carries the full Python traceback of every failure, oldest first,
+truncated at 4000 characters, because a failure inside a library cannot be diagnosed
+from an exception type and message alone and the Spark session that held the log
+output is gone by the time anyone looks. The evidence file carries the same
+tracebacks without the truncation.
+
+A dry run writes no run log row.
+
+## The evidence file
+
+Every run, a dry run included, writes one JSON document to the default Lakehouse at
+`Files/<prefix>/runs/<run_id>.json`, and the same content to
+`Files/<prefix>/runs/latest.json`, which each run overwrites. `<prefix>` is
+`table_prefix` without its trailing underscore: `Files/capmetrics/runs/` for Daily,
+`Files/capmetrics_smoke/runs/` for Smoke. It is written after the run log row and
+before the job is failed, so a failed run leaves one too. The exceptions are a run
+whose parameters are invalid, which stops before it opens, and a run whose evidence
+write itself fails, which fails the job.
+
+| Key | Holds |
+| --- | --- |
+| notebook_version | "3.0.0" |
+| run_id | Also the file name, and the run_id on every row the run wrote |
+| started_at_utc, finished_at_utc | ISO text, UTC |
+| parameters | days_in_scope, capacity_id, metric_workspace, metric_dataset, write_mode, table_prefix, as the run used them |
+| probe | date, attempts, seconds, outcome (ok, source_unavailable or failed), error |
+| dates | One entry per date in the window, holding `item_operation_day` and `cu_window_30s` |
+| snapshots | `items` and `capacities`: table, rows, action, error |
+| run_log_row_written | true once the run log row is in |
+| status | As in the run log |
+| errors | Every failure as a full traceback |
+| elapsed_s | Seconds from start to finish |
+
+Each date and table entry holds `table`, `extracted_rows`, `extracted_cu_s`,
+`existing_rows` (rows already stored for that date, null when the table did not
+exist), `action`, `verification` and `error`. `action` is `written`, `kept_existing`,
+`failed` or `dry_run`. `verification` holds six numbers and a verdict:
+`expected_rows`, `rows`, `distinct_keys`, `expected_cu_s`, `cu_s`, `rel_diff_cu_s` and
+`passed`. The window table entry also holds `window_count`, `peak_utilization_pct`
+and `window_hours`, the number of distinct `window_hour` values extracted, which is
+24 on a complete day.
 
 ## Parameters
 
 | Parameter | Default | Meaning |
 | --- | --- | --- |
-| days_in_scope | 3 | How many whole days to load, counting back from yesterday |
+| days_in_scope | 12 | How many whole days to load, counting back from yesterday in model time |
 | capacity_id | 6ABDFB99-6499-4226-93E5-C4C3B5D0E924 | Bristow Insight, P1 |
 | metric_workspace | 75af6cf1-9c91-4220-b258-ab1d1dedc0d4 | Fabric Capacity Metrics workspace |
 | metric_dataset | e510b503-48b3-4414-ad4c-1e40f2be1d28 | Fabric Capacity Metrics model |
-| write_mode | replace_days | Or dry_run, which queries and prints but writes nothing |
+| write_mode | replace_days | Or dry_run, which runs every query and writes only the evidence file |
+| table_prefix | capmetrics_ | Prefix of the five tables and of the evidence folder. Must match `^[a-z][a-z0-9_]*_$` |
 
 The parameters live in the first cell, which is a real Fabric parameter cell. The
 workspace toggled it on 2026-09-21 and Fabric wrote the marker
 `# PARAMETERS CELL ********************` into `notebook-content.py` itself, so a
-pipeline or a schedule can override any of the five values with base parameters.
+pipeline or a schedule can override any of the six values with base parameters.
 Fabric owns that marker line. Editing it by hand turns the cell back into an
 ordinary code cell and the overrides stop being applied.
 
-## How to run it
+Twelve days stays inside the source's retention of about 13 days, so the oldest
+retained day, which the source trims continuously, is normally outside the window.
 
-Normal daily run: leave the defaults and run. It loads the last three whole days,
-replacing each one, and refreshes both snapshots.
+## How a run works
 
-Backfill: raise `days_in_scope`. Each day costs about 16 seconds of query time, so a
-full backfill to the edge of retention takes a few minutes. Reruns are safe. Each date
-is deleted for this capacity and appended again, so running the same day twice leaves
-the same rows.
+1. **Window.** The dates are yesterday in model time and the `days_in_scope - 1`
+   days before it, oldest first. Model time is UTC minus 6 hours, see below.
+2. **Probe.** The first query of the run is the 30 second window query for
+   yesterday, the same query the loop would send for that date. It gets three
+   attempts, 10 and then 20 seconds apart. If the source keeps answering with a
+   transient failure, the run writes its run log row with status
+   `source_unavailable`, writes the evidence file and fails, about a minute after it
+   started plus Spark start-up; nothing else is queried. If the probe fails on
+   anything else, the run ends the same way with status `failed`. If it succeeds,
+   its result is used for yesterday's windows, so that date is not queried twice.
+3. **Loop.** For each date, the item operation table and then the window table,
+   each on its own: a failure on one is recorded and the run carries on. Every query
+   after the probe gets three attempts, 20 and then 60 seconds apart, on the
+   transient failures listed in the notebook's `RETRY_ON_TEXT`; anything else fails
+   that table for that date at once.
+4. **Trim guard.** Before writing a date, the run counts the rows the table already
+   holds for that capacity and date. If the table holds more than this run
+   extracted, the stored rows are kept, nothing is deleted, and the entry records
+   `kept_existing` with both counts. This is what protects the oldest days: the
+   source trims its oldest day continuously, and a later run would otherwise replace
+   a complete day with a trimmed one. Measured on 2026-09-18, the oldest retained day
+   had 1245 of its 2880 windows left. Otherwise the date is replaced: the Spark
+   DataFrame is built first, so a value Spark refuses fails before anything is
+   deleted, then the date is deleted and the new rows appended. Reruns are safe and
+   leave no duplicates.
+5. **Verification.** After each date's write the run reads the date back:
+   `COUNT(*)`, the count of distinct grain keys (through a `SELECT DISTINCT`
+   subquery, so a null in a key column still counts), and `SUM(cu_s)`. A written
+   date is verified when the row count equals the rows written, every row has its
+   own key, and the CU seconds total matches the extraction within a relative
+   difference of 1e-9. A kept date is verified when every stored row has its own
+   key. A date that does not verify is recorded as an error.
+6. **Snapshots.** Items and Capacities are replaced whole.
+7. **Close.** The run log row (not in a dry run), then the evidence file, then,
+   unless the status is `success` and the records were written, the notebook raises
+   RuntimeError so the
+   job and the pipeline activity end Failed. `notebookutils.notebook.exit()` alone
+   leaves the job Completed whatever value it is handed, which is why the notebook
+   raises instead.
 
-Check before writing: set `write_mode` to `dry_run`. Every query runs and the row
-counts, the top five item operations and the peak window utilization are printed, and
-nothing is written.
+**How long a bad run takes.** Worst cases, counting only the waits between
+attempts: a source that is down when the run starts costs 30 seconds (the probe's
+10 and 20). A source that goes down after a good probe and never comes back costs 80
+seconds for every remaining query: about 32 minutes for Daily (24 queries) and just
+under 3 minutes for Smoke (2 queries). Both end `partial` and fail the job.
 
-## How to schedule it
+**Dry run.** Set `write_mode` to `dry_run`: every query runs, the counts, the top
+five item operations and the peak window utilization are printed, and the only
+thing written is the evidence file. No table and no run log row is touched.
 
-Not scheduled by this notebook. Set a schedule on the notebook item in the workspace.
-Daily at 06:00 US Central is the proposal, which is comfortably after the source model
-has the previous day complete.
+**Backfill.** The window cannot usefully reach past the source's retention. Running
+Daily by hand with `days_in_scope` 13 reaches the oldest retained day, which is
+partial; the trim guard keeps any fuller copy already stored. Dates older than that
+come back empty and change nothing that is stored.
+
+## The pipelines
+
+| Pipeline | days_in_scope | write_mode | table_prefix | Retry | Timeout per attempt |
+| --- | --- | --- | --- | --- | --- |
+| Capacity Metrics Smoke | 1 | replace_days | capmetrics_smoke_ | none | 30 minutes |
+| Capacity Metrics Daily | 12 | replace_days | capmetrics_ | 3, 30 minutes apart | 2 hours |
+
+Each is one Fabric notebook activity running Capacity Metrics Extract. The values in
+the table are pipeline parameter defaults, passed to the notebook's parameters of the
+same names as expressions (`@pipeline().parameters.days_in_scope` and so on), so a
+run started with no parameters uses them and a run started by hand from the pipeline
+can override them. In the Git definition the activity names the notebook by its
+logical id (the `logicalId` in `Capacity Metrics Extract.Notebook/.platform`) with
+the empty workspace id, which is how Fabric records a reference to an item in the
+same workspace.
+
+The Daily retry answers the source's outages: an attempt that finds the source down
+fails within minutes, and the next attempt starts 30 minutes later, so three retries
+cover about an hour and a half of outage.
+
+**Schedule.** Daily carries its schedule in the Git definition
+(`Capacity Metrics Daily.DataPipeline/.schedules`): enabled, every day at 06:00 and
+18:00 in the `Central Standard Time` zone, which is US Central wall clock time and
+follows daylight saving, from 2026-09-24 06:00 to 2099-01-01. Microsoft documents
+that a schedule whose start time is already in the past triggers a job at once. So
+an Update from git that brings this schedule into the workspace after 2026-09-24
+06:00 Central fires a Daily run immediately, and the coordinator sequences the
+Update from git before that time. Microsoft's REST reference describes a schedule's
+start time as UTC, while its own examples and its Git sample give a time with no
+zone beside `localTimeZoneId`, as this file does; read the conservative way, the
+start is 2026-09-24 06:00 UTC, which is 01:00 Central. Smoke has no schedule.
+
+**Who the notebook runs as.** Microsoft documents that a notebook run as a pipeline
+activity runs under the identity of the user who last modified the pipeline, and
+that a schedule's owner is the user who created or last modified it. After an
+Update from git both are whoever ran it. That identity needs Build permission on the
+Fabric Capacity Metrics semantic model. Microsoft also documents that a schedule expires if its owner does not sign in
+to Fabric for 90 consecutive days, and that a scheduler is disabled after repeated
+consecutive failures (typically 10).
+
+## How the coordinator verifies a run
+
+1. Start the pipeline (Smoke or Daily) and wait for it to finish. A Failed
+   pipeline means the status was not `success`, or the run log row or the evidence
+   file could not be written; the evidence file, when there is one, says which.
+2. Download `Files/capmetrics_smoke/runs/latest.json` for Smoke, or
+   `Files/capmetrics/runs/latest.json` for Daily, from the IT_Metrics Lakehouse.
+3. Check that it belongs to this run: `started_at_utc` is after the pipeline was
+   started. A stale file means the run failed before it could write one; then
+   `Files/<prefix>/runs/` and the run log are the next places to look.
+4. Check `notebook_version` is `3.0.0`, `parameters.write_mode` is
+   `replace_days` (a dry run writes to the same `latest.json`), `status` is
+   `success`, `run_log_row_written` is true, the probe `outcome` is `ok`, and every
+   date and table entry is `written` or `kept_existing` with `verification.passed`
+   true. For a complete day expect 2880 windows and 24 window hours.
+5. List the Lakehouse tables to confirm the five tables for the prefix exist.
+
+## What has been run and what has not
+
+Version 3.0.0 has been run only locally, offline, by the lane that built it: every
+cell executed in order in a harness that replays query results captured live from
+the source model on 2026-09-21, with Spark and notebookutils replaced by in-memory
+stand-ins and PySpark's own row type verifier applied to every row. That covered the
+probe, the trim guard, the read-back verification, the evidence file, dry runs, the
+retry timings and both table prefixes. No Fabric run of version 3.0.0, and no run of
+either pipeline, had been made when this page was written. The first Fabric run
+proves what the harness cannot: the Delta DELETE and read-back SQL, the OneLake
+evidence write, and that Fabric accepts the two pipeline definitions and the
+schedule.
 
 ## Measured facts
 
@@ -182,10 +348,10 @@ inside Fabric and through the Power BI REST executeQueries endpoint from outside
 the source is what fails rather than the way it is queried. Throughout the outage the
 model's Import tables (Items, Capacities, Timepoints, Dates) answered normally, and
 its scheduled refresh had completed that morning at 05:05 UTC, so neither staleness
-nor permissions explain it. The notebook now retries a failing query three times, 20
-seconds then 60 seconds apart, and prints each retry. An outage longer than that
-still fails the run, which is the honest outcome. The retry was lengthened on
-2026-09-23, see below.
+nor permissions explain it. The notebook's answer to this has changed twice: a short
+per-query retry after this date, a longer one on 2026-09-23, and in version 3.0.0 a
+probe at the start of the run with the retry left to the pipeline (see "How a run
+works").
 
 **Semantic Link returns pandas nullable columns, and a blank measure is `pd.NA`.**
 Its result columns are typed `string`, `Int64` and `Float64`, whose missing value is
@@ -209,19 +375,25 @@ names `_`, `__`, `___`, `_i`, `_ii`, `_iii`, `_ih`, `_oh`, `_dh`, `In`, `Out`,
 
 ## Measured 2026-09-23
 
-**The outage comes back, lasted about seven minutes this time, and the retry now
-outlasts it.** In an interactive run from 14:34 to 14:41 UTC every query the
-notebook sent through Semantic Link answered `Error obtaining data location`, and
-then the same queries, unchanged, through the same Semantic Link path, returned rows
-that matched the reference figures exactly. So the transport is sound and the outage
-is on the source side. The earlier retry waited 80 seconds in all, far short of
-seven minutes. It now makes five attempts with 30, 60, 120 and 240 seconds between
-them, up to 450 seconds (7.5 minutes) of waiting per query, and prints each retry. A
-query that is still failing after the fifth attempt is recorded as an error for its
-date and fails the run. The waiting is per query, and a query that gives up ends
-its date, so with the default three days an outage that never recovers costs at
-most four such waits (one per date and one for the snapshots), 30 minutes, before
-the run ends Failed.
+**The outage comes back, and lasted about seven minutes this time.** In an
+interactive run from 14:34 to 14:41 UTC every query the notebook sent through
+Semantic Link answered `Error obtaining data location`, and then the same queries,
+unchanged, through the same Semantic Link path, returned rows that matched the
+reference figures exactly. So the transport is sound and the outage is on the source
+side. The retry of the time waited 80 seconds in all, far short of seven minutes, and
+was lengthened that day to five attempts over 7.5 minutes per query. Two Fabric runs
+of the notebook still ended without the window table and with a partial item
+operation table, which is why version 3.0.0 stops waiting inside a query: it probes
+first, fails fast when the source is down, and lets the Daily pipeline try again 30
+minutes later.
+
+**Bare status codes in the retry list matched this project's own ids.** The source
+dataset id `e510b503-48b3-4414-ad4c-1e40f2be1d28` contains `503`, so a retry list
+holding a bare `"503"` retried `Dataset ... not found` for this very dataset, and a
+bare `"connection"` retried a permission error that mentions a connection. The list
+in version 3.0.0 holds phrases only (`service unavailable`, `status code 503`,
+`connection reset` and so on); Semantic Link words an HTTP failure
+`<status> <reason> for url: ...`, so the reason phrases are what match it.
 
 **Spark takes only the exact Python types for dates and timestamps.**
 `spark.createDataFrame` checks each value's exact type against its field rather
@@ -238,10 +410,14 @@ goes through `to_pydatetime()`, and any datetime is rebuilt from its parts, whic
 drops any subclass and any time zone (the model's times are naive, so nothing is
 converted). Every other date or timestamp column (`loaded_at_utc`,
 `started_at_utc`, `finished_at_utc`, `snapshot_date`, `window_date`,
-`window_start_utc`) is derived from a plain value. The rule to keep: a value bound
-for a Spark field must be exactly `str`, `float`, `int`, `datetime.date` or
-`datetime.datetime`, or None, never a pandas or numpy type that merely behaves like
-one.
+`window_start_utc`, `hour_start`) is derived from a plain value. The rule to keep:
+a value bound for a Spark field must be exactly `str`, `float`, `int`,
+`datetime.date` or `datetime.datetime`, or None, never a pandas or numpy type that
+merely behaves like one. The notebook of the time deleted a date before it built
+the DataFrame, so the same failure against a table that already held the date would
+have deleted the stored rows and written nothing. It did not happen that day only
+because the window table did not exist yet. Version 3.0.0 builds the DataFrame
+before it deletes anything.
 
 ## Known limits
 
@@ -251,12 +427,23 @@ per day carried operation counts with no CU consumption, mostly Eventstream upti
 rows. If those matter later, widen the filter from `cu_s > 0` to also keep rows where
 `operations > 0`.
 
+The trim guard compares row counts only. A date that the source legitimately
+restates with fewer rows keeps the larger stored version, and a date restated with
+the same number of rows but different values is replaced. Neither has been seen.
+
+The delete and the append for a date are two Delta commits, not one. The DataFrame
+is built and type checked before the delete, which closes the type failure seen on
+2026-09-23, but a failure of the append itself after the delete would leave that
+date empty until the next run reloads it, or lose it if the source has trimmed it
+by then.
+
 Only one capacity is loaded per run. Storage metrics, autoscale, System Events and
 Item History are not extracted.
 
 The notebook reads the source model through Semantic Link
 (`sempy.fabric.evaluate_dax`), which reaches the model over XMLA under the identity
 that runs the notebook. That identity needs Build permission on the Fabric Capacity
-Metrics semantic model. A scheduled run uses the identity of whoever owns the
-schedule, so handing the notebook to someone else means checking that permission
-again.
+Metrics semantic model. See "Who the notebook runs as" for which identity that is
+under each pipeline.
+
+The Smoke tables and `Files/capmetrics_smoke/` are not cleaned up by anything.
