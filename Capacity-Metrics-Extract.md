@@ -184,7 +184,8 @@ model's Import tables (Items, Capacities, Timepoints, Dates) answered normally, 
 its scheduled refresh had completed that morning at 05:05 UTC, so neither staleness
 nor permissions explain it. The notebook now retries a failing query three times, 20
 seconds then 60 seconds apart, and prints each retry. An outage longer than that
-still fails the run, which is the honest outcome.
+still fails the run, which is the honest outcome. The retry was lengthened on
+2026-09-23, see below.
 
 **Semantic Link returns pandas nullable columns, and a blank measure is `pd.NA`.**
 Its result columns are typed `string`, `Int64` and `Float64`, whose missing value is
@@ -205,6 +206,42 @@ path, which never calls that converter, succeeded in the same run (Fabric job
 34b674cb). It is `_int` now. Nothing defined in this notebook may take one of the
 names `_`, `__`, `___`, `_i`, `_ii`, `_iii`, `_ih`, `_oh`, `_dh`, `In`, `Out`,
 `exit`, `quit` or `get_ipython`, and the lane harness fails the build if one does.
+
+## Measured 2026-09-23
+
+**The outage comes back, lasted about seven minutes this time, and the retry now
+outlasts it.** In an interactive run from 14:34 to 14:41 UTC every query the
+notebook sent through Semantic Link answered `Error obtaining data location`, and
+then the same queries, unchanged, through the same Semantic Link path, returned rows
+that matched the reference figures exactly. So the transport is sound and the outage
+is on the source side. The earlier retry waited 80 seconds in all, far short of
+seven minutes. It now makes five attempts with 30, 60, 120 and 240 seconds between
+them, up to 450 seconds (7.5 minutes) of waiting per query, and prints each retry. A
+query that is still failing after the fifth attempt is recorded as an error for its
+date and fails the run. The waiting is per query, and a query that gives up ends
+its date, so with the default three days an outage that never recovers costs at
+most four such waits (one per date and one for the snapshots), 30 minutes, before
+the run ends Failed.
+
+**Spark takes only the exact Python types for dates and timestamps.**
+`spark.createDataFrame` checks each value's exact type against its field rather
+than asking whether it is an instance, so a pandas `Timestamp`, a subclass of
+`datetime` and what Semantic Link returns for a DAX datetime, is refused for a
+`TimestampType` field. Once the queries recovered, the item operation write
+succeeded and the 30 second window write failed on every date with
+`TypeError: field window_start: TimestampType() can not accept object
+Timestamp('2026-09-15 00:00:00') in type <class
+'pandas._libs.tslibs.timestamps.Timestamp'>`. The item operation date had
+survived only because its converter happened to call `.date()`. Both converters
+now return exactly `datetime.date` and `datetime.datetime`: a pandas `Timestamp`
+goes through `to_pydatetime()`, and any datetime is rebuilt from its parts, which
+drops any subclass and any time zone (the model's times are naive, so nothing is
+converted). Every other date or timestamp column (`loaded_at_utc`,
+`started_at_utc`, `finished_at_utc`, `snapshot_date`, `window_date`,
+`window_start_utc`) is derived from a plain value. The rule to keep: a value bound
+for a Spark field must be exactly `str`, `float`, `int`, `datetime.date` or
+`datetime.datetime`, or None, never a pandas or numpy type that merely behaves like
+one.
 
 ## Known limits
 
