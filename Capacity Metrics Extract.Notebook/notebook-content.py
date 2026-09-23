@@ -88,14 +88,16 @@ SKU_CU = {
     "F128": 128, "F256": 256, "F512": 512, "F1024": 1024, "F2048": 2048,
 }
 
-# Transient source failures. On 2026-09-21 every query against the source model's
-# two DirectQuery fact tables answered "Internal Error: Error obtaining data
-# location" for about fifteen minutes and then recovered with no change to the
-# query, while the model's Import tables answered normally throughout. It was seen
-# that day through both Semantic Link and the Power BI REST endpoint, so the source
-# is what fails, not the transport, and a bounded retry is the answer available here.
-QUERY_ATTEMPTS = 3
-QUERY_BACKOFF_S = (20, 60)
+# Transient source failures. The source model's two DirectQuery fact tables answer
+# "Internal Error: Error obtaining data location" for minutes at a time and then
+# recover with no change to the query, while its Import tables answer normally
+# throughout: about fifteen minutes on 2026-09-21, seen through both Semantic Link
+# and the Power BI REST endpoint, and 14:34 to 14:41 UTC on 2026-09-23 on every
+# query through Semantic Link. The source is what fails, not the transport. Five
+# attempts 30, 60, 120 and 240 seconds apart wait up to 7.5 minutes per query,
+# which covers the outage measured on 2026-09-23; a longer one still fails the run.
+QUERY_ATTEMPTS = 5
+QUERY_BACKOFF_S = (30, 60, 120, 240)
 RETRY_ON_TEXT = (
     "error obtaining data location",
     "connection",
@@ -189,13 +191,25 @@ def _int(v):
     return None if f is None else int(f)
 
 
+# _d and _ts return exactly datetime.date and datetime.datetime, never a subclass.
+# spark.createDataFrame checks each value's exact type against its field, not
+# isinstance, so a pandas Timestamp, which is a datetime subclass and is what
+# Semantic Link returns for a DAX datetime, is refused for a TimestampType field:
+# on 2026-09-23 every window write failed with "TimestampType() can not accept
+# object Timestamp('2026-09-15 00:00:00')". A pandas Timestamp goes through
+# to_pydatetime(), and the result, like any other datetime, is rebuilt from its
+# parts, which drops any subclass and any time zone. The model's times are naive,
+# so a time zone is dropped rather than converted. Every other date or timestamp
+# the notebook writes (loaded_at_utc, started_at_utc, finished_at_utc,
+# snapshot_date, window_date, window_start_utc) is derived from a plain value.
+
 def _d(v):
     if _isnull(v):
         return None
-    if isinstance(v, datetime):
-        return v.date()
+    if isinstance(v, pd.Timestamp):
+        v = v.to_pydatetime()
     if isinstance(v, date):
-        return v
+        return date(v.year, v.month, v.day)
     text = str(v).strip()
     return datetime.fromisoformat(text[:19]).date() if text else None
 
@@ -203,8 +217,11 @@ def _d(v):
 def _ts(v):
     if _isnull(v):
         return None
+    if isinstance(v, pd.Timestamp):
+        v = v.to_pydatetime()
     if isinstance(v, datetime):
-        return v
+        return datetime(v.year, v.month, v.day,
+                        v.hour, v.minute, v.second, v.microsecond)
     text = str(v).strip()
     return datetime.fromisoformat(text[:19]) if text else None
 
