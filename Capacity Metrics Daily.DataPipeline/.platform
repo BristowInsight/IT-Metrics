@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "Capacity Metrics Daily",
+    "description": "Runs Capacity Metrics Extract over the last 12 days into the capmetrics_ tables, twice a day"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "52cc9411-243b-44ac-85c9-2d5474744296"
+  }
+}

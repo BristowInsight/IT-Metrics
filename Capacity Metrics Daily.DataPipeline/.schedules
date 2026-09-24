@@ -1,0 +1,19 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/schedules/1.0.0/schema.json",
+  "schedules": [
+    {
+      "enabled": true,
+      "jobType": "Execute",
+      "configuration": {
+        "type": "Daily",
+        "startDateTime": "2026-09-24T06:00:00",
+        "endDateTime": "2099-01-01T00:00:00",
+        "localTimeZoneId": "Central Standard Time",
+        "times": [
+          "06:00",
+          "18:00"
+        ]
+      }
+    }
+  ]
+}

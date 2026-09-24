@@ -11,7 +11,7 @@
 - **ISMS KPI Dashboard** — Information security metrics
 - **ITSC Metrics** — IT service center metrics
 - **IT_Metrics** — Lakehouse + semantic model (Fabric)
-- **Capacity Metrics Extract** (Notebook): daily copy of Fabric Capacity Metrics into the IT_Metrics Lakehouse, tables prefixed `capmetrics_`. Keeps capacity history past the source model's 13 day retention. See Capacity-Metrics-Extract.md at the repo root for parameters, backfill and the UTC minus 6 time zone note.
+- **Capacity Metrics Extract** (Notebook): daily copy of Fabric Capacity Metrics into the IT_Metrics Lakehouse, tables prefixed `capmetrics_`. Keeps capacity history past the source model's 13 day retention. See Capacity-Metrics-Extract.md at the repo root for parameters, backfill and the UTC minus 6 time zone note. Run by two Data Pipelines: Capacity Metrics Daily (12 days into the `capmetrics_` tables, scheduled 06:00 and 18:00 US Central) and Capacity Metrics Smoke (yesterday only into `capmetrics_smoke_` tables, for checking a change), each run writing an evidence JSON to `Files/<prefix>/runs/latest.json` in the Lakehouse.
 
 ## File Formats
 - `.pbip` — Project entry point (open in Desktop)

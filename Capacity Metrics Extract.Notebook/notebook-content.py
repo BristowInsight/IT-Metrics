@@ -28,10 +28,13 @@
 # Fabric wrote the "# PARAMETERS CELL" marker above, so a pipeline or a schedule can
 # override any value below with base parameters. Leave that marker alone: Fabric owns
 # it, and editing it by hand turns this back into an ordinary code cell.
-# See Capacity-Metrics-Extract.md at the repository root.
+# The Capacity Metrics Smoke and Capacity Metrics Daily pipelines pass days_in_scope,
+# write_mode and table_prefix. See Capacity-Metrics-Extract.md at the repository root.
 
-# How many whole days to load, counting back from yesterday in model time.
-days_in_scope = 3
+# How many whole days to load, counting back from yesterday in model time. Twelve
+# stays inside the source model's retention of about 13 days, so the oldest retained
+# day, which the source trims continuously, is normally left out of the window.
+days_in_scope = 12
 
 # Bristow Insight capacity. Uppercase, as the model stores it.
 capacity_id = "6ABDFB99-6499-4226-93E5-C4C3B5D0E924"
@@ -40,9 +43,16 @@ capacity_id = "6ABDFB99-6499-4226-93E5-C4C3B5D0E924"
 metric_workspace = "75af6cf1-9c91-4220-b258-ab1d1dedc0d4"
 metric_dataset = "e510b503-48b3-4414-ad4c-1e40f2be1d28"
 
-# "replace_days" deletes each in-scope date for this capacity then appends.
-# "dry_run" runs every query and prints counts without writing anything.
+# "replace_days" loads each in-scope date for this capacity, guarded against the
+# source's trimming (see load_day). "dry_run" runs every query and writes only the
+# evidence file.
 write_mode = "replace_days"
+
+# Prefix of the five Delta tables and of the evidence folder
+# Files/<table_prefix without its trailing underscore>/runs/. "capmetrics_" is the
+# real history. The Smoke pipeline passes "capmetrics_smoke_", so a check run never
+# touches it.
+table_prefix = "capmetrics_"
 
 # METADATA ********************
 
@@ -53,6 +63,7 @@ write_mode = "replace_days"
 
 # CELL ********************
 
+import json
 import re
 import time
 import traceback
@@ -71,10 +82,14 @@ from pyspark.sql.types import (
     TimestampType,
 )
 
+# Written into every evidence file, so a reader knows which notebook produced it.
+NOTEBOOK_VERSION = "3.1.0"
+
 # The Capacity Metrics model stores its timepoints at a fixed offset from UTC.
 # Measured 2026-09-18: UTC 19:50:43 against a latest window start of 13:46:30,
 # a gap of 6 hours plus the app's own few minutes of refresh lag. This is a fixed
-# offset, not US Central, so it does not follow daylight saving. See README.md.
+# offset, not US Central, so it does not follow daylight saving. See
+# Capacity-Metrics-Extract.md.
 MODEL_UTC_OFFSET_HOURS = -6
 
 # Seconds in one capacity metrics window.
@@ -93,31 +108,62 @@ SKU_CU = {
 # recover with no change to the query, while its Import tables answer normally
 # throughout: about fifteen minutes on 2026-09-21, seen through both Semantic Link
 # and the Power BI REST endpoint, and 14:34 to 14:41 UTC on 2026-09-23 on every
-# query through Semantic Link. The source is what fails, not the transport. Five
-# attempts 30, 60, 120 and 240 seconds apart wait up to 7.5 minutes per query,
-# which covers the outage measured on 2026-09-23; a longer one still fails the run.
-QUERY_ATTEMPTS = 5
-QUERY_BACKOFF_S = (30, 60, 120, 240)
+# query through Semantic Link. The source is what fails, not the transport.
+#
+# Waiting inside one query cannot fix that: short waits lose dates and long waits
+# make a run grind for most of an hour. So the run probes first. The probe is the
+# first query of the run, three attempts 10 and 20 seconds apart; if the source is
+# still not answering, the run records source_unavailable and fails at once, and
+# the pipeline that started it tries again later. Every later query gets three
+# attempts 20 and 60 seconds apart.
+PROBE_ATTEMPTS = 3
+PROBE_BACKOFF_S = (10, 20)
+QUERY_ATTEMPTS = 3
+QUERY_BACKOFF_S = (20, 60)
+
+# Phrases only, never a bare status code and never the bare word "connection". The
+# source dataset id e510b503-48b3-4414-ad4c-1e40f2be1d28 contains "503", so a bare
+# "503" marker retried "Dataset ... not found" for this very dataset, and a bare
+# "connection" retried permission errors that mention a connection. Semantic Link
+# words an HTTP failure "<status> <reason> for url: ...", so the reason phrases
+# below are what match it.
 RETRY_ON_TEXT = (
     "error obtaining data location",
-    "connection",
     "timed out",
     "timeout",
-    "429",
     "too many requests",
-    "500",
-    "502",
-    "503",
-    "504",
     "internal server error",
+    "bad gateway",
     "service unavailable",
+    "gateway timeout",
+    "connection reset",
+    "connection refused",
+    "connection timed out",
+    "connection aborted",
+    "failed to establish a new connection",
+    "http 429",
+    "http 500",
+    "http 502",
+    "http 503",
+    "http 504",
+    "status code 429",
+    "status code 500",
+    "status code 502",
+    "status code 503",
+    "status code 504",
 )
 
-TBL_OPS = "capmetrics_item_operation_day"
-TBL_CUD = "capmetrics_cu_window_30s"
-TBL_ITEMS = "capmetrics_items"
-TBL_CAPS = "capmetrics_capacities"
-TBL_LOG = "capmetrics_run_log"
+# A loaded date counts as verified when the table's CU seconds total for it matches
+# what was extracted within this relative difference.
+VERIFY_REL_TOL = 1e-9
+
+# The table names are table_prefix plus these, set once the parameters are checked.
+TABLE_PREFIX_RE = re.compile(r"^[a-z][a-z0-9_]*_$")
+SUFFIX_OPS = "item_operation_day"
+SUFFIX_CUD = "cu_window_30s"
+SUFFIX_ITEMS = "items"
+SUFFIX_CAPS = "capacities"
+SUFFIX_LOG = "run_log"
 
 # METADATA ********************
 
@@ -201,7 +247,8 @@ def _int(v):
 # parts, which drops any subclass and any time zone. The model's times are naive,
 # so a time zone is dropped rather than converted. Every other date or timestamp
 # the notebook writes (loaded_at_utc, started_at_utc, finished_at_utc,
-# snapshot_date, window_date, window_start_utc) is derived from a plain value.
+# snapshot_date, window_date, window_start_utc, hour_start) is derived from a
+# plain value.
 
 def _d(v):
     if _isnull(v):
@@ -247,24 +294,29 @@ def _is_retryable(ex):
     return any(marker in text for marker in RETRY_ON_TEXT)
 
 
-def run_dax(dax_string):
+def run_dax(dax_string, attempts=None, backoff=None, trace=None):
     """Run one DAX query against the Capacity Metrics model.
 
-    Retries a transient source failure up to QUERY_ATTEMPTS times, because the
-    source model's DirectQuery tables go unavailable for minutes at a time (see
-    RETRY_ON_TEXT above). Anything not on that list is raised at once, since a
-    wrong query or a missing permission does not improve with waiting.
+    Retries a transient source failure (see RETRY_ON_TEXT) up to `attempts` times,
+    QUERY_ATTEMPTS unless the caller says otherwise, waiting backoff[n - 1] seconds
+    after failed attempt n. Anything not on that list is raised at once, since a
+    wrong query or a missing permission does not improve with waiting. When `trace`
+    is a dict, trace["attempts"] holds the number of attempts made.
     """
-    for attempt in range(1, QUERY_ATTEMPTS + 1):
+    attempts = QUERY_ATTEMPTS if attempts is None else attempts
+    backoff = QUERY_BACKOFF_S if backoff is None else backoff
+    for attempt in range(1, attempts + 1):
+        if trace is not None:
+            trace["attempts"] = attempt
         try:
             return fabric.evaluate_dax(
                 workspace=metric_workspace, dataset=metric_dataset, dax_string=dax_string
             )
         except Exception as ex:
-            if attempt == QUERY_ATTEMPTS or not _is_retryable(ex):
+            if attempt == attempts or not _is_retryable(ex):
                 raise
-            wait = QUERY_BACKOFF_S[attempt - 1]
-            print(f"query attempt {attempt} of {QUERY_ATTEMPTS} failed "
+            wait = backoff[attempt - 1]
+            print(f"query attempt {attempt} of {attempts} failed "
                   f"({type(ex).__name__}: {ex}); retrying in {wait} s")
             time.sleep(wait)
 
@@ -389,7 +441,8 @@ def dax_capacities(cap_id):
 # CELL ********************
 
 # Explicit Delta schemas. Column names and types are fixed here so they cannot
-# drift between runs. Adding a column later means adding it here and in README.md.
+# drift between runs. Adding a column later means adding it here, in the matching
+# row builder and in Capacity-Metrics-Extract.md.
 
 SCHEMA_OPS = StructType([
     StructField("capacity_id", StringType(), True),
@@ -412,6 +465,9 @@ SCHEMA_OPS = StructType([
     StructField("run_id", StringType(), True),
 ])
 
+# window_hour and hour_start exist for hour-of-day analysis in the semantic model:
+# Direct Lake has no calculated columns, so anything a report groups by has to be
+# a real column here.
 SCHEMA_CUD = StructType([
     StructField("capacity_id", StringType(), True),
     StructField("window_date", DateType(), True),
@@ -430,10 +486,15 @@ SCHEMA_CUD = StructType([
     StructField("sku_cu", LongType(), True),
     StructField("budget_cu_s", DoubleType(), True),
     StructField("utilization_pct", DoubleType(), True),
+    StructField("window_hour", LongType(), True),
+    StructField("hour_start", TimestampType(), True),
     StructField("loaded_at_utc", TimestampType(), True),
     StructField("run_id", StringType(), True),
 ])
 
+# item_label is what the semantic model and the report show for an item. Item
+# names are not unique across workspaces, so the label adds the kind and the
+# workspace, and is unique within each snapshot (see rows_items).
 SCHEMA_ITEMS = StructType([
     StructField("item_id", StringType(), True),
     StructField("workspace_id", StringType(), True),
@@ -442,6 +503,7 @@ SCHEMA_ITEMS = StructType([
     StructField("item_kind", StringType(), True),
     StructField("billable_type", StringType(), True),
     StructField("capacity_id", StringType(), True),
+    StructField("item_label", StringType(), True),
     StructField("snapshot_date", DateType(), True),
     StructField("loaded_at_utc", TimestampType(), True),
     StructField("run_id", StringType(), True),
@@ -473,6 +535,10 @@ SCHEMA_LOG = StructType([
     StructField("status", StringType(), True),
     StructField("error_text", StringType(), True),
 ])
+
+# The grain of each fact table: one row per distinct combination of these columns.
+GRAIN_OPS = ("capacity_id", "workspace_id", "item_id", "item_kind", "operation_name", "date")
+GRAIN_CUD = ("capacity_id", "window_start")
 
 # METADATA ********************
 
@@ -533,17 +599,58 @@ def rows_cu_window_30s(df, cap_id, loaded_at, run_id):
             sku_cu,
             budget,
             utilization,
+            window_start.hour,                                   # window_hour, model local
+            window_start.replace(minute=0, second=0, microsecond=0),  # hour_start
             loaded_at,
             run_id,
         ))
     return out
 
 
+def item_label(item_id, item_name, item_kind, workspace_name):
+    """An item's readable label, before any collision suffix.
+
+    The item name, or the item id when the name is missing, then the item kind and
+    the workspace name in parentheses, a missing part left out and no parentheses
+    when both are missing: "RAMCO Ingest CICD (DataflowFabric, DF RAMCO)". The kind
+    is the model's own value. Names alone are not unique: on the 522 items captured
+    2026-09-21, 66 names were shared by 209 items, while name, kind and workspace
+    together were unique.
+    """
+    head = item_name or item_id
+    tail = ", ".join(part for part in (item_kind, workspace_name) if part)
+    if head and tail:
+        return f"{head} ({tail})"
+    if head:
+        return head
+    return f"({tail})" if tail else None
+
+
 def rows_items(df, snapshot_day, loaded_at, run_id):
-    return [(
-        _s(r[0]), _s(r[1]), _s(r[2]), _s(r[3]), _s(r[4]), _s(r[5]), _s(r[6]),
-        snapshot_day, loaded_at, run_id,
-    ) for r in df.itertuples(index=False, name=None)]
+    """Items snapshot rows, with item_label unique within the snapshot.
+
+    When two or more rows share a label, compared without regard to case because
+    the semantic model compares text that way, each of those rows gets a space and
+    the first 8 characters of its item_id in square brackets. A row whose label is
+    already unique is left as it is, so the rule changes nothing until a collision
+    appears, and it gives the same labels for the same snapshot every time.
+    """
+    labelled = []
+    for r in df.itertuples(index=False, name=None):
+        # item_id, workspace_id, workspace_name, item_name, item_kind,
+        # billable_type, capacity_id
+        values = tuple(_s(v) for v in r[:7])
+        labelled.append((values, item_label(values[0], values[3], values[4], values[2])))
+    uses = {}
+    for values, label in labelled:
+        if label is not None:
+            uses[label.casefold()] = uses.get(label.casefold(), 0) + 1
+    out = []
+    for values, label in labelled:
+        if label is not None and values[0] and uses[label.casefold()] > 1:
+            label = f"{label} [{values[0][:8]}]"
+        out.append(values + (label, snapshot_day, loaded_at, run_id))
+    return out
 
 
 def rows_capacities(df, snapshot_day, loaded_at, run_id):
@@ -562,27 +669,238 @@ def table_exists(name):
         return False
 
 
-def write_rows(name, rows, schema, mode="append", overwrite_schema=False):
-    writer = spark.createDataFrame(rows, schema=schema).write.format("delta").mode(mode)
+def build_frame(rows, schema):
+    """A Spark DataFrame from the rows. PySpark checks every value's type here."""
+    return spark.createDataFrame(rows, schema=schema)
+
+
+def save_frame(name, frame, mode="append", overwrite_schema=False):
+    writer = frame.write.format("delta").mode(mode)
     if overwrite_schema:
         writer = writer.option("overwriteSchema", "true")
     writer.saveAsTable(name)
+
+
+def write_rows(name, rows, schema, mode="append", overwrite_schema=False):
+    save_frame(name, build_frame(rows, schema), mode, overwrite_schema)
     return len(rows)
-
-
-def replace_day(name, rows, schema, date_col, day, cap_id):
-    """Delete one date for one capacity, then append. Safe to rerun."""
-    if table_exists(name):
-        spark.sql(
-            f"DELETE FROM {name} "
-            f"WHERE capacity_id = '{cap_id}' AND {date_col} = DATE '{day.isoformat()}'"
-        )
-    return write_rows(name, rows, schema, mode="append")
 
 
 def replace_all(name, rows, schema):
     """Replace the whole table. Used for the two snapshot tables."""
     return write_rows(name, rows, schema, mode="overwrite", overwrite_schema=True)
+
+
+def _day_filter(date_col, day, cap_id):
+    return f"capacity_id = '{cap_id}' AND {date_col} = DATE '{day.isoformat()}'"
+
+
+def count_day(name, date_col, day, cap_id):
+    """(rows, CU seconds total) already in the table for one date and capacity."""
+    found = spark.sql(
+        f"SELECT COUNT(*) AS n_rows, SUM(cu_s) AS cu_s FROM {name} "
+        f"WHERE {_day_filter(date_col, day, cap_id)}"
+    ).collect()[0]
+    return int(found[0]), (None if found[1] is None else float(found[1]))
+
+
+def count_keys(name, grain, date_col, day, cap_id):
+    """Distinct grain keys in the table for one date and capacity.
+
+    SELECT DISTINCT rather than COUNT(DISTINCT a, b, ...), because the second skips
+    every row that has a null in any of the columns, and workspace_id can be null.
+    """
+    found = spark.sql(
+        f"SELECT COUNT(*) AS n_keys FROM (SELECT DISTINCT {', '.join(grain)} "
+        f"FROM {name} WHERE {_day_filter(date_col, day, cap_id)}) AS k"
+    ).collect()[0]
+    return int(found[0])
+
+
+def _rel_diff(a, b):
+    a = 0.0 if a is None else float(a)
+    b = 0.0 if b is None else float(b)
+    if a == b:
+        return 0.0
+    return abs(a - b) / max(abs(a), abs(b))
+
+
+def new_unit(name):
+    """The evidence record for one fact table on one date."""
+    return {
+        "table": name,
+        "extracted_rows": None,
+        "extracted_cu_s": None,
+        "existing_rows": None,
+        "action": None,
+        "verification": None,
+        "error": None,
+    }
+
+
+def note_extracted(unit, rows, schema):
+    cu_at = schema.fieldNames().index("cu_s")
+    unit["extracted_rows"] = len(rows)
+    unit["extracted_cu_s"] = sum(r[cu_at] or 0.0 for r in rows)
+
+
+def load_day(unit, name, rows, schema, date_col, grain, day, cap_id):
+    """Load one date of one fact table for one capacity, then read it back.
+
+    Trim guard: the source trims its oldest day continuously, so a later run can
+    extract fewer rows for a date than an earlier run already stored. When the
+    table holds more rows for the date than this extraction has, the stored rows
+    are kept and nothing is deleted (action kept_existing). Otherwise the date is
+    replaced: the DataFrame is built first, so a value Spark refuses fails before
+    anything is deleted, then the date is deleted and the rows appended.
+
+    Verification reads the date back. For a written date it passes when the row
+    count equals the rows written, every row has its own grain key, and the CU
+    seconds total matches the extraction within VERIFY_REL_TOL. For a kept date it
+    passes when every stored row has its own grain key.
+    """
+    exists = table_exists(name)
+    if exists:
+        existing_rows, existing_cu = count_day(name, date_col, day, cap_id)
+        unit["existing_rows"] = existing_rows
+        if len(rows) < existing_rows:
+            unit["action"] = "kept_existing"
+            keys = count_keys(name, grain, date_col, day, cap_id)
+            unit["verification"] = {
+                "expected_rows": existing_rows,
+                "rows": existing_rows,
+                "distinct_keys": keys,
+                "expected_cu_s": existing_cu,
+                "cu_s": existing_cu,
+                "rel_diff_cu_s": 0.0,
+                "passed": keys == existing_rows,
+            }
+            return unit
+
+    frame = build_frame(rows, schema)
+    if exists:
+        spark.sql(f"DELETE FROM {name} WHERE {_day_filter(date_col, day, cap_id)}")
+    save_frame(name, frame)
+    unit["action"] = "written"
+
+    n_rows, cu = count_day(name, date_col, day, cap_id)
+    keys = count_keys(name, grain, date_col, day, cap_id)
+    rel = _rel_diff(cu, unit["extracted_cu_s"])
+    unit["verification"] = {
+        "expected_rows": len(rows),
+        "rows": n_rows,
+        "distinct_keys": keys,
+        "expected_cu_s": unit["extracted_cu_s"],
+        "cu_s": cu,
+        "rel_diff_cu_s": rel,
+        "passed": n_rows == len(rows) and keys == n_rows and rel <= VERIFY_REL_TOL,
+    }
+    return unit
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# Closing a run: the run log row, the evidence file and the job status.
+#
+# The evidence file is one JSON document per run, at
+# Files/<prefix>/runs/<run_id>.json and again at Files/<prefix>/runs/latest.json,
+# in the default Lakehouse. It is what the coordinator reads after triggering a
+# pipeline, since job history cannot say what a run loaded and the run log holds
+# counts only. In a Spark notebook a relative path resolves to the default
+# Lakehouse, and notebookutils.fs.mkdirs creates any missing parent folders.
+
+
+def _jsonable(value):
+    """The value with dates as ISO text and no NaN or infinity, which JSON lacks."""
+    if isinstance(value, dict):
+        return {str(k): _jsonable(v) for k, v in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [_jsonable(v) for v in value]
+    if isinstance(value, (datetime, date)):
+        return value.isoformat()
+    if isinstance(value, float) and (value != value or value in (float("inf"), float("-inf"))):
+        return None
+    return value
+
+
+def write_evidence(record):
+    text = json.dumps(_jsonable(record), indent=2, allow_nan=False)
+    notebookutils.fs.mkdirs(EVIDENCE_DIR)
+    for path in (f"{EVIDENCE_DIR}/{record['run_id']}.json", f"{EVIDENCE_DIR}/latest.json"):
+        if notebookutils.fs.put(path, text, True) is False:
+            raise OSError(f"notebookutils.fs.put returned False for {path}")
+        print(f"evidence written: {path}")
+
+
+def finish_run(status):
+    """Write the run log row, then the evidence file, then fail the job unless clean.
+
+    notebookutils.notebook.exit() leaves the job status Completed whatever value it
+    is handed, so a partial or a failed run used to look like a success to the
+    scheduler and in job history. Anything but a clean run raises RuntimeError
+    after both records are written, so the job, and the pipeline activity that ran
+    it, end Failed. A failure to write either record fails the job too.
+    """
+    finished_at = datetime.now(timezone.utc).replace(tzinfo=None)
+    error_text = None if not errors else " | ".join(errors)[:4000]
+    log_row = (
+        run_id,
+        started_at,
+        finished_at,
+        days_in_scope,
+        write_mode,
+        ",".join(d.isoformat() for d in target_dates),
+        counts[TBL_OPS],
+        counts[TBL_CUD],
+        counts[TBL_ITEMS],
+        counts[TBL_CAPS],
+        status,
+        error_text,
+    )
+
+    print("\n--- run summary ---")
+    print(f"status            : {status}")
+    print(f"elapsed           : {(finished_at - started_at).total_seconds():.1f} s")
+    for name in (TBL_OPS, TBL_CUD, TBL_ITEMS, TBL_CAPS):
+        print(f"{name:<40}: {counts[name]} rows written")
+    for message in errors:
+        print(f"error             : {message}")
+
+    problems = []
+    if write_mode == "dry_run":
+        print("dry_run: run log not written")
+    else:
+        try:
+            write_rows(TBL_LOG, [log_row], SCHEMA_LOG, mode="append")
+            evidence["run_log_row_written"] = True
+            print(f"{TBL_LOG:<40}: 1 row appended")
+        except Exception:
+            message = f"run log: {traceback.format_exc()}"
+            errors.append(message)
+            problems.append("the run log row was not written")
+            print(f"ERROR {message}")
+
+    evidence["status"] = status
+    evidence["finished_at_utc"] = finished_at
+    evidence["elapsed_s"] = round((finished_at - started_at).total_seconds(), 3)
+    try:
+        write_evidence(evidence)
+    except Exception:
+        problems.append("the evidence file was not written")
+        print(f"ERROR evidence: {traceback.format_exc()}")
+
+    if status != "success" or problems:
+        raise RuntimeError(
+            f"Capacity Metrics Extract finished with status {status!r}"
+            + (f" ({'; '.join(problems)})" if problems else "")
+            + f". {error_text}"
+        )
 
 # METADATA ********************
 
@@ -604,6 +922,11 @@ days_in_scope = int(days_in_scope)
 if days_in_scope < 1:
     raise ValueError(f"days_in_scope must be 1 or more, got {days_in_scope}")
 
+table_prefix = str(table_prefix).strip()
+if not TABLE_PREFIX_RE.match(table_prefix):
+    raise ValueError(
+        f"table_prefix must match {TABLE_PREFIX_RE.pattern}, got {table_prefix!r}")
+
 capacity_id = str(capacity_id).strip().upper()
 for name, value in (("capacity_id", capacity_id),
                     ("metric_workspace", metric_workspace),
@@ -611,21 +934,54 @@ for name, value in (("capacity_id", capacity_id),
     if not GUID_RE.match(str(value).strip()):
         raise ValueError(f"{name} must be a GUID, got {value!r}")
 
+TBL_OPS = f"{table_prefix}{SUFFIX_OPS}"
+TBL_CUD = f"{table_prefix}{SUFFIX_CUD}"
+TBL_ITEMS = f"{table_prefix}{SUFFIX_ITEMS}"
+TBL_CAPS = f"{table_prefix}{SUFFIX_CAPS}"
+TBL_LOG = f"{table_prefix}{SUFFIX_LOG}"
+EVIDENCE_DIR = f"Files/{table_prefix.rstrip('_')}/runs"
+
 run_id = str(uuid.uuid4())
 started_at = datetime.now(timezone.utc).replace(tzinfo=None)
 target_dates = dates_in_scope(days_in_scope)
 snapshot_day = model_today()
+probe_day = target_dates[-1]
 
+print(f"notebook_version  : {NOTEBOOK_VERSION}")
 print(f"run_id            : {run_id}")
 print(f"started_at_utc    : {started_at.isoformat()}")
 print(f"write_mode        : {write_mode}")
+print(f"table_prefix      : {table_prefix}")
 print(f"capacity_id       : {capacity_id}")
 print(f"model today       : {snapshot_day.isoformat()} (UTC {MODEL_UTC_OFFSET_HOURS:+d} hours)")
 print(f"days_in_scope     : {days_in_scope}")
 print(f"dates to process  : {', '.join(d.isoformat() for d in target_dates)}")
+print(f"evidence folder   : {EVIDENCE_DIR}")
 
 counts = {TBL_OPS: 0, TBL_CUD: 0, TBL_ITEMS: 0, TBL_CAPS: 0}
 errors = []
+evidence = {
+    "notebook_version": NOTEBOOK_VERSION,
+    "run_id": run_id,
+    "started_at_utc": started_at,
+    "finished_at_utc": None,
+    "parameters": {
+        "days_in_scope": days_in_scope,
+        "capacity_id": capacity_id,
+        "metric_workspace": metric_workspace,
+        "metric_dataset": metric_dataset,
+        "write_mode": write_mode,
+        "table_prefix": table_prefix,
+    },
+    "probe": {"date": probe_day, "attempts": 0, "seconds": None,
+              "outcome": None, "error": None},
+    "dates": {},
+    "snapshots": {},
+    "run_log_row_written": False,
+    "status": None,
+    "errors": errors,
+    "elapsed_s": None,
+}
 
 # METADATA ********************
 
@@ -636,50 +992,140 @@ errors = []
 
 # CELL ********************
 
-# One day at a time. A failure on one date is recorded and the loop carries on,
-# so a single bad day cannot cost the whole run.
+# Probe. The first query of the run is the 30 second window query for yesterday,
+# the same query the daily loop would send for that date. If the source answers,
+# the result is kept and used for yesterday's windows, so that date is not queried
+# twice. If it keeps answering with a transient failure, the run records
+# source_unavailable, writes the run log row and the evidence file, and fails
+# within about two minutes, leaving the retry to the pipeline. Any other failure
+# (a permission, a wrong id) ends the run the same way with status failed.
+
+probe_frame = None
+probe_clock = time.monotonic()
+try:
+    probe_frame = run_dax(dax_cu_window_30s(capacity_id, probe_day),
+                          attempts=PROBE_ATTEMPTS, backoff=PROBE_BACKOFF_S,
+                          trace=evidence["probe"])
+    evidence["probe"]["outcome"] = "ok"
+except Exception as ex:
+    evidence["probe"]["outcome"] = "source_unavailable" if _is_retryable(ex) else "failed"
+    evidence["probe"]["error"] = traceback.format_exc()
+    errors.append(f"probe {probe_day.isoformat()}: {traceback.format_exc()}")
+finally:
+    evidence["probe"]["seconds"] = round(time.monotonic() - probe_clock, 3)
+
+print(f"probe {probe_day.isoformat()}: {evidence['probe']['outcome']} after "
+      f"{evidence['probe']['attempts']} attempt(s), {evidence['probe']['seconds']} s")
+
+if probe_frame is None:
+    finish_run(evidence["probe"]["outcome"])
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# One day at a time, and within a day one table at a time. A failure on one table
+# for one date is recorded and the loop carries on, so a single bad query or write
+# cannot cost the rest of the run.
+
+
+def record_failure(unit, label):
+    # The whole traceback, not just the type and the message. A run that fails
+    # inside a library is unreadable without it, and the run log is the only
+    # record left once the Spark session is gone.
+    message = f"{label}: {traceback.format_exc()}"
+    errors.append(message)
+    unit["error"] = message
+    if unit["action"] is None:
+        unit["action"] = "failed"
+    print(f"ERROR {message}")
+
+
+def report_unit(unit):
+    v = unit["verification"]
+    if v is None:
+        return
+    print(f"{unit['table']}: {unit['action']}, {v['rows']} rows (expected "
+          f"{v['expected_rows']}), {v['distinct_keys']} distinct keys, cu_s relative "
+          f"difference {v['rel_diff_cu_s']:.1e}: "
+          f"{'verified' if v['passed'] else 'VERIFICATION FAILED'}")
+    if not v["passed"]:
+        message = f"{unit['table']}: verification failed: {v}"
+        errors.append(message)
+        unit["error"] = message
+
 
 for day in target_dates:
     loaded_at = datetime.now(timezone.utc).replace(tzinfo=None)
-    print(f"\n--- {day.isoformat()} ---")
+    label = day.isoformat()
+    print(f"\n--- {label} ---")
+    day_record = {}
+    evidence["dates"][label] = day_record
+
+    ops_unit = new_unit(TBL_OPS)
+    day_record[SUFFIX_OPS] = ops_unit
     try:
-        ops_df = run_dax(dax_item_operation_day(capacity_id, day))
-        ops_rows = rows_item_operation_day(ops_df, loaded_at, run_id)
-
-        cud_df = run_dax(dax_cu_window_30s(capacity_id, day))
-        cud_rows = rows_cu_window_30s(cud_df, capacity_id, loaded_at, run_id)
-
-        day_cu = sum(r[7] or 0.0 for r in ops_rows)
-        window_cu = sum(r[4] or 0.0 for r in cud_rows)
-        print(f"item operation rows : {len(ops_rows)}   cu_s {day_cu:,.4f}")
-        print(f"30 second windows   : {len(cud_rows)}   cu_s {window_cu:,.4f}")
-        if len(cud_rows) not in (0, 2880):
-            print(f"NOTE: {len(cud_rows)} windows, a complete day is 2880. "
-                  f"Expected for today, for the oldest retained day, or after an outage.")
-
+        ops_rows = rows_item_operation_day(
+            run_dax(dax_item_operation_day(capacity_id, day)), loaded_at, run_id)
+        note_extracted(ops_unit, ops_rows, SCHEMA_OPS)
+        print(f"item operation rows : {len(ops_rows)}   cu_s {ops_unit['extracted_cu_s']:,.4f}")
         if write_mode == "dry_run":
+            ops_unit["action"] = "dry_run"
             top = sorted(ops_rows, key=lambda r: r[7] or 0.0, reverse=True)[:5]
             print("top 5 item operations by cu_s (item_id, operation, kind, cu_s):")
             for r in top:
                 print(f"  {r[2]}  {r[4]:<48.48}  {r[3]:<16.16}  {r[7]:,.4f}")
-            peak = max((r[16] for r in cud_rows if r[16] is not None), default=None)
-            if peak is not None:
-                print(f"peak window utilization: {peak:.4%}")
-            print("dry_run: nothing written")
         else:
-            counts[TBL_OPS] += replace_day(
-                TBL_OPS, ops_rows, SCHEMA_OPS, "date", day, capacity_id)
-            counts[TBL_CUD] += replace_day(
-                TBL_CUD, cud_rows, SCHEMA_CUD, "window_date", day, capacity_id)
-            print(f"written to {TBL_OPS} and {TBL_CUD}")
-
+            load_day(ops_unit, TBL_OPS, ops_rows, SCHEMA_OPS, "date", GRAIN_OPS,
+                     day, capacity_id)
+            if ops_unit["action"] == "written":
+                counts[TBL_OPS] += len(ops_rows)
+            report_unit(ops_unit)
     except Exception:
-        # The whole traceback, not just the type and the message. A run that fails
-        # inside a library is unreadable without it, and the run log is the only
-        # record left once the Spark session is gone.
-        message = f"{day.isoformat()}: {traceback.format_exc()}"
-        errors.append(message)
-        print(f"ERROR {message}")
+        record_failure(ops_unit, f"{label} {TBL_OPS}")
+
+    cud_unit = new_unit(TBL_CUD)
+    cud_unit["window_count"] = None
+    cud_unit["peak_utilization_pct"] = None
+    cud_unit["window_hours"] = None
+    day_record[SUFFIX_CUD] = cud_unit
+    try:
+        if day == probe_day and probe_frame is not None:
+            cud_df = probe_frame
+            print("30 second windows from the probe, not queried again")
+        else:
+            cud_df = run_dax(dax_cu_window_30s(capacity_id, day))
+        cud_rows = rows_cu_window_30s(cud_df, capacity_id, loaded_at, run_id)
+        note_extracted(cud_unit, cud_rows, SCHEMA_CUD)
+        cud_unit["window_count"] = len(cud_rows)
+        cud_unit["peak_utilization_pct"] = max(
+            (r[16] for r in cud_rows if r[16] is not None), default=None)
+        # Distinct window_hour values, 24 on a complete day.
+        cud_unit["window_hours"] = len({r[17] for r in cud_rows})
+        print(f"30 second windows   : {len(cud_rows)}   cu_s {cud_unit['extracted_cu_s']:,.4f}")
+        if len(cud_rows) not in (0, 2880):
+            print(f"NOTE: {len(cud_rows)} windows, a complete day is 2880. "
+                  f"Expected for the oldest retained day, or after a gap in the source.")
+        if cud_unit["peak_utilization_pct"] is not None:
+            print(f"peak window utilization: {cud_unit['peak_utilization_pct']:.4%}")
+        if write_mode == "dry_run":
+            cud_unit["action"] = "dry_run"
+        else:
+            load_day(cud_unit, TBL_CUD, cud_rows, SCHEMA_CUD, "window_date", GRAIN_CUD,
+                     day, capacity_id)
+            if cud_unit["action"] == "written":
+                counts[TBL_CUD] += len(cud_rows)
+            report_unit(cud_unit)
+    except Exception:
+        record_failure(cud_unit, f"{label} {TBL_CUD}")
+
+    if write_mode == "dry_run":
+        print("dry_run: nothing written")
 
 # METADATA ********************
 
@@ -696,26 +1142,40 @@ for day in target_dates:
 
 loaded_at = datetime.now(timezone.utc).replace(tzinfo=None)
 print(f"\n--- snapshots {snapshot_day.isoformat()} ---")
+snap_items = {"table": TBL_ITEMS, "rows": None, "action": None, "error": None}
+snap_caps = {"table": TBL_CAPS, "rows": None, "action": None, "error": None}
+evidence["snapshots"] = {SUFFIX_ITEMS: snap_items, SUFFIX_CAPS: snap_caps}
 try:
     items_rows = rows_items(run_dax(dax_items(capacity_id)), snapshot_day, loaded_at, run_id)
+    snap_items["rows"] = len(items_rows)
     caps_rows = rows_capacities(run_dax(dax_capacities(capacity_id)), snapshot_day, loaded_at, run_id)
+    snap_caps["rows"] = len(caps_rows)
 
     distinct_items = len({r[0] for r in items_rows})
-    print(f"items      : {len(items_rows)} rows, {distinct_items} distinct item_id")
+    distinct_labels = len({r[7].casefold() for r in items_rows if r[7] is not None})
+    print(f"items      : {len(items_rows)} rows, {distinct_items} distinct item_id, "
+          f"{distinct_labels} distinct item_label")
     if distinct_items != len(items_rows):
         print("NOTE: item_id is not unique in this snapshot, which was not true on 2026-09-18.")
     print(f"capacities : {len(caps_rows)} rows")
 
     if write_mode == "dry_run":
+        snap_items["action"] = snap_caps["action"] = "dry_run"
         print("dry_run: nothing written")
     else:
         counts[TBL_ITEMS] = replace_all(TBL_ITEMS, items_rows, SCHEMA_ITEMS)
+        snap_items["action"] = "written"
         counts[TBL_CAPS] = replace_all(TBL_CAPS, caps_rows, SCHEMA_CAPS)
+        snap_caps["action"] = "written"
         print(f"written to {TBL_ITEMS} and {TBL_CAPS}")
 
 except Exception:
     message = f"snapshots: {traceback.format_exc()}"
     errors.append(message)
+    for entry in (snap_items, snap_caps):
+        if entry["action"] is None:
+            entry["action"] = "failed"
+            entry["error"] = message
     print(f"ERROR {message}")
 
 # METADATA ********************
@@ -727,59 +1187,20 @@ except Exception:
 
 # CELL ********************
 
-# Close the run: write one row to the run log and print a summary.
+# Close the run. success when nothing went wrong; failed when every table on every
+# date and the snapshots all failed; partial otherwise, including a date whose
+# read-back did not verify. A kept_existing date is not a failure.
 
-finished_at = datetime.now(timezone.utc).replace(tzinfo=None)
-
+fact_units = [u for record in evidence["dates"].values() for u in record.values()]
+snapshots_failed = any(e["error"] for e in evidence["snapshots"].values())
 if not errors:
     status = "success"
-elif len(errors) >= len(target_dates) + 1:
+elif fact_units and all(u["error"] for u in fact_units) and snapshots_failed:
     status = "failed"
 else:
     status = "partial"
 
-error_text = None if not errors else " | ".join(errors)[:4000]
-
-log_row = (
-    run_id,
-    started_at,
-    finished_at,
-    days_in_scope,
-    write_mode,
-    ",".join(d.isoformat() for d in target_dates),
-    counts[TBL_OPS],
-    counts[TBL_CUD],
-    counts[TBL_ITEMS],
-    counts[TBL_CAPS],
-    status,
-    error_text,
-)
-
-print("\n--- run summary ---")
-print(f"status            : {status}")
-print(f"elapsed           : {(finished_at - started_at).total_seconds():.1f} s")
-print(f"{TBL_OPS:<32}: {counts[TBL_OPS]} rows")
-print(f"{TBL_CUD:<32}: {counts[TBL_CUD]} rows")
-print(f"{TBL_ITEMS:<32}: {counts[TBL_ITEMS]} rows")
-print(f"{TBL_CAPS:<32}: {counts[TBL_CAPS]} rows")
-if errors:
-    for message in errors:
-        print(f"error             : {message}")
-
-if write_mode == "dry_run":
-    print("dry_run: run log not written")
-else:
-    write_rows(TBL_LOG, [log_row], SCHEMA_LOG, mode="append")
-    print(f"{TBL_LOG:<32}: 1 row appended")
-
-# Fail the Fabric job when the run was not clean. notebookutils.notebook.exit()
-# leaves the job status Completed whatever value it is handed, so a partial or a
-# failed run used to look like a success to the scheduler and in job history.
-# The run log row is written above first, so the record survives either way.
-if status != "success":
-    raise RuntimeError(
-        f"Capacity Metrics Extract finished with status {status!r}. {error_text}"
-    )
+finish_run(status)
 
 notebookutils.notebook.exit(status)
 

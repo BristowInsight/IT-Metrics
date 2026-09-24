@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "Capacity Metrics Smoke",
+    "description": "Runs Capacity Metrics Extract for yesterday only into the capmetrics_smoke_ tables, to check a change without touching the real history"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "0fb8d294-d9e1-412b-b22b-d7296000174b"
+  }
+}
