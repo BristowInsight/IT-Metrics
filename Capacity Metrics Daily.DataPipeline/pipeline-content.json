@@ -3,16 +3,7 @@
     "description": "Runs Capacity Metrics Extract over the last 12 days into the capmetrics_ tables. Three retries 30 minutes apart, 2 hour timeout per attempt. Evidence: Files/capmetrics/runs/latest.json.",
     "activities": [
       {
-        "name": "Capacity Metrics Extract",
         "type": "TridentNotebook",
-        "dependsOn": [],
-        "policy": {
-          "timeout": "0.02:00:00",
-          "retry": 3,
-          "retryIntervalInSeconds": 1800,
-          "secureOutput": false,
-          "secureInput": false
-        },
         "typeProperties": {
           "notebookId": "94b315a9-ab5b-4e49-9821-8755a66e99d2",
           "workspaceId": "00000000-0000-0000-0000-000000000000",
@@ -39,7 +30,16 @@
               "type": "string"
             }
           }
-        }
+        },
+        "policy": {
+          "timeout": "0.02:00:00",
+          "retry": 3,
+          "retryIntervalInSeconds": 1800,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Capacity Metrics Extract",
+        "dependsOn": []
       }
     ],
     "parameters": {
